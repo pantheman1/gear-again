@@ -8,13 +8,21 @@
   font-family: "Roboto", sans-serif;
 }
 
+form.form-modal {
+  width: 100%;
+  margin-left: 25%;
+}
+
 .form__container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .form__text--input {
-  width: 60%;
+  width: 100%;
   max-width: 350px;
   padding: 9px 13px;
   font-size: 16px;
@@ -31,14 +39,20 @@
 }
 
 button {
-  display: inline-block;
-  padding: 4px 7px;
-  color: #fff;
-  border-radius: 3px;
-  background-image: linear-gradient(#1485cc, #0f81c8);
-  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.08px;
+  font-size: 14px;
+  line-height: 12px;
+  padding: 4px;
+  width: 60px;
+  background-color: #006400;
+  color: #f9f8f6;
 }
 
-/* button:active {
-  transform: translateY(2px);
-} */
+button:active {
+  color: #f9f8f6;
+  fill: #006400;
+  background-color: #006400;
+  box-shadow: inset 0 0 0 3px #006400, inset 0 0 0 5px #006400;
+}

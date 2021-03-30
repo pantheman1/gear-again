@@ -28,16 +28,14 @@ function SignupFormPage() {
     };
 
     return (
-        <>
+        <div className="form__container">
             <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="form-modal" onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <div className="input-label-container">
-                    <label>
-                        Email
-        </label>
+                    <label>Email</label>
                     <input
                         className="form__text--input"
                         type="text"
@@ -47,9 +45,7 @@ function SignupFormPage() {
                     />
                 </div>
                 <div className="input-label-container">
-                    <label>
-                        Username
-        </label>
+                    <label>Username</label>
                     <input
                         className="form__text--input"
                         type="text"
@@ -59,9 +55,7 @@ function SignupFormPage() {
                     />
                 </div>
                 <div className="input-label-container">
-                    <label>
-                        Password
-        </label>
+                    <label>Password</label>
                     <input
                         className="form__text--input"
                         type="password"
@@ -71,9 +65,7 @@ function SignupFormPage() {
                     />
                 </div>
                 <div className="input-label-container">
-                    <label>
-                        Confirm Password
-        </label>
+                    <label>Confirm Password</label>
                     <input
                         className="form__text--input"
                         type="password"
@@ -84,7 +76,7 @@ function SignupFormPage() {
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
-        </>
+        </div>
     );
 }
 

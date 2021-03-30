@@ -15,13 +15,13 @@
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 #modal-content {
   position: absolute;
   background-color: white;
   width: 50%;
-  height: 30%;
-  border-radius: 15px;
+  height: 33%;
+  border-radius: 10px;
 }
