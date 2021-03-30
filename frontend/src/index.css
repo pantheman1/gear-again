@@ -19,6 +19,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+div#root {
+  height: 100vh;
+}
+
 form.form-modal {
   display: flex;
   flex-direction: column;
