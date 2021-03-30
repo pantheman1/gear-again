@@ -30,6 +30,15 @@
   flex-direction: column;
 }
 
+button {
+  display: inline-block;
+  padding: 4px 7px;
+  color: #fff;
+  border-radius: 3px;
+  background-image: linear-gradient(#1485cc, #0f81c8);
+  cursor: pointer;
+}
+
 /* button:active {
   transform: translateY(2px);
 } */
