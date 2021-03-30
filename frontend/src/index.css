@@ -1,6 +1,17 @@
 /* TODO Add site wide styles */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 
+:root {
+  --primary-color: #313131;
+  --secondary-color: #585858;
+  --dark-color: #002240;
+  --light-color: #f4f4f4;
+  --success-color: rgba(0, 136, 169, 1);
+  --error-color: #d9534f;
+}
+/* How to use the above: */
+/* color: var(--light-color); */
+
 * {
   box-sizing: border-box;
   padding: 0px;
@@ -9,8 +20,10 @@
 }
 
 form.form-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  margin-left: 25%;
 }
 
 .form__container {
@@ -36,6 +49,9 @@ form.form-modal {
 .input-label-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  width: 60%;
 }
 
 button {

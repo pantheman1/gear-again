@@ -21,7 +21,9 @@
 #modal-content {
   position: absolute;
   background-color: white;
-  width: 50%;
-  height: 33%;
+  min-width: 400px;
+  height: 35%;
+  width: 35%;
+  min-height: 400px;
   border-radius: 10px;
 }
