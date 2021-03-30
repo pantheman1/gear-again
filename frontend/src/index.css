@@ -1,1 +1,35 @@
 /* TODO Add site wide styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto", sans-serif;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__text--input {
+  width: 60%;
+  max-width: 350px;
+  padding: 9px 13px;
+  font-size: 16px;
+  min-height: 42px;
+  border: 1px solid #e6e2df;
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-label-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* button:active {
+  transform: translateY(2px);
+} */
