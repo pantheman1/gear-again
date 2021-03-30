@@ -1,1 +1,95 @@
 /* TODO Add site wide styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+:root {
+  --primary-color: #313131;
+  --secondary-color: #585858;
+  --dark-color: #002240;
+  --light-color: #f4f4f4;
+  --success-color: rgba(0, 136, 169, 1);
+  --error-color: #d9534f;
+}
+/* How to use the above: */
+/* color: var(--light-color); */
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  font-size: larger;
+  font-weight: bolder;
+  color: var(--primary-color);
+}
+
+div#root {
+  height: 100vh;
+}
+
+.page__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nav__wrapper-content {
+  flex: 1;
+}
+
+form.form-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.form__text--input {
+  width: 100%;
+  max-width: 350px;
+  padding: 9px 13px;
+  font-size: 16px;
+  min-height: 42px;
+  border: 1px solid #e6e2df;
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input-label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  width: 60%;
+}
+
+button {
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.08px;
+  font-size: 14px;
+  line-height: 12px;
+  padding: 4px;
+  width: 60px;
+  background-color: #006400;
+  color: #f9f8f6;
+}
+
+button:active {
+  color: #f9f8f6;
+  fill: #006400;
+  background-color: #006400;
+  box-shadow: inset 0 0 0 3px #006400, inset 0 0 0 5px #006400;
+}

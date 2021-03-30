@@ -28,6 +28,12 @@ to see the world.
    - update the quantity of that item
    - remove item from their cart
 
+4. Browsing capabilities
+
+- View a select number of products in each category on the home page
+- Click on categories to go to the specific category product listing page
+- View all products
+
 ## Bonus Features
 
 1. Seller Stats

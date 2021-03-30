@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Modal } from '../../context/Modal';
-import LoginForm from './LoginForm';
+import SignupFormPage from './SignupForm';
 
-function LoginFormModal() {
+function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <a onClick={() => setShowModal(true)}>Log In</a>
+      <a onClick={() => setShowModal(true)}>Sign up</a>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
+          <SignupFormPage />
         </Modal>
       )}
     </>
   );
 }
 
-export default LoginFormModal;
+export default SignupFormModal;

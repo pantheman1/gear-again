@@ -1,5 +1,9 @@
-- Login: `/login`
-- Sign-up: `/signup`
+- Login/Signup: handled with modals
 - Home: `/`
+  - This will be for the main home page
+- Category Item listings: `/categories/:id`
+  - A user can click on a category to view all items which have that category
 - Profile: `/profile`
-- Item Details: `/:id`
+  - This is the user's profile page
+- Item Details: `/items/:id`
+  - A user can view a specific item's details

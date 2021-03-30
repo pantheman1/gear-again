@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginForm() {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,36 +23,48 @@ function LoginForm() {
     );
   };
 
+  // make sure this user is input into my seeder
+  const handleDemoSubmit = () => {
+    dispatch(sessionActions.login({ credential: 'Demo', password: 'password' }))
+  }
+
   return (
-    <>
+    <div className="form__container">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="form-modal" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Username or Email
+        <div className="input-label-container">
+          <label>
+            Username or Email
+          </label>
           <input
+            className="form__text--input"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
+        </div>
+        <div className="input-label-container">
+          <label>
+            Password
         </label>
-        <label>
-          Password
           <input
+            className="form__text--input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
         <button type="submit">Log In</button>
+        <button className="demo-btn" type="button" onClick={handleDemoSubmit}>Demo Login</button>
       </form>
-    </>
+    </div>
   );
 }
 

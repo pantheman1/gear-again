@@ -16,9 +16,40 @@
 ### Model Associations:
 
 - Unique index on `[email]`
-- Users `one-to-many` `Items` association.
+- `users` has a `one-to-many` `orders` association.
+- `users` has a `one-to-many` `items` association.
 
 ---
+
+## Orders
+
+| Attribute Name   | Attribute Type | Constraints           |
+| ---------------- | -------------- | --------------------- |
+| id               | integer        | Primary Key, Not Null |
+| users_id         | integer        | Foreign Key, Not Null |
+| total            | integer        | Not Null              |
+| shipping address | string         | Not Null              |
+| billing address  | string         | Not Null              |
+| createdAt        | datetime       | Not Null              |
+| updatedAt        | datetime       | Not Null              |
+
+### Model Associations:
+
+- `orders` `belongs-to` `users`
+- `orders` has a `one-to-many` `order_details` association.
+
+## Order_details
+
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| orders_id      | integer        | Foreign Key, Not Null |
+| items_id       | integer        | Foreign Key, Not Null |
+
+### Model Associations:
+
+- `order_details` `belongs-to` `orders`
+- `order_details` `belongs-to` `items`
 
 ## Items
 
@@ -29,23 +60,25 @@
 | brand          | string         | Nullable, 50 chars or less  |
 | size           | string         | Not Null, 30 chars or less  |
 | price          | integer        | Not Null                    |
+| cost           | integer        | Nullable                    |
 | description    | text           | Nullable                    |
+| isSold         | boolean        | Not Null, Default=False     |
+| order_id       | integer        | Foreign Key, Not Null       |
 | user_id        | integer        | Foreign Key, Not Null       |
 | categories_id  | integer        | Foreign Key, Not Null       |
 | conditions_id  | integer        | Foreign Key, Not Null       |
-| sales_id       | integer        | Foreign Key, Not Null       |
 | gender_id      | integer        | Foreign Key, Not Null       |
 | createdAt      | datetime       | Not Null                    |
 | updatedAt      | datetime       | Not Null                    |
 
 ### Model Associations:
 
-- Items `many-to-one` `Users` association.
-- Items `many-to-one` `Categories` association.
-- Items `many-to-one` `Conditions` association.
-- Items `many-to-one` `Gender` association.
-- Items `many-to-one` `Sales` association.
-- Items `one-to-many` `Photos` association.
+- `Items` has a `one-to-many` `order_details` association.
+- `Items` has a `one-to-many` `Photos` association.
+- `Items` `belongs-to` `Users`
+- `Items` `belongs-to` `Categories`
+- `Items` `belongs-to` `Conditions`
+- `Items` `belongs-to` `Gender`
 
 ---
 
@@ -55,12 +88,10 @@
 | -------------- | -------------- | -------------------------- |
 | id             | integer        | Primary Key, Not Null      |
 | name           | string         | Not Null, 50 chars or less |
-| createdAt      | datetime       | Not Null                   |
-| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Categories `one-to-many` Items association.
+- `Categories` has a `one-to-many` `Items` association.
 
 ---
 
@@ -70,12 +101,10 @@
 | -------------- | -------------- | -------------------------- |
 | id             | integer        | Primary Key, Not Null      |
 | name           | string         | Not Null, 50 chars or less |
-| createdAt      | datetime       | Not Null                   |
-| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Conditions `one-to-many` Items association.
+- `Conditions` has a `one-to-many` `Items` association.
 
 ---
 
@@ -85,46 +114,26 @@
 | -------------- | -------------- | -------------------------- |
 | id             | integer        | Primary Key, Not Null      |
 | name           | string         | Not Null, 50 chars or less |
-| createdAt      | datetime       | Not Null                   |
-| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Gender `one-to-many` Items association.
-
----
-
-## Sales
-
-| Attribute Name | Attribute Type | Constraints                |
-| -------------- | -------------- | -------------------------- |
-| id             | integer        | Primary Key, Not Null      |
-| name           | string         | Not Null, 50 chars or less |
-| createdAt      | datetime       | Not Null                   |
-| updatedAt      | datetime       | Not Null                   |
-
-### Model Associations:
-
-- Sales `one-to-many` Items association.
+- `Gender` has a `one-to-many` `Items` association.
 
 ---
 
 ## Photos
 
-| Attribute Name | Attribute Type | Constraints                  |
-| -------------- | -------------- | ---------------------------- |
-| id             | integer        | Primary Key, Not Null        |
-| name           | string         | Not Null, 2000 chars or less |
-| items_id       | integer        | Foreign Key, Not Null        |
-| createdAt      | datetime       | Not Null                     |
-| updatedAt      | datetime       | Not Null                     |
+| Attribute Name | Attribute Type | Constraints                |
+| -------------- | -------------- | -------------------------- |
+| id             | integer        | Primary Key, Not Null      |
+| name           | string         | Not Null, 50 chars or less |
 
 ### Model Associations:
 
-- Photos `many-to-one` Items association.
+- `Photos` `belongs-to` `Items`
 
 ---
 
 ## Diagram Visual
 
-![Schema](https://i.postimg.cc/8CYMz3Qh/db-schema.jpg)
+![Schema](https://i.postimg.cc/VvZV2MSj/db-schema.jpg)
