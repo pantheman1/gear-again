@@ -19,8 +19,25 @@
   font-family: "Roboto", sans-serif;
 }
 
+a {
+  text-decoration: none;
+  font-size: larger;
+  font-weight: bolder;
+  color: var(--primary-color);
+}
+
 div#root {
   height: 100vh;
+}
+
+.page__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.nav__wrapper-content {
+  flex: 1;
 }
 
 form.form-modal {

@@ -23,6 +23,11 @@ function LoginForm() {
     );
   };
 
+  // make sure this user is input into my seeder
+  const handleDemoSubmit = () => {
+    dispatch(sessionActions.login({ credential: 'Demo', password: 'password' }))
+  }
+
   return (
     <div className="form__container">
       <h1>Log In</h1>
@@ -57,6 +62,7 @@ function LoginForm() {
           />
         </div>
         <button type="submit">Log In</button>
+        <button className="demo-btn" type="button" onClick={handleDemoSubmit}>Demo Login</button>
       </form>
     </div>
   );

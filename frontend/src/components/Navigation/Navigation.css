@@ -1,3 +1,22 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.nav__wrapper {
+  height: 100vh;
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  border: 1px solid black;
+}
+
+.navbar__container-login,
+.navbar__container-signup,
+.navbar__container-home,
+.navbar__container-profile {
+  margin-left: 40px;
+  text-decoration: none;
+}
