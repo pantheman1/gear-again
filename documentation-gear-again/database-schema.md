@@ -2,119 +2,129 @@
 
 ## Users
 
-| Attribute Name | Attribute Type | Constraints                        |
-| -------------- | -------------- | ---------------------------------- |
-| id             | integer        | Primary Key, Not Null              |
-| firstName      | string         | Not Null, 30 chars or less         |
-| lastName       | string         | Not Null, 30 chars or less         |
-| email          | string         | Not Null, Unique, 50 chars or less |
-| hashedPassword | string.binary  | Not Null                           |
-| city           | string         | Not Null, 30 chars or less         |
-| chef_id        | integer        | Foreign Key                        |
-| createdAt      | datetime       | Not Null                           |
-| updatedAt      | datetime       | Not Null                           |
+| Attribute Name  | Attribute Type | Constraints                         |
+| --------------- | -------------- | ----------------------------------- |
+| id              | integer        | Primary Key, Not Null               |
+| name            | string         | Not Null, 30 chars or less          |
+| username        | string         | Not Null, 30 chars or less          |
+| photo           | string         | Not Null, 2000 chars or less        |
+| email           | string         | Not Null, Unique, 255 chars or less |
+| hashed_password | string.binary  | Not Null                            |
+| createdAt       | datetime       | Not Null                            |
+| updatedAt       | datetime       | Not Null                            |
 
 ### Model Associations:
 
 - Unique index on `[email]`
-- Users `one-to-many` `Reservations` association.
-- Users `one-to-many` `Favorites` association.
-- Users `one-to-many` `Reviews` association.
-- Users `one-to-one` `Chefs` association.
+- Users `one-to-many` `Items` association.
 
 ---
 
-## Chefs
+## Items
 
-| Attribute Name | Attribute Type | Constraints           |
-| -------------- | -------------- | --------------------- |
-| id             | integer        | Primary Key, Not Null |
-| food_type_id   | integer        | Foreign Key, Not Null |
-| price          | integer        | Not Null              |
-| bio            | text           | Nullable              |
-| profile_image  | String         |
-| createdAt      | datetime       | Not Null              |
-| updatedAt      | datetime       | Not Null              |
+| Attribute Name | Attribute Type | Constraints                 |
+| -------------- | -------------- | --------------------------- |
+| id             | integer        | Primary Key, Not Null       |
+| title          | string         | Not Null, 255 chars or less |
+| brand          | string         | Nullable, 50 chars or less  |
+| size           | string         | Not Null, 30 chars or less  |
+| price          | integer        | Not Null                    |
+| description    | text           | Nullable                    |
+| user_id        | integer        | Foreign Key, Not Null       |
+| categories_id  | integer        | Foreign Key, Not Null       |
+| conditions_id  | integer        | Foreign Key, Not Null       |
+| sales_id       | integer        | Foreign Key, Not Null       |
+| gender_id      | integer        | Foreign Key, Not Null       |
+| createdAt      | datetime       | Not Null                    |
+| updatedAt      | datetime       | Not Null                    |
 
 ### Model Associations:
 
-- Chefs `many-to-one` `Food_Types` association.
-- Chefs `one-to-one` `Users` association.
+- Items `many-to-one` `Users` association.
+- Items `many-to-one` `Categories` association.
+- Items `many-to-one` `Conditions` association.
+- Items `many-to-one` `Gender` association.
+- Items `many-to-one` `Sales` association.
+- Items `one-to-many` `Photos` association.
 
 ---
 
-## Food_Types
+## Categories
 
-| Attribute Name | Attribute Type | Constraints           |
-| -------------- | -------------- | --------------------- |
-| id             | integer        | Primary Key, Not Null |
-| name           | string         | Not Null              |
-| image          | string         | Not Null              |
-| createdAt      | datetime       | Not Null              |
-| updatedAt      | datetime       | Not Null              |
+| Attribute Name | Attribute Type | Constraints                |
+| -------------- | -------------- | -------------------------- |
+| id             | integer        | Primary Key, Not Null      |
+| name           | string         | Not Null, 50 chars or less |
+| createdAt      | datetime       | Not Null                   |
+| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Food_Types `one-to-many` Chefs association.
+- Categories `one-to-many` Items association.
 
 ---
 
-## Reservations
+## Conditions
 
-| Attribute Name | Attribute Type | Constraints                   |
-| -------------- | -------------- | ----------------------------- |
-| id             | integer        | Primary Key, Not Null = False |
-| user_id        | integer        | Foreign Key, Not Null = False |
-| chef_id        | integer        | Foreign Key, Not Null = False |
-| event_date     | date           | Not Null = False              |
-| event_time     | datetime       | Not Null = False              |
-| duration       | integer        | Not Null = False              |
-| createdAt      | datetime       | Not Null = False              |
-| updatedAt      | datetime       | Not Null = False              |
+| Attribute Name | Attribute Type | Constraints                |
+| -------------- | -------------- | -------------------------- |
+| id             | integer        | Primary Key, Not Null      |
+| name           | string         | Not Null, 50 chars or less |
+| createdAt      | datetime       | Not Null                   |
+| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Reservations `many to one` `Users` (Through user_id) association.
-- Reservations `many to one` `Users`(Through chef_id) association.
+- Conditions `one-to-many` Items association.
 
 ---
 
-## Favorites
+## Gender
 
-| Attribute Name | Attribute Type | Constraints                   |
-| -------------- | -------------- | ----------------------------- |
-| id             | integer        | Primary Key, Not Null = False |
-| user_id        | integer        | Foreign Key, Not Null = False |
-| chef_id        | integer        | Foreign Key, Not Null = False |
-| createdAt      | datetime       | Not Null                      |
-| updatedAt      | datetime       | Not Null                      |
+| Attribute Name | Attribute Type | Constraints                |
+| -------------- | -------------- | -------------------------- |
+| id             | integer        | Primary Key, Not Null      |
+| name           | string         | Not Null, 50 chars or less |
+| createdAt      | datetime       | Not Null                   |
+| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Favorites `many to one` `Users` (Through user_id) association.
-- Favorites `many to one` `Users`(Through chef_id) association.
+- Gender `one-to-many` Items association.
 
 ---
 
-## Reviews
+## Sales
 
-| Attribute Name | Attribute Type | Constraints                   |
-| -------------- | -------------- | ----------------------------- |
-| id             | integer        | Primary Key, Not Null = False |
-| user_id        | integer        | Foreign Key, Not Null = False |
-| chef_id        | integer        | Foreign Key, Not Null = False |
-| rating         | integer        | Not Null = False              |
-| comment        | text           | Not Null = False              |
-| createdAt      | datetime       | Not Null                      |
-| updatedAt      | datetime       | Not Null                      |
+| Attribute Name | Attribute Type | Constraints                |
+| -------------- | -------------- | -------------------------- |
+| id             | integer        | Primary Key, Not Null      |
+| name           | string         | Not Null, 50 chars or less |
+| createdAt      | datetime       | Not Null                   |
+| updatedAt      | datetime       | Not Null                   |
 
 ### Model Associations:
 
-- Favorites `many to one` `Users` (Through user_id) association.
-- Favorites `many to one` `Users`(Through chef_id) association.
+- Sales `one-to-many` Items association.
+
+---
+
+## Photos
+
+| Attribute Name | Attribute Type | Constraints                  |
+| -------------- | -------------- | ---------------------------- |
+| id             | integer        | Primary Key, Not Null        |
+| name           | string         | Not Null, 2000 chars or less |
+| items_id       | integer        | Foreign Key, Not Null        |
+| createdAt      | datetime       | Not Null                     |
+| updatedAt      | datetime       | Not Null                     |
+
+### Model Associations:
+
+- Photos `many-to-one` Items association.
 
 ---
 
 ## Diagram Visual
 
-![Schema](Screen-Shot-goes-here)
+![Schema](https://i.postimg.cc/8CYMz3Qh/db-schema.jpg)

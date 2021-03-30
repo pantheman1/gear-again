@@ -34,4 +34,8 @@ to see the world.
 
    As a seller, I want to be able to view my seller stats.
 
+- Enter the cost of the item and see how much you will make minus seller fees
+- See monthly revenue
+- See monthly estimated profit
+
 2. Add a predictive search functionality

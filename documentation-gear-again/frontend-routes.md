@@ -1,0 +1,5 @@
+- Login: `/login`
+- Sign-up: `/signup`
+- Home: `/`
+- Profile: `/profile`
+- Item Details: `/:id`
