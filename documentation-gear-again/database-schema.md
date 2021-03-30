@@ -5,9 +5,9 @@
 | Attribute Name  | Attribute Type | Constraints                         |
 | --------------- | -------------- | ----------------------------------- |
 | id              | integer        | Primary Key, Not Null               |
-| name            | string         | Not Null, 30 chars or less          |
+| name            | string         | Not Null, 100 chars or less         |
 | username        | string         | Not Null, 30 chars or less          |
-| photo           | string         | Not Null, 2000 chars or less        |
+| photo           | string         | Nullable, 2000 chars or less        |
 | email           | string         | Not Null, Unique, 255 chars or less |
 | hashed_password | string.binary  | Not Null                            |
 | createdAt       | datetime       | Not Null                            |
@@ -123,10 +123,11 @@
 
 ## Photos
 
-| Attribute Name | Attribute Type | Constraints                |
-| -------------- | -------------- | -------------------------- |
-| id             | integer        | Primary Key, Not Null      |
-| name           | string         | Not Null, 50 chars or less |
+| Attribute Name | Attribute Type | Constraints                  |
+| -------------- | -------------- | ---------------------------- |
+| id             | integer        | Primary Key, Not Null        |
+| url            | string         | Nullable, 1000 chars or less |
+| item_id        | integer        | Foreign Key, Not Null        |
 
 ### Model Associations:
 
@@ -136,4 +137,4 @@
 
 ## Diagram Visual
 
-![Schema](https://i.postimg.cc/VvZV2MSj/db-schema.jpg)
+![Schema](https://i.postimg.cc/kgfmH43n/db-schema.jpg)
