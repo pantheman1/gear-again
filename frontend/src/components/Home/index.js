@@ -1,23 +1,45 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../../store/categories';
+import { getItems } from '../../store/items';
 import './Home.css';
 
 export default function Home() {
-    //get categories
+    const dispatch = useDispatch();
+    const categories = useSelector(state => state.categories);
+    const items = useSelector(state => state.items);
+
+    useEffect(() => {
+        dispatch(getCategories());
+        dispatch(getItems());
+    }, []);
+
+    const categoriesArr = Object.values(categories);
+
+
 
     return (
         <>
-            <img className="background-image-home" src={'https://i.postimg.cc/VkZZ4zv5/lake.jpg'} />
-            <h1>CATEGORIES LIST</h1>
-            <h1>CATEGORY 1</h1>
-            <h1>CATEGORY 2</h1>
-            <h1>CATEGORY 3</h1>
-            <h1>CATEGORY 4</h1>
-            <h1>CATEGORY 5</h1>
-            <h1>CATEGORY 6</h1>
-            <h1>CATEGORY 7</h1>
-            <h1>CATEGORY 8</h1>
-            <h1>CATEGORY 9</h1>
+            {/* <img className="background-image-home" src={'https://i.postimg.cc/VkZZ4zv5/lake.jpg'} /> */}
+            <a href='https://postimages.org/' target='_blank'><img className="background-image-home" src='https://i.postimg.cc/CM87DjbZ/columbia.jpg' border='0' alt='columbia' /></a>
+            <div className="categories__container">
+                <ul className="categories__list">
+                    {categories && categoriesArr?.map(category => (
+                        <li key={category.id}>{category.name}</li>
+                    ))}
+                </ul>
+            </div>
+            <div>
+                <h3>CATEGORY 1</h3>
+            </div>
+            <h3>CATEGORY 2</h3>
+            <h3>CATEGORY 3</h3>
+            <h3>CATEGORY 4</h3>
+            <h3>CATEGORY 5</h3>
+            <h3>CATEGORY 6</h3>
+            <h3>CATEGORY 7</h3>
+            <h3>CATEGORY 8</h3>
+            <h3>CATEGORY 9</h3>
         </>
 
     )
