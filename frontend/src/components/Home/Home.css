@@ -1,0 +1,11 @@
+.background-image-home {
+  height: auto;
+  width: 100%;
+}
+
+ul.categories__list {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  max-width: 80%;
+}
