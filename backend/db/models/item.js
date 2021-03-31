@@ -8,19 +8,25 @@ module.exports = (sequelize, DataTypes) => {
     cost: DataTypes.INTEGER,
     description: DataTypes.TEXT,
     isSold: DataTypes.BOOLEAN,
-    order_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER,
-    category_id: DataTypes.INTEGER,
-    condition_id: DataTypes.INTEGER,
-    gender_id: DataTypes.INTEGER
+    orderId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
+    categoryId: DataTypes.INTEGER,
+    conditionId: DataTypes.INTEGER,
+    genderId: DataTypes.INTEGER
   }, {});
   Item.associate = function (models) {
-    Item.hasMany(models.Order_detail, { foreignKey: 'item_id' });
-    Item.hasMany(models.Photo, { foreignKey: 'item_id' });
-    Item.belongsTo(models.User, { foreignKey: 'user_id' });
-    Item.belongsTo(models.Category, { foreignKey: 'category_id' });
-    Item.belongsTo(models.Condition, { foreignKey: 'condition_id' });
-    Item.belongsTo(models.Gender, { foreignKey: 'gender_id' });
+    const columnMapping = {
+      through: 'OrderDetail',
+      otherKey: 'orderId',
+      foreignKey: 'itemId',
+    }
+
+    Item.belongsToMany(models.OrderDetail, columnMapping);
+    Item.hasMany(models.Photo, { foreignKey: 'itemId' });
+    Item.belongsTo(models.User, { foreignKey: 'userId' });
+    Item.belongsTo(models.Category, { foreignKey: 'categoryId' });
+    Item.belongsTo(models.Condition, { foreignKey: 'conditionId' });
+    Item.belongsTo(models.Gender, { foreignKey: 'genderId' });
   };
   return Item;
 };

@@ -23,7 +23,13 @@ module.exports = (sequelize, DataTypes) => {
     order_complete: DataTypes.BOOLEAN
   }, {});
   Order.associate = function (models) {
-    // associations can be defined here
+    const columnMapping = {
+      through: 'OrderDetail',
+      otherKey: 'itemId',
+      foreignKey: 'orderId',
+    }
+    Order.belongsToMany(models.OrderDetail, columnMapping);
+    Order.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Order;
 };

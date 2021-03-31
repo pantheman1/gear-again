@@ -34,27 +34,27 @@ module.exports = {
         defaultStatus: false,
         allowNull: false,
       },
-      order_id: {
+      orderId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Orders" }
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" }
       },
-      category_id: {
+      categoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Categories" }
       },
-      condition_id: {
+      conditionId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Conditions" }
       },
-      gender_id: {
+      genderId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Genders" }

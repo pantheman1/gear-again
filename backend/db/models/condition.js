@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Condition.associate = function (models) {
-    Condition.hasMany(models.Item, { foreignKey: 'category_id' });
+    Condition.hasMany(models.Item, { foreignKey: 'conditionId' });
   };
   return Condition;
 };

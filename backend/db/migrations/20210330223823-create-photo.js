@@ -11,7 +11,7 @@ module.exports = {
       url: {
         type: Sequelize.STRING(1000),
       },
-      item_id: {
+      itemId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Items" }

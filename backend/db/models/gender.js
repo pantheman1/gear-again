@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Gender.associate = function (models) {
-    Gender.hasMany(models.Item, { foreignKey: 'category_id' });
+    Gender.hasMany(models.Item, { foreignKey: 'genderId' });
   };
   return Gender;
 };

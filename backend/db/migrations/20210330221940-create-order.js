@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" }
@@ -17,15 +17,15 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false
       },
-      shipping_address: {
+      shippingAddress: {
         type: Sequelize.STRING(500),
         allowNull: false
       },
-      billing_address: {
+      billingAddress: {
         type: Sequelize.STRING(500),
         allowNull: false
       },
-      order_complete: {
+      orderComplete: {
         type: Sequelize.BOOLEAN,
         defaultStatus: false
       },
