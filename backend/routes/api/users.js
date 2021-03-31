@@ -1,5 +1,7 @@
-import singlePublicFileUpload from '../../awsS3';
-import singleMulterUpload from '../../awsS3';
+// import singlePublicFileUpload from '../../awsS3';
+// import singleMulterUpload from '../../awsS3';
+const singlePublicFileUpload = require('../../awsS3');
+const { singleMulterUpload } = require('../../awsS3');
 
 const express = require('express');
 const { check } = require('express-validator');
@@ -31,7 +33,7 @@ const validateSignup = [
 // Sign up
 router.post(
   '/',
-  singleMulterUpload("image"),
+  singleMulterUpload("photo"),
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
