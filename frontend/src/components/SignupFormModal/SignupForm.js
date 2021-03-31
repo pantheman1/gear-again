@@ -116,12 +116,12 @@ function SignupForm() {
                 <button type="submit">Sign Up</button>
             </form>
             <div>
-                {user && (
+                {sessionUser && (
                     <div>
-                        <h1>{user.username}</h1>
+                        <h1>{sessionUser.username}</h1>
                         <img
                             style={{ width: "150px" }}
-                            src={user.profileImageUrl}
+                            src={sessionUser.profileImageUrl}
                             alt="profile"
                         />
                     </div>
