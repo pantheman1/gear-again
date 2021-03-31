@@ -10,6 +10,8 @@ This will navigate the user down the page to the different categories
 - Fitness
 - Climb
 - Snow
+- Sports
+- Fishing
 - Other
 
 ### Splash Photo
