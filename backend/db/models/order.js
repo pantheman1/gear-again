@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'itemId',
       foreignKey: 'orderId',
     }
-    Order.belongsToMany(models.OrderDetail, columnMapping);
+    Order.belongsToMany(models.Item, columnMapping);
     Order.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Order;
