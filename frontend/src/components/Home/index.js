@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../store/categories';
 import { getItems } from '../../store/items';
+import CategoriesNavList from '../Navigation/CategoriesNavList';
 import './Home.css';
 
 export default function Home() {
@@ -22,13 +23,7 @@ export default function Home() {
         <>
             {/* <img className="background-image-home" src={'https://i.postimg.cc/VkZZ4zv5/lake.jpg'} /> */}
             <a href='https://postimages.org/' target='_blank'><img className="background-image-home" src='https://i.postimg.cc/CM87DjbZ/columbia.jpg' border='0' alt='columbia' /></a>
-            <div className="categories__container">
-                <ul className="categories__list">
-                    {categories && categoriesArr?.map(category => (
-                        <li key={category.id}>{category.name}</li>
-                    ))}
-                </ul>
-            </div>
+            <CategoriesNavList />
             <div>
                 <h3>CATEGORY 1</h3>
             </div>
