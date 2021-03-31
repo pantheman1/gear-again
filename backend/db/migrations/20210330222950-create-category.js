@@ -9,16 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.ENUM(
+          'Camp',
+          'Bike',
+          'Run',
+          'Fitness',
+          'Climb',
+          'Snow',
+          'Sports',
+          'Fishing',
+          'General'),
         allowNull: false,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       }
     });
   },

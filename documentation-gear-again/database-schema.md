@@ -27,7 +27,7 @@
 | ---------------- | -------------- | --------------------- |
 | id               | integer        | Primary Key, Not Null |
 | userId           | integer        | Foreign Key, Not Null |
-| total            | integer        | Not Null              |
+| total            | decimal        | Not Null              |
 | shipping address | string         | Not Null              |
 | billing address  | string         | Not Null              |
 | createdAt        | datetime       | Not Null              |
@@ -59,11 +59,11 @@
 | title          | string         | Not Null, 255 chars or less |
 | brand          | string         | Nullable, 50 chars or less  |
 | size           | string         | Not Null, 30 chars or less  |
-| price          | integer        | Not Null                    |
+| price          | decimal        | Not Null                    |
 | cost           | integer        | Nullable                    |
 | description    | text           | Nullable                    |
 | isSold         | boolean        | Not Null, Default=False     |
-| orderId        | integer        | Foreign Key, Not Null       |
+| orderId        | integer        | Nullable, Foreign Key       |
 | userId         | integer        | Foreign Key, Not Null       |
 | categoryId     | integer        | Foreign Key, Not Null       |
 | conditionId    | integer        | Foreign Key, Not Null       |
@@ -84,10 +84,10 @@
 
 ## Categories
 
-| Attribute Name | Attribute Type | Constraints                |
-| -------------- | -------------- | -------------------------- |
-| id             | integer        | Primary Key, Not Null      |
-| name           | string         | Not Null, 50 chars or less |
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| name           | enum           | Not Null              |
 
 ### Model Associations:
 
@@ -97,10 +97,10 @@
 
 ## Conditions
 
-| Attribute Name | Attribute Type | Constraints                |
-| -------------- | -------------- | -------------------------- |
-| id             | integer        | Primary Key, Not Null      |
-| name           | string         | Not Null, 50 chars or less |
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| name           | enum           | Not Null              |
 
 ### Model Associations:
 
@@ -110,10 +110,10 @@
 
 ## Gender
 
-| Attribute Name | Attribute Type | Constraints                |
-| -------------- | -------------- | -------------------------- |
-| id             | integer        | Primary Key, Not Null      |
-| name           | string         | Not Null, 50 chars or less |
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| name           | enum           | Not Null              |
 
 ### Model Associations:
 

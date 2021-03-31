@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    total: DataTypes.INTEGER,
+    total: DataTypes.DECIMAL(10, 2),
     shipping_address: {
       type: DataTypes.STRING,
       allowNull: false,
