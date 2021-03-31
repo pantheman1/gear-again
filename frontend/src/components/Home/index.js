@@ -1,22 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../../store/categories';
 import { getItems } from '../../store/items';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 import './Home.css';
 
 export default function Home() {
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.categories);
     const items = useSelector(state => state.items);
 
     useEffect(() => {
-        dispatch(getCategories());
         dispatch(getItems());
     }, []);
-
-    const categoriesArr = Object.values(categories);
-
 
 
     return (
