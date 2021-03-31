@@ -1,3 +1,6 @@
+import singlePublicFileUpload from '../../awsS3';
+import singleMulterUpload from '../../awsS3';
+
 const express = require('express');
 const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
