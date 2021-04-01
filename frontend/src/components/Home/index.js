@@ -15,8 +15,10 @@ export default function Home() {
 
     return (
         <>
-            {/* <img className="background-image-home" src={'https://i.postimg.cc/VkZZ4zv5/lake.jpg'} /> */}
-            <a href='https://postimages.org/' target='_blank'><img className="background-image-home" src='https://i.postimg.cc/CM87DjbZ/columbia.jpg' border='0' alt='columbia' /></a>
+            <div className="lower-nav">
+                <h1>This is where a title will go</h1>
+            </div>
+            <img className="background-image-home" src={'https://gear-again.s3-us-west-1.amazonaws.com/Site-Images/lake.jpg'} />
             <CategoriesNavList />
             <div>
                 <h3>CATEGORY 1</h3>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../store/categories';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 export default function CategroriesNavList() {
@@ -18,9 +18,9 @@ export default function CategroriesNavList() {
         <>
             <div className="categories__container">
                 <ul className="categories__list">
-                    <Link to="/all">All</Link>
+                    <NavLink to="/all" activeClassName="active">All</NavLink>
                     {categories && categoriesArr?.map(category => (
-                        <Link key={category.id} to={`/${category.name.toLowerCase()}`}>{category.name}</Link>
+                        <NavLink key={category.id} to={`/${category.name.toLowerCase()}`}>{category.name}</NavLink>
                     ))}
                 </ul>
             </div>

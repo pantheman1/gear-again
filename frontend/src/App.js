@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Footer from "./components/Navigation/Footer";
+import AllItems from "./components/Category/AllItems";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,20 +18,20 @@ function App() {
 
   return (
     <>
+      <Navigation isLoaded={isLoaded} />
       <div className="page__container">
         <div className="nav__wrapper-content">
-          <Navigation isLoaded={isLoaded} />
           {isLoaded && (
             <Switch>
-              <Route path="/">
+              <Route path="/" exact={true}>
                 <Home />
               </Route>
-              {/* <Route path="/login" >
-            <LoginFormPage />
-          </Route> */}
-              {/* <Route path="/signup">
-                <SignupFormPage />
+              {/* <Route path={`/:id`}>
+
               </Route> */}
+              <Route path="/all" exact={true}>
+                <AllItems />
+              </Route>
             </Switch>
           )}
         </div>
