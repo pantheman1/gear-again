@@ -5,8 +5,40 @@ module.exports = {
     return queryInterface.bulkInsert('Photos', [
       {
         itemId: 1,
-        url: 'https://i.postimg.cc/bJrD3Jfs/Moving-straps-1.jpg'
-      }
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/1.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/2.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/3.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/4.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/1.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/2.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/3.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/4.jpg'
+      },
+      {
+        itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/5.jpg'
+      },
     ], {});
   },
 

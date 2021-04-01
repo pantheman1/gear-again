@@ -1,6 +1,6 @@
 .background-image-home {
-  height: auto;
-  width: 100%;
+  max-width: 100%;
+  min-width: 1024px;
 }
 
 ul.categories__list {
