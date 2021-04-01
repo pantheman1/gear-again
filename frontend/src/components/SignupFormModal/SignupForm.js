@@ -104,6 +104,7 @@ function SignupForm() {
                     <input
                         className="form__text--input"
                         onChange={updateFile}
+                        type="file"
                     />
                 </div>
                 {/* <div className="input-label-container">

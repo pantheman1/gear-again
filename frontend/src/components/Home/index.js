@@ -21,7 +21,10 @@ export default function Home() {
             <img className="background-image-home" src={'https://gear-again.s3-us-west-1.amazonaws.com/Site-Images/lake.jpg'} />
             <CategoriesNavList />
             <div>
-                <h3>CATEGORY 1</h3>
+                <h3>Camp</h3>
+                {/* <ul>
+                    { }
+                </ul> */}
             </div>
             <h3>CATEGORY 2</h3>
             <h3>CATEGORY 3</h3>
