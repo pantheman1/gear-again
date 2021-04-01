@@ -28,7 +28,7 @@ export const restoreUser = () => async (dispatch) => {
 };
 
 export const signup = (user) => async (dispatch) => {
-  const { photo, photos, name, username, email, password } = user;
+  const { profileImageUrl, profileImageUrls, name, username, email, password } = user;
   const formData = new FormData();
   formData.append("name", name);
   formData.append("username", username);
@@ -36,14 +36,14 @@ export const signup = (user) => async (dispatch) => {
   formData.append("password", password)
 
   // for multiple files
-  if (photos && photos.length !== 0) {
-    for (let i = 0; i < photos.length; i++) {
-      formData.append("photos", photos[i]);
+  if (profileImageUrls && profileImageUrls.length !== 0) {
+    for (let i = 0; i < profileImageUrls.length; i++) {
+      formData.append("profileImageUrls", profileImageUrls[i]);
     }
   }
 
   // for single file
-  if (photo) formData.append("photo", photo);
+  if (profileImageUrl) formData.append("profileImageUrl", profileImageUrl);
 
   const response = await fetch('/api/users', {
     method: 'POST',

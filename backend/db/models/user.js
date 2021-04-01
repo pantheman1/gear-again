@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      photo: {
+      profileImageUrl: {
         type: DataTypes.STRING,
       },
       username: {
@@ -89,14 +89,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
 
-  User.signup = async function ({ photo, name, username, email, password }) {
+  User.signup = async function ({ profileImageUrl, name, username, email, password }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword,
       name,
-      photo,
+      profileImageUrl,
     });
     return await User.scope('currentUser').findByPk(user.id);
   };

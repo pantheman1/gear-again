@@ -12,7 +12,7 @@ function SignupForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [photo, setPhoto] = useState(null);
+    const [profileImageUrl, setProfileImageUrl] = useState(null);
     // for multuple file upload
     //   const [images, setImages] = useState([]);
     const [errors, setErrors] = useState([]);
@@ -23,7 +23,7 @@ function SignupForm() {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
-            return dispatch(sessionActions.signup({ name, email, username, password, photo }))
+            return dispatch(sessionActions.signup({ name, email, username, password, profileImageUrl }))
                 .catch(res => {
                     if (res.data && res.data.errors) setErrors(res.data.errors);
                 });
@@ -33,7 +33,7 @@ function SignupForm() {
 
     const updateFile = (e) => {
         const file = e.target.files[0];
-        if (file) setPhoto(file)
+        if (file) setProfileImageUrl(file)
     }
 
     // for multiple file upload
