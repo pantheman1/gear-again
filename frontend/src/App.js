@@ -26,11 +26,11 @@ function App() {
               <Route path="/" exact={true}>
                 <Home />
               </Route>
-              {/* <Route path={`/:id`}>
-
-              </Route> */}
               <Route path="/all" exact={true}>
                 <AllItems />
+              </Route>
+              <Route exact path={`/:id`}>
+
               </Route>
             </Switch>
           )}
