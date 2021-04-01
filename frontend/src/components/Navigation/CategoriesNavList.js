@@ -4,22 +4,21 @@ import { getCategories } from '../../store/categories';
 import { NavLink } from 'react-router-dom';
 
 
-export default function CategroriesNavList() {
+export default function CategoriesNavList() {
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.categories);
+    const categories = useSelector(state => Object.values(state.categories));
 
     useEffect(() => {
         dispatch(getCategories());
     }, []);
 
-    const categoriesArr = Object.values(categories);
 
     return (
         <>
             <div className="categories__container">
                 <ul className="categories__list">
                     <NavLink to="/all" activeClassName="active">All</NavLink>
-                    {categories && categoriesArr?.map(category => (
+                    {categories && categories?.map(category => (
                         <NavLink key={category.id} to={`/${category.name.toLowerCase()}`}>{category.name}</NavLink>
                     ))}
                 </ul>
