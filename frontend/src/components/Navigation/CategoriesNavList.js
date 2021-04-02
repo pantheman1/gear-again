@@ -18,7 +18,7 @@ export default function CategoriesNavList() {
             <div className="categories__container">
                 <NavLink to="/all" activeClassName="active">All</NavLink>
                 {categories && categories?.map(category => (
-                    <NavLink key={category.id} to={`/${category.name.toLowerCase()}`}>{category.name}</NavLink>
+                    <NavLink key={category.id} to={`/${category?.name.toLowerCase()}`}>{category?.name}</NavLink>
                 ))}
             </div>
         </>

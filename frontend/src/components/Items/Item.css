@@ -6,7 +6,6 @@
 .category__container {
   display: flex;
   flex-direction: column;
-  border: 1px solid;
   width: 80%;
   align-items: center;
   margin-top: 60px;
@@ -20,6 +19,11 @@
 .item__container {
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.item-description {
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .owl-carousel.owl-loaded {
