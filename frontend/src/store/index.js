@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   categories: CategoriesReducer,
   items: ItemsReducer,
-  profileImages: PhotosReducer,
+  itemPhotos: PhotosReducer,
 });
 
 let enhancer;

@@ -16,6 +16,11 @@ router.get('/:id', asyncHandler(async (req, res) => {
             categoryId,
         },
         attributes: ['id', 'title', 'brand', 'price', 'categoryId'],
+        include: {
+            model: Photo,
+            attributes: ['url'],
+            limit: 1,
+        }
     })
     // console.log("ITEMS---------->>>>>>", items)
     return res.json(items);

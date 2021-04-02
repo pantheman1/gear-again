@@ -20,23 +20,23 @@ module.exports = {
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/4.jpg'
       },
       {
-        itemId: 1,
+        itemId: 2,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/1.jpg'
       },
       {
-        itemId: 1,
+        itemId: 2,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/2.jpg'
       },
       {
-        itemId: 1,
+        itemId: 2,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/3.jpg'
       },
       {
-        itemId: 1,
+        itemId: 2,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/4.jpg'
       },
       {
-        itemId: 1,
+        itemId: 2,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/5.jpg'
       },
     ], {});

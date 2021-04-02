@@ -1,12 +1,21 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Photo } = require('../../db/models');
+const { Photo, Item } = require('../../db/models');
 
 const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
-    console.log("HER I AM =======")
-    const photos = await Photo.findAll()
+    const categoryId = req.params.id
+    // console.log("CATEGORYID--------", categoryId)
+    const photos = await Photo.findAll({
+        include: {
+            model: Item,
+            attributes: ['id', 'title', 'brand', 'price', 'categoryId'],
+            // where: { categoryId: categoryId }
+        },
+        limit: 1
+    })
+    // console.log("-------------------", res.json(photos))
     return res.json(photos);
 }))
 

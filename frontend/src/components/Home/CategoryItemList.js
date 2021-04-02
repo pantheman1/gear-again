@@ -19,7 +19,7 @@ export default function CategoryItemList({ categoryId }) {
                     <>
                         <li key={item.id}>{item.title}</li>
                         <li>{item.brand}</li>
-                        <li>{item.price}</li>
+                        <li>${item.price}</li>
                     </>
                 ))}
             </ul>

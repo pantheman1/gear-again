@@ -4,7 +4,7 @@ import { getItems } from '../../store/items';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 import CategoryItemList from './CategoryItemList';
 import { getCategories } from '../../store/categories';
-import { getPhotos } from '../../store/photos';
+// import { getPhotos } from '../../store/photos';
 import './Home.css';
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
     useEffect(() => {
         // dispatch(getItems());
         dispatch(getCategories());
-        dispatch(getPhotos())
+        // dispatch(getPhotos())
     }, []);
 
 
