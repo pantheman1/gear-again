@@ -12,3 +12,9 @@ ul.categories__list {
 
 .category__container {
 }
+
+.category-items__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -1,11 +1,11 @@
 .item__square-image {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 
 .category__container-item {
   display: flex;
-  font-size: 10px;
+  font-size: 15px;
 }
 
 .item__container {
