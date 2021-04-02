@@ -11,6 +11,11 @@ ul.categories__list {
 }
 
 .category__container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  width: 80%;
+  align-items: center;
 }
 
 .category-items__container {
