@@ -1,6 +1,6 @@
 // import singlePublicFileUpload from '../../awsS3';
 // import singleMulterUpload from '../../awsS3';
-const singlePublicFileUpload = require('../../awsS3');
+const { singlePublicFileUpload } = require('../../awsS3');
 const { singleMulterUpload } = require('../../awsS3');
 
 const express = require('express');
@@ -33,12 +33,12 @@ const validateSignup = [
 // Sign up
 router.post(
   '/',
-  singleMulterUpload("photo"),
+  singleMulterUpload("profileImageUrl"),
   validateSignup,
   asyncHandler(async (req, res) => {
-    const { email, password, username } = req.body;
+    const { email, password, username, name } = req.body;
     const profileImageUrl = await singlePublicFileUpload(req.file);
-    const user = await User.signup({ email, username, password, profileImageUrl, });
+    const user = await User.signup({ name, email, username, password, profileImageUrl, });
 
     await setTokenCookie(res, user);
 
