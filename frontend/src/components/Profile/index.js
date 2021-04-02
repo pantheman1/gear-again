@@ -1,4 +1,5 @@
 import React from 'react';
+import CategoriesNavList from '../Navigation/CategoriesNavList';
 
 
 export default function Profile() {
@@ -6,7 +7,8 @@ export default function Profile() {
 
     return (
         <>
-            <h1>Profile Page</h1>
+            <CategoriesNavList />
+
         </>
     )
 }

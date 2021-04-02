@@ -8,6 +8,7 @@
 | name            | string         | Not Null, 100 chars or less         |
 | username        | string         | Not Null, 30 chars or less          |
 | profileImageUrl | string         | Nullable, 2000 chars or less        |
+| bio             | text           | Nullable                            |
 | email           | string         | Not Null, Unique, 255 chars or less |
 | hashedPassword  | string.binary  | Not Null                            |
 | createdAt       | datetime       | Not Null                            |

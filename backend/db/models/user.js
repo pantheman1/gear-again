@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      bio: {
+        type: DataTypes.TEXT,
+      },
       profileImageUrl: {
         type: DataTypes.STRING,
       },
