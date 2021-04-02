@@ -17,10 +17,6 @@ export default function Home() {
     return (
         categories &&
         <>
-            <div className="lower-nav">
-                <h1>This is where a title will go</h1>
-            </div>
-            <img className="background-image-home" src={'https://gear-again.s3-us-west-1.amazonaws.com/Site-Images/lake.jpg'} />
             <div className="categories__list">
                 <CategoriesNavList />
             </div>

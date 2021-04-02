@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Footer from "./components/Navigation/Footer";
 import AllItems from "./components/Category/AllItems";
 import SignupForm from "./components/SignupFormModal/SignupForm";
+import Profile from "./components/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ function App() {
                 <SignupForm />
               </Route>
               <Route path="/profile" exact={true}>
-                {/* <SignupForm /> */}
+                <Profile />
               </Route>
               <Route path="/all" exact={true}>
                 <AllItems />
