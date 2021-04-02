@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 import LoginFormPage from '../LoginFormPage';
+import SignupForm from '../SignupFormModal/SignupForm';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -20,6 +21,9 @@ function Navigation({ isLoaded }) {
         <div className="navbar__container-profile">
           <ProfileButton user={sessionUser} />
         </div>
+        <div className="navbar__container-profile">
+          <NavLink exact to="/profile">Profile</NavLink>
+        </div>
       </>
     );
   } else {
@@ -32,7 +36,7 @@ function Navigation({ isLoaded }) {
           <NavLink exact to="/login">Login</NavLink>
         </div>
         <div className="navbar__container-signup">
-          <SignupFormModal />
+          <NavLink exact to="/signup">Sign up</NavLink>
         </div>
       </>
     );

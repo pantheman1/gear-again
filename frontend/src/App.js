@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Footer from "./components/Navigation/Footer";
 import AllItems from "./components/Category/AllItems";
+import SignupForm from "./components/SignupFormModal/SignupForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,12 @@ function App() {
               </Route>
               <Route path="/login" exact={true}>
                 <LoginFormPage />
+              </Route>
+              <Route path="/signup" exact={true}>
+                <SignupForm />
+              </Route>
+              <Route path="/profile" exact={true}>
+                {/* <SignupForm /> */}
               </Route>
               <Route path="/all" exact={true}>
                 <AllItems />
