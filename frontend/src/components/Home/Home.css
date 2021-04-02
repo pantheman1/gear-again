@@ -9,3 +9,6 @@ ul.categories__list {
   justify-content: space-evenly;
   max-width: 80%;
 }
+
+.category__container {
+}

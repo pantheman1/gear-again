@@ -1,0 +1,13 @@
+.item__square-image {
+  width: 100px;
+  height: 100px;
+}
+
+.category__container-item {
+  display: flex;
+  font-size: 10px;
+}
+
+.item__container {
+  margin-left: 10px;
+}

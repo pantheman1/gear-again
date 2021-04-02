@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCatItems } from '../../store/items';
+import ItemSquare from '../Items';
 
 export default function CategoryItemList({ categoryId }) {
     const categoryItems = useSelector(state => Object.values(state.items))
@@ -13,16 +14,10 @@ export default function CategoryItemList({ categoryId }) {
 
 
     return (
-        <>
-            <ul>
-                {categoryItems && categoryItems?.filter(item => item.categoryId === categoryId).map(item => (
-                    <>
-                        <li key={item.id}>{item.title}</li>
-                        <li>{item.brand}</li>
-                        <li>${item.price}</li>
-                    </>
-                ))}
-            </ul>
-        </>
+        <div className="category__container-item">
+            {categoryItems && categoryItems?.filter(item => item.categoryId === categoryId).map(item => (
+                <ItemSquare item={item} />
+            ))}
+        </div>
     )
 }
