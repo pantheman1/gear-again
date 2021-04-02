@@ -7,6 +7,7 @@ import './SignupForm.css';
 function SignupForm() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
+    const [imageLoading, setImageLoading] = useState(false)
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
@@ -21,6 +22,8 @@ function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setImageLoading(true)
+
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({ name, email, username, password, profileImageUrl }))
@@ -28,6 +31,7 @@ function SignupForm() {
                     if (res.data && res.data.errors) setErrors(res.data.errors);
                 });
         }
+        setImageLoading(false)
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
@@ -106,6 +110,7 @@ function SignupForm() {
                         onChange={updateFile}
                         type="file"
                     />
+                    {imageLoading && <p>Loading...</p>}
                 </div>
                 {/* <div className="input-label-container">
                     <label>Multiple Upload</label>

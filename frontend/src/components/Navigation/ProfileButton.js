@@ -27,9 +27,9 @@ function ProfileButton({ user }) {
 
   const logout = (e) => {
     e.preventDefault();
-    history.push('/login')
     dispatch(sessionActions.logout());
-    // return <Redirect to='/login' />
+    history.push('/login')
+    // return <Redirect to='/signup' />
   };
 
   return (
