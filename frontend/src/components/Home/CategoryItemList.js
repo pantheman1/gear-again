@@ -3,8 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCatItems } from '../../store/items';
 import ItemSquare from '../Items';
 import { nanoid } from 'nanoid';
+import OwlCarousel from 'react-owl-carousel';
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-export default function CategoryItemList({ categoryId }) {
+export default function CategoryItemList({ categoryName, categoryId }) {
     const categoryItems = useSelector(state => Object.values(state.items))
     const dispatch = useDispatch();
 
@@ -15,10 +18,21 @@ export default function CategoryItemList({ categoryId }) {
 
 
     return (
-        <div className="category__container-item">
-            {categoryItems && categoryItems?.filter(item => item.categoryId === categoryId).map(item => (
-                <ItemSquare key={nanoid()} item={item} />
+        <OwlCarousel
+            items={4}
+            className="owl-carousel owl-theme"
+            loop={false}
+            nav
+            autoWidth={false}
+            nav={true}
+            dotsEach
+            nav
+            // navText={["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"]}
+            dots={false}
+        >
+            {categoryItems && categoryItems?.filter(item => item?.categoryId === categoryId).map(item => (
+                <ItemSquare key={nanoid()} item={item} categoryName={categoryName} />
             ))}
-        </div>
+        </OwlCarousel>
     )
 }

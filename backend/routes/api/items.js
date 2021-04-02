@@ -15,7 +15,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
         where: {
             categoryId,
         },
-        attributes: ['id', 'title', 'brand', 'price', 'categoryId'],
+        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: {
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
