@@ -5,39 +5,195 @@ module.exports = {
     return queryInterface.bulkInsert('Photos', [
       {
         itemId: 1,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tent/tent.jpeg'
+      },
+      {
+        itemId: 2,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike-pump/bike-pump.jpeg'
+      },
+      {
+        itemId: 3,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/umbrella-hat/umbrella-hat.jpg'
+      },
+      {
+        itemId: 3,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/umbrella-hat/umbrella-hat1.jpeg'
+      },
+      {
+        itemId: 4,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/dumbell/dumbell.jpg'
+      },
+      {
+        itemId: 4,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/dumbell/dumbell2.jpeg'
+      },
+      {
+        itemId: 4,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/dumbell/dumbell3.jpeg'
+      },
+      {
+        itemId: 5,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/grappling-hook/grappling-hook-batman.jpg'
+      },
+      {
+        itemId: 5,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/grappling-hook/grappling-hook.jpeg'
+      },
+      {
+        itemId: 5,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/grappling-hook/grappling-hook1.jpeg'
+      },
+      {
+        itemId: 6,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/snow-launcher/snow-launcher.jpg'
+      },
+      {
+        itemId: 6,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/snow-launcher/snow-launcher2.jpg'
+      },
+      {
+        itemId: 7,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/sports-shirt/shirt.jpeg'
+      },
+      {
+        itemId: 7,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/sports-shirt/sports-shirt2.jpeg'
+      },
+      {
+        itemId: 7,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/sports-shirt/sports-shirt3.png'
+      },
+      {
+        itemId: 8,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Backpack/backpack-2.jpeg'
+      },
+      {
+        itemId: 8,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Backpack/Osprey-backpack.jpg'
+      },
+      {
+        itemId: 9,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/racquetball/racquetball.jpeg'
+      },
+      {
+        itemId: 9,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/racquetball/racquetball2.jpeg'
+      },
+      {
+        itemId: 9,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/racquetball/racquetball3.jpeg'
+      },
+      {
+        itemId: 10,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes.jpeg'
+      },
+      {
+        itemId: 10,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes1.jpeg'
+      },
+      {
+        itemId: 10,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes2.jpeg'
+      },
+      {
+        itemId: 10,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes3.jpeg'
+      },
+      {
+        itemId: 11,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/baseball-glove/baseball-glove1.jpeg'
+      },
+      {
+        itemId: 11,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/baseball-glove/baseball-glove2.jpeg'
+      },
+      {
+        itemId: 12,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/worms/worms1.jpeg'
+      },
+      {
+        itemId: 12,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/worms/worms3.jpeg'
+      },
+      {
+        itemId: 13,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/1.jpg'
       },
       {
-        itemId: 1,
+        itemId: 13,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/2.jpg'
       },
       {
-        itemId: 1,
+        itemId: 13,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/3.jpg'
       },
       {
-        itemId: 1,
+        itemId: 13,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product1/4.jpg'
       },
       {
-        itemId: 2,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/1.jpg'
+        itemId: 14,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots2/IMG_3843.jpg'
       },
       {
-        itemId: 2,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/2.jpg'
+        itemId: 14,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots2/IMG_3845.jpg'
       },
       {
-        itemId: 2,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/3.jpg'
+        itemId: 14,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots2/IMG_3846.jpg'
       },
       {
-        itemId: 2,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/4.jpg'
+        itemId: 14,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots2/IMG_3848.jpg'
       },
       {
-        itemId: 2,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/Product2/5.jpg'
+        itemId: 14,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots2/IMG_3849.jpg'
+      },
+      {
+        itemId: 15,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots-red/IMG_4171.jpg'
+      },
+      {
+        itemId: 15,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots-red/IMG_4172.jpg'
+      },
+      {
+        itemId: 15,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots-red/IMG_4173.jpg'
+      },
+      {
+        itemId: 15,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots-red/IMG_4174.jpg'
+      },
+      {
+        itemId: 15,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/boots-red/IMG_4175.jpg'
+      },
+      {
+        itemId: 16,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/baseball-hat/baseball-hat.jpeg'
+      },
+      {
+        itemId: 16,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/baseball-hat/baseball-hat1.jpeg'
+      },
+      {
+        itemId: 16,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/baseball-hat/baseball-hat2.jpeg'
+      },
+      {
+        itemId: 16,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/baseball-hat/baseball-hat3.jpeg'
+      },
+      {
+        itemId: 17,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/t-shirt/shirt1.jpg'
+      },
+      {
+        itemId: 17,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/t-shirt/shirt2.jpg'
       },
     ], {});
   },
