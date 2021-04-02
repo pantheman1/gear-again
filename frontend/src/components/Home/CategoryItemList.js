@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCatItems } from '../../store/items';
 import ItemSquare from '../Items';
+import { nanoid } from 'nanoid';
 
 export default function CategoryItemList({ categoryId }) {
     const categoryItems = useSelector(state => Object.values(state.items))
@@ -16,7 +17,7 @@ export default function CategoryItemList({ categoryId }) {
     return (
         <div className="category__container-item">
             {categoryItems && categoryItems?.filter(item => item.categoryId === categoryId).map(item => (
-                <ItemSquare item={item} />
+                <ItemSquare key={nanoid()} item={item} />
             ))}
         </div>
     )

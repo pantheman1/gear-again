@@ -20,7 +20,9 @@ router.get('/:id', asyncHandler(async (req, res) => {
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
             limit: 1,
-        }
+        },
+        limit: 5,
+        subQuery: false,
     })
     return res.json(items);
 }))
