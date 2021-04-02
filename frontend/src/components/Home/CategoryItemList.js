@@ -19,7 +19,7 @@ export default function CategoryItemList({ categoryId }) {
 
     return (
         <OwlCarousel
-            items={5}
+            items={4}
             className="owl-carousel owl-theme"
             loop={false}
             nav

@@ -9,7 +9,7 @@ export default function ItemSquare({ item }) {
         <div className="item__container">
             <img key={nanoid()} className="item__square-image" src={item.Photos[0]?.url}></img>
             <li>{item.title}</li>
-            <li>{item.brand}</li>
+            <li>{item.size}</li>
             <li>${item.price}</li>
         </div>
     )
