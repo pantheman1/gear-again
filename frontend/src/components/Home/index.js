@@ -30,7 +30,7 @@ export default function Home() {
                         <div className="category-title">
                             <h2>{category?.name}</h2>
                         </div>
-                        <CategoryItemList categoryId={category?.id} />
+                        <CategoryItemList categoryName={category.name} categoryId={category?.id} />
                     </div>
                 ))}
             </div>

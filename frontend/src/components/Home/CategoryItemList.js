@@ -7,7 +7,7 @@ import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-export default function CategoryItemList({ categoryId }) {
+export default function CategoryItemList({ categoryName, categoryId }) {
     const categoryItems = useSelector(state => Object.values(state.items))
     const dispatch = useDispatch();
 
@@ -31,7 +31,7 @@ export default function CategoryItemList({ categoryId }) {
             dots={false}
         >
             {categoryItems && categoryItems?.filter(item => item?.categoryId === categoryId).map(item => (
-                <ItemSquare key={nanoid()} item={item} />
+                <ItemSquare key={nanoid()} item={item} categoryName={categoryName} />
             ))}
         </OwlCarousel>
     )

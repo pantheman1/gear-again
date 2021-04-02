@@ -28,6 +28,6 @@ ul.categories__list {
   width: 100%;
 }
 
-.owl-stage-outer {
-  padding-top: 20px;
+.owl-item.active {
+  padding-left: 10px;
 }
