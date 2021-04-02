@@ -19,10 +19,10 @@ function Navigation({ isLoaded }) {
           <NavLink exact to="/">Home</NavLink>
         </div>
         <div className="navbar__container-profile">
-          <ProfileButton user={sessionUser} />
+          <NavLink exact to="/profile">Profile</NavLink>
         </div>
         <div className="navbar__container-profile">
-          <NavLink exact to="/profile">Profile</NavLink>
+          <ProfileButton user={sessionUser} />
         </div>
       </>
     );
