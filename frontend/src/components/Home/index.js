@@ -24,7 +24,7 @@ export default function Home() {
             <div className="categories__list">
                 <CategoriesNavList />
             </div>
-            <div className="category-items__container">
+            <div className="category__container-items">
                 {categories && categories?.map(category => (
                     <div key={category.id} className="category__container">
                         <h3>{category?.name}</h3>

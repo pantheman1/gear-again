@@ -10,16 +10,14 @@ ul.categories__list {
   max-width: 80%;
 }
 
-.category__container {
+.category__container-items {
   display: flex;
   flex-direction: column;
-  border: 1px solid;
-  width: 80%;
   align-items: center;
+  margin-bottom: 50px;
 }
 
-.category-items__container {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
+.categories__container {
+  display: flex;
+  justify-content: space-evenly;
 }

@@ -16,12 +16,10 @@ export default function CategoriesNavList() {
     return (
         <>
             <div className="categories__container">
-                <ul className="categories__list">
-                    <NavLink to="/all" activeClassName="active">All</NavLink>
-                    {categories && categories?.map(category => (
-                        <NavLink key={category.id} to={`/${category.name.toLowerCase()}`}>{category.name}</NavLink>
-                    ))}
-                </ul>
+                <NavLink to="/all" activeClassName="active">All</NavLink>
+                {categories && categories?.map(category => (
+                    <NavLink key={category.id} to={`/${category.name.toLowerCase()}`}>{category.name}</NavLink>
+                ))}
             </div>
         </>
     )

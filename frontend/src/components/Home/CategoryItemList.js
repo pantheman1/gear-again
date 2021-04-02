@@ -30,11 +30,9 @@ export default function CategoryItemList({ categoryId }) {
             // navText={["<div class='nav-btn prev-slide'></div>", "<div class='nav-btn next-slide'></div>"]}
             dots={false}
         >
-            {/* <div className="category__container-item"> */}
-            {categoryItems && categoryItems?.filter(item => item.categoryId === categoryId).map(item => (
+            {categoryItems && categoryItems?.filter(item => item?.categoryId === categoryId).map(item => (
                 <ItemSquare key={nanoid()} item={item} />
             ))}
-            {/* </div> */}
         </OwlCarousel>
     )
 }

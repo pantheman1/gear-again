@@ -3,13 +3,23 @@
   /* height: 200px; */
 }
 
-.category__container-item {
+.category__container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  width: 80%;
+  align-items: center;
+  margin-top: 60px;
+}
+
+/* .category__container-item {
   display: flex;
   font-size: 15px;
-}
+} */
 
 .item__container {
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .owl-carousel.owl-loaded {
@@ -41,12 +51,12 @@
   top: 100px !important;
 } */
 /* .owl-carousel .prev-slide {
-  background: url("../../images/left.png") no-repeat scroll 0 0;
+  background: url(">") no-repeat scroll 0 0;
   left: -33px;
   background-size: cover;
 } */
 /* .owl-carousel .next-slide {
-  background: url("../../images/right.png") no-repeat scroll -24px 0px;
+  background: url("<") no-repeat scroll -24px 0px;
   right: -33px;
   background-size: cover;
 } */
