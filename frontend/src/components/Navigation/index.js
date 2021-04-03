@@ -2,9 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
+// import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
+import LoginFormPage from '../LoginFormPage';
+import SignupForm from '../SignupFormModal/SignupForm';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -13,6 +15,12 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
+        <div className="navbar__container-home">
+          <NavLink exact to="/">Home</NavLink>
+        </div>
+        <div className="navbar__container-profile">
+          <NavLink exact to="/profile">Profile</NavLink>
+        </div>
         <div className="navbar__container-profile">
           <ProfileButton user={sessionUser} />
         </div>
@@ -21,11 +29,14 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <div className="navbar__container-login">
-          <LoginFormModal />
+        {/* <div className="navbar__container-login">
+          <LoginFormPage />
+        </div> */}
+        <div className="navbar__container-home">
+          <NavLink exact to="/login">Login</NavLink>
         </div>
         <div className="navbar__container-signup">
-          <SignupFormModal />
+          <NavLink exact to="/signup">Sign up</NavLink>
         </div>
       </>
     );
@@ -33,9 +44,6 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="navbar__container">
-      <div className="navbar__container-home">
-        <NavLink exact to="/">Home</NavLink>
-      </div>
       {isLoaded && sessionLinks}
     </div>
   );

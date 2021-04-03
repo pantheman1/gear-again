@@ -10,8 +10,9 @@
 }
 
 .main-footer {
-  color: white;
-  background-color: red;
+  color: black;
+  background-color: white;
+  border-top: 1px solid;
   padding-top: 3em;
   position: relative;
   bottom: 0;

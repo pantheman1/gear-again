@@ -7,6 +7,7 @@ import './SignupForm.css';
 function SignupForm() {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
+    const [imageLoading, setImageLoading] = useState(false)
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
@@ -21,6 +22,8 @@ function SignupForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setImageLoading(true)
+
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({ name, email, username, password, profileImageUrl }))
@@ -28,6 +31,7 @@ function SignupForm() {
                     if (res.data && res.data.errors) setErrors(res.data.errors);
                 });
         }
+        setImageLoading(false)
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
@@ -45,10 +49,11 @@ function SignupForm() {
     return (
         <div className="form__container">
             <h1>Sign Up</h1>
-            <form className="form-modal" onSubmit={handleSubmit}>
+            <form className="form__container-form" onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
+                {imageLoading && <p>Loading...</p>}
                 <div className="input-label-container">
                     <label>Name</label>
                     <input

@@ -23,10 +23,14 @@ function LoginFormPage() {
       });
   };
 
+  const handleDemoSubmit = () => {
+    dispatch(sessionActions.login({ credential: 'Demo', password: 'password' }))
+  }
+
   return (
     <div className="form__container">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="form-modal" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -57,6 +61,7 @@ function LoginFormPage() {
           />
         </div>
         <button type="submit">Log In</button>
+        <button className="demo-btn" type="button" onClick={handleDemoSubmit}>Demo Login</button>
       </form>
     </div>
   );

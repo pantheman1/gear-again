@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 // import SignupFormModal from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
+import LoginFormPage from "./components/LoginFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Footer from "./components/Navigation/Footer";
 import AllItems from "./components/Category/AllItems";
+import SignupForm from "./components/SignupFormModal/SignupForm";
+import Profile from "./components/Profile";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +27,15 @@ function App() {
             <Switch>
               <Route path="/" exact={true}>
                 <Home />
+              </Route>
+              <Route path="/login" exact={true}>
+                <LoginFormPage />
+              </Route>
+              <Route path="/signup" exact={true}>
+                <SignupForm />
+              </Route>
+              <Route path="/profile" exact={true}>
+                <Profile />
               </Route>
               <Route path="/all" exact={true}>
                 <AllItems />
