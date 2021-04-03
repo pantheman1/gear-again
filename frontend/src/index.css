@@ -79,6 +79,7 @@ div#root {
   align-items: center;
   max-width: 80%;
   width: 60%;
+  margin-top: 15px;
 }
 
 button {

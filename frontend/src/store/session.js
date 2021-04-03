@@ -29,6 +29,7 @@ export const restoreUser = () => async (dispatch) => {
 
 export const signup = (user) => async (dispatch) => {
   const { profileImageUrl, profileImageUrls, name, username, email, password } = user;
+  console.log("PROFILE IMAGE SIGNUP---------", profileImageUrl)
   const formData = new FormData();
   formData.append("name", name);
   formData.append("username", username);
@@ -56,6 +57,31 @@ export const signup = (user) => async (dispatch) => {
   dispatch(setUser(response.data.user));
   return response;
 };
+
+// Update user
+export const updateUser = ({ userId, name, username, email, bio, profileImageUrl }) => async (dispatch) => {
+  console.log("THUNK SIDE---------------", profileImageUrl)
+  const formData = new FormData();
+  formData.append("name", name)
+  formData.append("username", username)
+  formData.append("email", email)
+  formData.append("bio", bio)
+
+  if (profileImageUrl) {
+    formData.append("profileImageUrl", profileImageUrl)
+  }
+
+  const response = await fetch(`/api/users/${userId}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData
+  })
+
+  console.log("AFTER THUNK---------------")
+  dispatch(setUser(response.data.user))
+}
 
 export const logout = () => async (dispatch) => {
   const response = await fetch('/api/session', {
