@@ -80,8 +80,10 @@ export default function UpdateAccountInfo({ setEdit, user }) {
                             required
                         />
                     </div>
-                    <button onClick={handleSubmit} type="submit">Update</button>
-                    <button onClick={e => setEdit(false)} type="button">Cancel</button>
+                    <div className="form__container-btn">
+                        <button className="form-btn" onClick={handleSubmit} type="submit">Update</button>
+                        <button onClick={e => setEdit(false)} type="button">Cancel</button>
+                    </div>
                 </form>
 
             </div>

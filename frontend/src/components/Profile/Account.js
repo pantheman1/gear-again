@@ -26,7 +26,7 @@ export default function Account() {
     } else {
         return (
             <>
-                <div className="form__container">
+                <div className="form__container form__container-profile">
                     <div className="input-label-container">
                         <label>Name</label>
                         <div>{user?.name}</div>
@@ -47,7 +47,7 @@ export default function Account() {
                         <label>Username</label>
                         <div>{user?.username}</div>
                     </div>
-                    <button onClick={e => setEdit(true)} type="button">Edit Profile</button>
+                    <button className="form-btn" onClick={e => setEdit(true)} type="button">Edit Profile</button>
                 </div>
             </>
         )
