@@ -19,6 +19,18 @@
   align-items: center;
 }
 
+.form__container-profile {
+  margin-top: 15px;
+}
+
+.form__container-btn {
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 60%;
+  width: 20%;
+}
+
 /* .mini-background {
   background: blue;
   width: 80%;
@@ -29,4 +41,13 @@
 .product-view {
   display: flex;
   justify-content: space-evenly;
+}
+
+.h3-label {
+  padding: 10px;
+}
+
+.h3-text {
+  margin-bottom: 10px;
+  font-size: xx-large;
 }

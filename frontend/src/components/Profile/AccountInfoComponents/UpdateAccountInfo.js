@@ -1,24 +1,50 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../store/session';
 
 
 export default function UpdateAccountInfo({ setEdit, user }) {
-    // const user = useSelector(state => state?.session.user);
+    const dispatch = useDispatch();
     const [name, setName] = useState(user?.name);
     const [username, setUsername] = useState(user?.username);
     const [profileImageUrl, setProfileImageUrl] = useState("");
     const [email, setEmail] = useState(user?.email);
+    const [bio, setBio] = useState(user?.bio || "");
+    // const [password, setPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        let error = [];
+
+        if (name === "") {
+            error.push("Please enter a name with at least 3 characters.")
+        }
+        if (username.length < 3) {
+            error.push("Please enter a username with at least 3 characters.")
+        }
+        // if (email.length < 3) error.push("Please enter a username with at least 3 characters.")
+        setErrors(error);
+
+        const data = {
+            userId: user?.id,
+            name,
+            username,
+            email,
+            bio,
+            profileImageUrl,
+            // password
+        }
         // if (password === confirmPassword) {
         //     setErrors([]);
-        //     return dispatch(sessionActions.signup({ name, email, username, password, profileImageUrl }))
+        //     return dispatch(sessionActions.updateUser({ name, email, username, bio, password, profileImageUrl }))
         //         .catch(res => {
         //             if (res.data && res.data.errors) setErrors(res.data.errors);
         //         });
         // }
+        await dispatch(updateUser(data))
+        setEdit(false)
         // return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
@@ -34,8 +60,8 @@ export default function UpdateAccountInfo({ setEdit, user }) {
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
-                    <div className="input-label-container">
-                        <label>Name</label>
+                    <div className="input-h3-container">
+                        <h3>Name</h3>
                         <input
                             className="form__text--input"
                             type="text"
@@ -44,34 +70,8 @@ export default function UpdateAccountInfo({ setEdit, user }) {
                             required
                         />
                     </div>
-                    <div className="input-label-container">
-                        <label>Profile Picture</label>
-                        <input
-                            className="form__text--input"
-                            // value={profileImageUrl}
-                            onChange={updateFile}
-                            type="file"
-                        />
-                    </div>
-                    {/* <div className="input-label-container">
-                    <label>Multiple Upload</label>
-                    <input
-                        type="file"
-                        multiple
-                        onChange={updateFiles} />
-                </div> */}
-                    <div className="input-label-container">
-                        <label>Email</label>
-                        <input
-                            className="form__text--input"
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <div className="input-label-container">
-                        <label>Username</label>
+                    <div className="input-h3-container">
+                        <h3>Username</h3>
                         <input
                             className="form__text--input"
                             type="text"
@@ -80,8 +80,66 @@ export default function UpdateAccountInfo({ setEdit, user }) {
                             required
                         />
                     </div>
-                    <button onClick={handleSubmit} type="submit">Update</button>
-                    <button onClick={e => setEdit(false)} type="button">Cancel</button>
+                    <div className="input-h3-container">
+                        <h3>Email</h3>
+                        <input
+                            className="form__text--input"
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-h3-container">
+                        <h3>Personal Bio</h3>
+                        <textarea
+                            className="form__text--input"
+                            type="textarea"
+                            value={bio}
+                            onChange={(e) => setBio(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {/* <div className="input-h3-container">
+                        <h3>Password</h3>
+                        <input
+                            className="form__text--input"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-h3-container">
+                        <h3>Confirm Password</h3>
+                        <input
+                            className="form__text--input"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                        />
+                    </div> */}
+                    <div className="input-h3-container">
+                        <h3>Profile Picture</h3>
+                        <input
+                            className="form__text--input"
+                            // value={profileImageUrl}
+                            onChange={updateFile}
+                            type="file"
+                        />
+                    </div>
+                    {/* <div className="input-h3-container">
+                    <h3>Multiple Upload</label>
+                    <input
+                        type="file"
+                        multiple
+                        onChange={updateFiles} />
+                </div> */}
+                    <div className="form__container-btn">
+                        <button className="form-btn" onClick={handleSubmit} type="submit">Update</button>
+                        <button onClick={e => setEdit(false)} type="button">Cancel</button>
+                    </div>
                 </form>
 
             </div>

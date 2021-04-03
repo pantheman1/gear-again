@@ -30,7 +30,7 @@ function LoginFormPage() {
   return (
     <div className="form__container">
       <h1>Log In</h1>
-      <form className="form-modal" onSubmit={handleSubmit}>
+      <form className="form__container-form" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>

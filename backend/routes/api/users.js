@@ -1,5 +1,4 @@
-// import singlePublicFileUpload from '../../awsS3';
-// import singleMulterUpload from '../../awsS3';
+const bcrypt = require('bcryptjs');
 const { singlePublicFileUpload } = require('../../awsS3');
 const { singleMulterUpload } = require('../../awsS3');
 
@@ -30,6 +29,20 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+const validateUpdateAccount = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  check('username')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 4 })
+    .withMessage('Please provide a username with at least 4 characters.'),
+  check('username').not().isEmail().withMessage('Username cannot be an email.'),
+  handleValidationErrors
+];
+
+
 // Sign up
 router.post(
   '/',
@@ -47,5 +60,34 @@ router.post(
     });
   })
 );
+
+// Update User Account
+router.patch('/:id',
+  singleMulterUpload("profileImageUrl"),
+  validateUpdateAccount,
+  asyncHandler(async (req, res) => {
+    const { name, username, email, bio, password } = req.body;
+    // const hashedPassword = bcrypt.hashSync(password);
+    const { id } = req.params
+    const user = await User.findByPk(id)
+    user.name = name
+    user.username = username
+    user.email = email
+    user.bio = bio
+    // user.hashedPassword = hashedPassword
+
+    if (req.file) {
+      const profileImageUrl = await singlePublicFileUpload(req.file);
+      user.profileImageUrl = profileImageUrl
+      user.save({ name, email, username, bio, profileImageUrl, })
+    } else {
+      user.save({ name, email, username, bio, })
+    }
+
+    await setTokenCookie(res, user);
+
+    return res.json({ user })
+  })
+)
 
 module.exports = router;

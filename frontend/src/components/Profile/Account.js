@@ -26,10 +26,14 @@ export default function Account() {
     } else {
         return (
             <>
-                <div className="form__container">
-                    <div className="input-label-container">
-                        <label>Name</label>
-                        <div>{user?.name}</div>
+                <div className="form__container form__container-profile">
+                    <div className="input-label-container h3-name">
+                        <div className="h3-label">
+                            <h3>Name</h3>
+                        </div>
+                        <div className="h3-text">
+                            <div>{user?.name}</div>
+                        </div>
                     </div>
 
                     {/* <div className="input-label-container">
@@ -40,14 +44,24 @@ export default function Account() {
                         onChange={updateFiles} />
                 </div> */}
                     <div className="input-label-container">
-                        <label>Email</label>
-                        <div>{user?.email}</div>
+                        <div className="h3-label">
+                            <h3>Email</h3>
+                        </div>
+                        <div className="h3-text">
+                            <div>{user?.email}</div>
+                        </div>
                     </div>
                     <div className="input-label-container">
-                        <label>Username</label>
-                        <div>{user?.username}</div>
+                        <div className="h3-label">
+                            <h3>Username</h3>
+                        </div>
+                        <div className="h3-text">
+                            <div>{user?.username}</div>
+                        </div>
                     </div>
-                    <button onClick={e => setEdit(true)} type="button">Edit Profile</button>
+                    <div className="form__container-btn">
+                        <button className="form-btn" onClick={e => setEdit(true)} type="button">Edit Profile</button>
+                    </div>
                 </div>
             </>
         )
