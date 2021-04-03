@@ -35,7 +35,7 @@ export const getCatItems = (categoryId) => async dispatch => {
 }
 
 export const getListedItems = (userId) => async dispatch => {
-    const res = await fetch(`api/items/listed/${userId}`)
+    const res = await fetch(`api/items/listings/${userId}`)
     if (res.ok) {
         dispatch(getItemsList(res))
     }

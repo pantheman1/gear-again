@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Item, Photo } = require('../../db/models');
+const { Item, Photo, Category } = require('../../db/models');
 
 const router = express.Router()
 
@@ -25,6 +25,29 @@ router.get('/:id', asyncHandler(async (req, res) => {
         subQuery: false,
     })
     return res.json(items);
+}))
+
+router.get('/listings/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const listings = await Item.findAll({
+        where: {
+            userId: id,
+        },
+        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        // include: {
+        //     model: Category,
+        //     where: {
+
+        //     }
+        // attributes: ['id', 'name'],
+        // },
+        include: {
+            model: Photo,
+            attributes: ['id', 'url', 'itemId'],
+            limit: 1,
+        },
+    })
+    return res.json(listings);
 }))
 
 
