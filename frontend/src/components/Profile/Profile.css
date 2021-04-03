@@ -42,3 +42,12 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+.h3-label {
+  padding: 10px;
+}
+
+.h3-text {
+  margin-bottom: 10px;
+  font-size: xx-large;
+}

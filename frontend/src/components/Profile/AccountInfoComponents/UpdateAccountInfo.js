@@ -10,13 +10,23 @@ export default function UpdateAccountInfo({ setEdit, user }) {
     const [profileImageUrl, setProfileImageUrl] = useState("");
     const [email, setEmail] = useState(user?.email);
     const [bio, setBio] = useState(user?.bio || "");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    // const [password, setPassword] = useState("");
+    // const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("COMPONENT SIDE SUBMIT-----------")
+        let error = [];
+
+        if (name === "") {
+            error.push("Please enter a name with at least 3 characters.")
+        }
+        if (username.length < 3) {
+            error.push("Please enter a username with at least 3 characters.")
+        }
+        // if (email.length < 3) error.push("Please enter a username with at least 3 characters.")
+        setErrors(error);
+
         const data = {
             userId: user?.id,
             name,
@@ -24,9 +34,8 @@ export default function UpdateAccountInfo({ setEdit, user }) {
             email,
             bio,
             profileImageUrl,
-            password
+            // password
         }
-
         // if (password === confirmPassword) {
         //     setErrors([]);
         //     return dispatch(sessionActions.updateUser({ name, email, username, bio, password, profileImageUrl }))
@@ -35,7 +44,8 @@ export default function UpdateAccountInfo({ setEdit, user }) {
         //         });
         // }
         await dispatch(updateUser(data))
-        return setErrors(['Confirm Password field must be the same as the Password field']);
+        setEdit(false)
+        // return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
     const updateFile = (e) => {
