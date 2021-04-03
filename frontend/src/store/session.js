@@ -60,7 +60,6 @@ export const signup = (user) => async (dispatch) => {
 
 // Update user
 export const updateUser = ({ userId, name, username, email, bio, profileImageUrl }) => async (dispatch) => {
-  console.log("THUNK SIDE---------------", profileImageUrl)
   const formData = new FormData();
   formData.append("name", name)
   formData.append("username", username)
@@ -79,7 +78,6 @@ export const updateUser = ({ userId, name, username, email, bio, profileImageUrl
     body: formData
   })
 
-  console.log("AFTER THUNK---------------")
   dispatch(setUser(response.data.user))
 }
 
