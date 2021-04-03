@@ -90,7 +90,7 @@ export default function UpdateAccountInfo({ setEdit, user }) {
                             required
                         />
                     </div>
-                    <div className="input-h3-container">
+                    {/* <div className="input-h3-container">
                         <h3>Password</h3>
                         <input
                             className="form__text--input"
@@ -109,7 +109,7 @@ export default function UpdateAccountInfo({ setEdit, user }) {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
-                    </div>
+                    </div> */}
                     <div className="input-h3-container">
                         <h3>Profile Picture</h3>
                         <input
