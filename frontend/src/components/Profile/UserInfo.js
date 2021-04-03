@@ -4,9 +4,7 @@ import './Profile.css';
 
 export default function UserInfo() {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user)
-
-    console.log("URL---------", user.profileImageUrl)
+    const user = useSelector(state => state?.session.user)
 
     return (
         <>
@@ -18,10 +16,10 @@ export default function UserInfo() {
                     <div className="mini-background"></div>
                 </div>
                 <div className="user__container-name">
-                    <h2>Welcome {user.name}!</h2>
+                    <h2>Welcome {user?.name}!</h2>
                 </div>
                 <div className="user__container-bio">
-                    <p>{user.bio}</p>
+                    <p>{user?.bio}</p>
                 </div>
             </div>
         </>

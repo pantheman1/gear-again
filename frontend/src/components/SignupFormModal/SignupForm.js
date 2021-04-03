@@ -49,10 +49,11 @@ function SignupForm() {
     return (
         <div className="form__container">
             <h1>Sign Up</h1>
-            <form className="form-modal" onSubmit={handleSubmit}>
+            <form className="form__container-form" onSubmit={handleSubmit}>
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
+                {imageLoading && <p>Loading...</p>}
                 <div className="input-label-container">
                     <label>Name</label>
                     <input
@@ -110,7 +111,6 @@ function SignupForm() {
                         onChange={updateFile}
                         type="file"
                     />
-                    {imageLoading && <p>Loading...</p>}
                 </div>
                 {/* <div className="input-label-container">
                     <label>Multiple Upload</label>

@@ -45,11 +45,12 @@ div#root {
   flex: 1;
 }
 
-form.form-modal {
+.form__container-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-top: 50px;
 }
 
 .form__container {

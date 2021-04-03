@@ -35,6 +35,16 @@
   width: 100%;
 }
 
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel button.owl-dot span {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0 !important;
+  font-size: xx-large;
+}
+
 /* .genre__container {
   width: 1500px;
   margin: auto;

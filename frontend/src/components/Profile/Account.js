@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import UpdateAccountInfo from './AccountInfoComponents/UpdateAccountInfo';
 
 export default function Account() {
     const user = useSelector(state => state?.session.user);
-    const [name, setName] = useState(user?.name);
-    const [username, setUsername] = useState(user?.username);
-    const [email, setEmail] = useState(user?.email);
-    const [profileImageUrl, setProfileImageUrl] = useState(user?.profileImageUrl)
-    const [errors, setErrors] = useState([]);
+    const [edit, setEdit] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,39 +18,20 @@ export default function Account() {
         // return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
-    const updateFile = (e) => {
-        const file = e.target.files[0];
-        if (file) setProfileImageUrl(file)
-    }
 
-    return (
-        // user &&
-        <>
-            <div className="form__container">
-                <h1>Sign Up</h1>
-                <form className="form-modal" onSubmit={handleSubmit}>
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
+    if (edit) {
+        return (
+            <UpdateAccountInfo setEdit={setEdit} user={user} />
+        )
+    } else {
+        return (
+            <>
+                <div className="form__container">
                     <div className="input-label-container">
                         <label>Name</label>
-                        <input
-                            className="form__text--input"
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
+                        <div>{user?.name}</div>
                     </div>
-                    {/* <div className="input-label-container">
-                        <label>Profile Picture</label>
-                        <input
-                            className="form__text--input"
-                            value={profileImageUrl}
-                            onChange={(e) => setProfileImageUrl(e.target.value)}
-                            type="file"
-                        />
-                    </div> */}
+
                     {/* <div className="input-label-container">
                     <label>Multiple Upload</label>
                     <input
@@ -63,39 +41,23 @@ export default function Account() {
                 </div> */}
                     <div className="input-label-container">
                         <label>Email</label>
-                        <input
-                            className="form__text--input"
-                            type="text"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
+                        <div>{user?.email}</div>
                     </div>
                     <div className="input-label-container">
                         <label>Username</label>
-                        <input
-                            className="form__text--input"
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
+                        <div>{user?.username}</div>
                     </div>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <div>
-                    {user && (
-                        <div>
-                            <h1>{user.username}</h1>
-                            <img
-                                style={{ width: "150px" }}
-                                src={user.profileImageUrl}
-                                alt="profile"
-                            />
-                        </div>
-                    )}
+                    <button onClick={e => setEdit(true)} type="button">Edit Profile</button>
                 </div>
-            </div>
+            </>
+        )
+    }
+
+
+    return (
+        // user &&
+        <>
+
         </>
     )
 }
