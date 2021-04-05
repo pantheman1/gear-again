@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     cost: DataTypes.DECIMAL(10, 2),
     description: DataTypes.TEXT,
     isSold: DataTypes.BOOLEAN,
-    orderId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER,
     categoryId: DataTypes.INTEGER,
     conditionId: DataTypes.INTEGER,

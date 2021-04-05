@@ -50,5 +50,25 @@ router.get('/listings/:id', asyncHandler(async (req, res) => {
     return res.json(listings);
 }))
 
+router.get('/purchases/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const purchases = await Item.findAll({
+        where: {
+            id,
+        },
+        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        include: [{
+            model: Photo,
+            attributes: ['id', 'url', 'itemId'],
+            limit: 1,
+        }, {
+            model: Category,
+            attributes: ['id', 'name'],
+        }]
+
+    })
+    return res.json(purchases);
+}))
+
 
 module.exports = router;

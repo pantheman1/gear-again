@@ -41,6 +41,13 @@ export const getListedItems = (userId) => async dispatch => {
     }
 }
 
+export const getPurchasedItems = (userId) => async dispatch => {
+    const res = await fetch(`api/items/purchases/${userId}`)
+    if (res.ok) {
+        dispatch(getItemsList(res))
+    }
+}
+
 // export const getCatItems = (categoryId) => async dispatch => {
 //     const res = await fetch(`/api/items/${categoryId}`)
 //     if (res.ok) {

@@ -7,7 +7,7 @@ export default function ItemSquare({ categoryName, item }) {
 
 
     return (
-        <div className="item__listing">
+        <>
             <div className="item__container">
                 <NavLink to={`/${categoryName?.toLowerCase()}/${item?.id}`}>
                     <img key={nanoid()} className="item__square-image" src={item?.Photos[0]?.url}></img>
@@ -18,6 +18,6 @@ export default function ItemSquare({ categoryName, item }) {
                     </div>
                 </NavLink>
             </div>
-        </div>
+        </>
     )
 }
