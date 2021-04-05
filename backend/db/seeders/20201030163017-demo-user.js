@@ -13,7 +13,7 @@ module.exports = {
           name: 'Demo Boss',
           profileImageUrl: 'https://gear-again.s3-us-west-1.amazonaws.com/Profile-pics/peter.JPG',
           bio: "I'm a super happy person who loves to shop and sell.",
-          hashedPassword: bcrypt.hashSync('password')
+          hashedPassword: bcrypt.hashSync('password'),
         },
         {
           email: faker.internet.email(),
@@ -21,7 +21,7 @@ module.exports = {
           name: 'Harry Potter',
           bio: "Sometimes I just feel like someone is out to get me.",
           profileImageUrl: '',
-          hashedPassword: bcrypt.hashSync('password')
+          hashedPassword: bcrypt.hashSync('password'),
         },
         {
           email: faker.internet.email(),

@@ -16,11 +16,14 @@ router.get('/:id', asyncHandler(async (req, res) => {
             categoryId,
         },
         attributes: ['id', 'title', 'size', 'price', 'categoryId'],
-        include: {
+        include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
             limit: 1,
-        },
+        }, {
+            model: Category,
+            attributes: ['id', 'name'],
+        }],
         limit: 5,
         subQuery: false,
     })
@@ -34,18 +37,15 @@ router.get('/listings/:id', asyncHandler(async (req, res) => {
             userId: id,
         },
         attributes: ['id', 'title', 'size', 'price', 'categoryId'],
-        // include: {
-        //     model: Category,
-        //     where: {
-
-        //     }
-        // attributes: ['id', 'name'],
-        // },
-        include: {
+        include: [{
+            model: Category,
+            attributes: ['id', 'name'],
+        },
+        {
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
             limit: 1,
-        },
+        }],
     })
     return res.json(listings);
 }))

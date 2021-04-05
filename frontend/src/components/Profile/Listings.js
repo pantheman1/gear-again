@@ -16,14 +16,14 @@ export default function Listings() {
         await dispatch(getCategories());
     }, [dispatch])
 
-    // console.log("THIS IS LISTINGS--------", listings)
+    // console.log("THIS IS LISTINGS--------", listings[0].Category.name)
     return (
         listings &&
         <>
             <h1>Listings</h1>
-            {categories && categories?.map(category => (
+            {listings && listings?.map(item => (
                 <div key={nanoid()}>
-                    {/* <ItemSquare items={listings} categoryName={category?.name} /> */}
+                    <ItemSquare item={item} categoryName={item?.Category?.name} />
                 </div>
             ))}
         </>
