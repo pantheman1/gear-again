@@ -14,6 +14,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
     const items = await Item.findAll({
         where: {
             categoryId,
+            isSold: false
         },
         attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{

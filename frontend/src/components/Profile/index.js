@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 import UserInfo from './UserInfo';
-import Button from 'react-bootstrap/Button';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import Account from './Account';
-import Purchases from './Purchases';
 import Listings from './Listings';
 import Sold from './Sold';
+import Orders from './Orders';
 
 
 export default function Profile() {
@@ -31,7 +29,7 @@ export default function Profile() {
     if (itemView === "Account") {
         toggleView = <Account />
     } else if (itemView === "Purchases") {
-        toggleView = <Purchases />
+        toggleView = <Orders />
     } else if (itemView === "Listings") {
         toggleView = <Listings />
     } else {

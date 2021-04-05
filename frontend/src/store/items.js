@@ -71,7 +71,6 @@ export default function ItemsReducer(state = {}, action) {
             action.data.forEach(item => {
                 newState[item.id] = item;
             })
-            // console.log("PHOTOS-------", newState)
             newState = { ...state, ...newState }
             return newState;
         default:
