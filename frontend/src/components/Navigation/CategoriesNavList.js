@@ -16,9 +16,9 @@ export default function CategoriesNavList() {
     return (
         <>
             <div className="lower-nav">
-                <h1>This is where a title will go</h1>
+                <h1>Your path the the great outdoors...</h1>
             </div>
-            <img className="background-image-home" src={'https://gear-again.s3-us-west-1.amazonaws.com/Site-Images/lake.jpg'} />
+            <img className="background-image-home" src={'https://gear-again.s3-us-west-1.amazonaws.com/Site-Images/long-pano1.jpg'} />
             <div className="categories__container">
                 <NavLink to="/all" activeClassName="active">All</NavLink>
                 {categories && categories?.map(category => (

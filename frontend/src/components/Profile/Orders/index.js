@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import FulfillmentBtns from './FulfillmentBtns';
 import OrderLineItems from './OrderLineItems';
 
 export default function Orders() {
@@ -14,7 +15,7 @@ export default function Orders() {
     } else {
         orders =
             <>
-                <h1>Not Shipped</h1>
+                <OrderLineItems shipped={shipped} />
             </>
     }
 
@@ -23,10 +24,7 @@ export default function Orders() {
         <>
             <h1>Orders page</h1>
             <div className="shipped__container">
-                <div className="shipped__container-btns">
-                    <button type="button" onClick={e => setShipped(true)}>Shipped Orders</button>
-                    <button type="button" onClick={e => setShipped(false)}>Unfulfilled Orders</button>
-                </div>
+                <FulfillmentBtns setShipped={setShipped} />
                 <div className="shipped__container-orders">
                     {orders}
                 </div>

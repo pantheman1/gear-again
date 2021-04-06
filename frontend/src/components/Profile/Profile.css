@@ -65,3 +65,13 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
+.shipped__container-orders {
+  display: flex;
+  flex-direction: column;
+}
+
+.shipped__container-btns {
+  display: flex;
+  justify-content: space-evenly;
+}
