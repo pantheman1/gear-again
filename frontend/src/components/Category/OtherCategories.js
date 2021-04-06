@@ -3,24 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 import { nanoid } from 'nanoid';
 import ItemSquare from '../Items';
+import { useParams } from 'react-router';
 import { getItems } from '../../store/items';
 
-export default function AllItems() {
+export default function OtherCategoryItems() {
     const items = useSelector(state => Object.values(state?.items))
     const dispatch = useDispatch();
+    const { id } = useParams();
 
-    useEffect(() => {
-        dispatch(getItems())
+    useEffect(async () => {
+        await dispatch(getItems())
     }, [dispatch])
 
     return (
+        items &&
         <>
             <CategoriesNavList />
             <div className="item__container-listing">
                 <div className="item__listing">
-                    {items && items?.map(item => (
+                    {items && items?.filter(item => item.Category.name.toLowerCase() == id).map(item => (
                         <div key={nanoid()}>
-                            <ItemSquare item={item} categoryName={item?.Category?.name} />
+                            <ItemSquare item={item} categoryName={id} />
                         </div>
                     ))}
                 </div>

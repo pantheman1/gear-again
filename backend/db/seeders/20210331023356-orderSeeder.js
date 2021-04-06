@@ -9,6 +9,7 @@ module.exports = {
         total: 90.01,
         shippingAddress: faker.address.streetAddress(),
         billingAddress: faker.address.streetAddress(),
+        orderComplete: true,
       },
       {
         userId: 1,

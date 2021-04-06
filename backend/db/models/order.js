@@ -1,26 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Order = sequelize.define('Order', {
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
     total: DataTypes.DECIMAL(10, 2),
-    shipping_address: {
+    shippingAddress: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [3, 500],
       },
     },
-    billing_address: {
+    billingAddress: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [3, 500],
       },
     },
-    order_complete: DataTypes.BOOLEAN
+    orderComplete: DataTypes.BOOLEAN
   }, {});
   Order.associate = function (models) {
     const columnMapping = {

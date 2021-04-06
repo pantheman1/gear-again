@@ -34,10 +34,6 @@ module.exports = {
         defaultStatus: false,
         allowNull: false,
       },
-      orderId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Orders" }
-      },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
