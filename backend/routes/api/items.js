@@ -6,7 +6,10 @@ const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
     const items = await Item.findAll({
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        where: {
+            isSold: false,
+        },
+        attributes: ['id', 'title', 'size', 'price', 'categoryId', 'isSold'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
@@ -47,6 +50,7 @@ router.get('/listings/:id', asyncHandler(async (req, res) => {
     const listings = await Item.findAll({
         where: {
             userId: id,
+            isSold: false,
         },
         attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
