@@ -2,20 +2,22 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFullOrderDetails } from '../../../store/orderDetails';
 
-export default function FullOrderDetails({ order }) {
+export default function FullOrderDetails({ orderId }) {
     const dispatch = useDispatch();
-    // const orderDetails = useSelector(state => state.orders)
+    const orderDetails = useSelector(state => state.orderDetails)
 
 
-    useEffect(async () => {
-        await dispatch(getFullOrderDetails(order?.id))
+    useEffect(() => {
+        dispatch(getFullOrderDetails(orderId))
+        // console.log("USE EFFECT---------")
     }, [])
 
 
     return (
-        <>
+        <div>
             {/* {orderDetails && orderDetails?.map(order => )} */}
-            {order?.total}
-        </>
+            {/* {order?.total} */}
+            {orderId}
+        </div>
     )
 }

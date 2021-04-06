@@ -85,7 +85,7 @@ export default function ItemsReducer(state = {}, action) {
             action.data.data.forEach(item => {
                 newState[item.id] = item;
             })
-            newState = { ...state, ...newState };
+            newState = { ...newState };
             return newState
         default:
             return state
