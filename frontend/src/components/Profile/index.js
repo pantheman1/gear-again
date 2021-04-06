@@ -47,7 +47,7 @@ export default function Profile() {
                 <button type="button" onClick={e => setItemView("Account")}>Account</button>
                 <button type="button" onClick={handlePurchases}>Purchases</button>
                 <button type="button" onClick={handleListings}>Listings</button>
-                <button type="button" onClick={handleSold}>Sold Items</button>
+                <button type="button" onClick={handleSold}>Sales</button>
                 {/* <Button variant="link">Link</Button> */}
             </div>
             {toggleView}

@@ -12,6 +12,10 @@ export default function CategoriesNavList() {
         dispatch(getCategories());
     }, []);
 
+    const handleCreateListing = async (e) => {
+        e.preventDefault();
+
+    }
 
     return (
         <>
@@ -24,6 +28,7 @@ export default function CategoriesNavList() {
                 {categories && categories?.map(category => (
                     <NavLink key={category?.id} to={`/${category?.name.toLowerCase()}`}>{category?.name}</NavLink>
                 ))}
+                <NavLink to="/profile/sell" className="form-btn">Sell!</NavLink>
             </div>
         </>
     )

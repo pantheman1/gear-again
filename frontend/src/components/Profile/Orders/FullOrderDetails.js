@@ -9,7 +9,7 @@ export default function FullOrderDetails({ order }) {
 
     useEffect(async () => {
         await dispatch(getFullOrderDetails(order?.id))
-    }, [dispatch])
+    }, [])
 
 
     return (
