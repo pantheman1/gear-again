@@ -14,8 +14,12 @@ export default function AllItems() {
     }, [dispatch])
 
     return (
+        items &&
         <>
             <CategoriesNavList />
+            <div className="cat__container-name">
+                <h1>All Products</h1>
+            </div>
             <div className="item__container-listing">
                 <div className="item__listing">
                     {items && items?.map(item => (
