@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 import { nanoid } from 'nanoid';
 import ItemSquare from '../Items';
 import { useParams } from 'react-router';
+import { getItems } from '../../store/items';
 
 export default function OtherCategoryItems() {
     const items = useSelector(state => Object.values(state?.items))
     const dispatch = useDispatch();
     const { id } = useParams();
 
-    console.log("USEPARAMS", items)
+    useEffect(async () => {
+        await dispatch(getItems())
+    }, [dispatch])
 
     return (
         items &&

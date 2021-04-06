@@ -15,7 +15,6 @@ router.get('/', asyncHandler(async (req, res) => {
             model: Category,
             attributes: ['id', 'name'],
         }],
-        limit: 5,
         subQuery: false,
     });
     return res.json(items);
