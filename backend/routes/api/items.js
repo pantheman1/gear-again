@@ -5,7 +5,19 @@ const { Item, Photo, Category } = require('../../db/models');
 const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
-    const items = await Item.findAll();
+    const items = await Item.findAll({
+        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        include: [{
+            model: Photo,
+            attributes: ['id', 'url', 'itemId'],
+            limit: 1,
+        }, {
+            model: Category,
+            attributes: ['id', 'name'],
+        }],
+        limit: 5,
+        subQuery: false,
+    });
     return res.json(items);
 }))
 

@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Footer from "./components/Navigation/Footer";
 import AllItems from "./components/Category/AllItems";
+import OtherCategoryItems from "./components/Category/OtherCategories";
 import SignupForm from "./components/SignupFormModal/SignupForm";
 import Profile from "./components/Profile";
 
@@ -41,7 +42,7 @@ function App() {
                 <AllItems />
               </Route>
               <Route exact path={`/:id`}>
-
+                <OtherCategoryItems />
               </Route>
             </Switch>
           )}
