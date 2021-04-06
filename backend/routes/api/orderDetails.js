@@ -18,28 +18,44 @@ router.get('/:id', asyncHandler(async (req, res) => {
             }
         },
     })
-    const orderItemId = orderDetails[0].dataValues.itemId
 
     const itemIds = [];
-
     const items = {};
-
-    for (const orderEntry in orderDetails) {
-        let item = orderEntry['Item']
-        items[item['id']] = item;
+    for (const order in orderDetails) {
+        const item = orderDetails[order].dataValues.Item.dataValues
+        item['photoUrls'] = [];
+        items[item.id] = item;
+        itemIds.push(item.id);
     }
 
     const photos = await Photo.findAll({
         where: {
-            itemId: orderItemId
+            itemId: itemIds
         }
     })
 
     for (const photo in photos) {
-        item[photo['itemId']]['url'] = photo[url];
+        const itemId = photos[photo].dataValues.itemId;
+        if (itemId === items[itemId].id) {
+            items[itemId].photoUrls.push(photos[photo].dataValues.url)
+        }
     }
 
-    return res.json(orderDetails);
+    const order = await Order.findAll({
+        where: {
+            id: orderId
+        },
+        attributes: ['shippingAddress', 'total', 'orderComplete', 'billingAddress']
+    })
+
+    const formattedResult = {
+        orderId,
+        createdAt: orderDetails[0].dataValues.createdAt,
+        orderDetails: order[0].dataValues,
+        items: Object.values(items),
+    }
+
+    return res.json(formattedResult);
 }))
 
 
