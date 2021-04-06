@@ -52,7 +52,7 @@ router.get('/listings/:id', asyncHandler(async (req, res) => {
             userId: id,
             isSold: false,
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        attributes: ['id', 'title', 'size', 'price', 'categoryId', 'userId'],
         include: [{
             model: Category,
             attributes: ['id', 'name'],
@@ -84,6 +84,26 @@ router.get('/purchases/:id', asyncHandler(async (req, res) => {
 
     })
     return res.json(purchases);
+}))
+
+router.get('/sales/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const sales = await Item.findAll({
+        where: {
+            userId: id,
+            isSold: true,
+        },
+        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        include: [{
+            model: Photo,
+            attributes: ['id', 'url'],
+            limit: 1,
+        }, {
+            model: Category,
+            attributes: ['id', 'name'],
+        }]
+    })
+    return res.json(sales);
 }))
 
 

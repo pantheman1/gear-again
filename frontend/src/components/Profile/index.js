@@ -5,13 +5,16 @@ import Account from './Account';
 import Listings from './Listings';
 import Sold from './Sold';
 import Orders from './Orders';
+import { useHistory } from 'react-router';
 
 
 export default function Profile() {
     const [itemView, setItemView] = useState("Account");
+    const history = useHistory();
 
-    const handleListings = (e) => {
+    const handleListings = async (e) => {
         e.preventDefault();
+        // await history.push('/profile/listings')
         setItemView("Listings")
     }
 

@@ -2,19 +2,27 @@ import { fetch } from './csrf.js';
 
 const GET_ITEMS = 'items/GET_ITEMS';
 const GET_ITEMS_BY_CAT = 'items/GET_ITEMS_BY_CAT';
+const GET_LISTED_ITEMS = 'items/GET_LISTED_ITEMS';
 
 // Action Creators
 
-export const getItemsList = (data) => {
+const getItemsList = (data) => {
     return {
         type: GET_ITEMS,
         data,
     }
 }
 
-export const getItemsByCat = (data) => {
+const getItemsByCat = (data) => {
     return {
         type: GET_ITEMS_BY_CAT,
+        data,
+    }
+}
+
+const getAllListedItems = (data) => {
+    return {
+        type: GET_LISTED_ITEMS,
         data,
     }
 }
@@ -37,7 +45,7 @@ export const getCatItems = (categoryId) => async dispatch => {
 export const getListedItems = (userId) => async dispatch => {
     const res = await fetch(`api/items/listings/${userId}`)
     if (res.ok) {
-        dispatch(getItemsList(res))
+        dispatch(getAllListedItems(res))
     }
 }
 
@@ -73,6 +81,12 @@ export default function ItemsReducer(state = {}, action) {
             })
             newState = { ...state, ...newState }
             return newState;
+        case GET_LISTED_ITEMS:
+            action.data.data.forEach(item => {
+                newState[item.id] = item;
+            })
+            newState = { ...state, ...newState };
+            return newState
         default:
             return state
     }

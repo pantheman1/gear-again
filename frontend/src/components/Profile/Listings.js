@@ -13,7 +13,6 @@ export default function Listings() {
         await dispatch(getListedItems(user?.id))
     }, [dispatch])
 
-    // console.log("THIS IS LISTINGS--------", listings[0].Category.name)
     return (
         listings &&
         <div className="item__container-listing">

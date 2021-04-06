@@ -11,6 +11,7 @@ import AllItems from "./components/Category/AllItems";
 import OtherCategoryItems from "./components/Category/OtherCategories";
 import SignupForm from "./components/SignupFormModal/SignupForm";
 import Profile from "./components/Profile";
+import Listings from "./components/Profile/Listings";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,9 @@ function App() {
               </Route>
               <Route exact path={`/:id`}>
                 <OtherCategoryItems />
+              </Route>
+              <Route exact path={`/profile/listings`}>
+                <Listings />
               </Route>
             </Switch>
           )}
