@@ -20,6 +20,7 @@ export default function SalesForm() {
     const [genderId, setGenderId] = useState(0);
     // for multiple file upload
     const [images, setImages] = useState([]);
+    const [errors, setErrors] = useState([]);
     const history = useHistory();
 
     // useEffect(() => {
@@ -29,6 +30,8 @@ export default function SalesForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const error = [];
 
         const data = {
             userId: user?.id,
@@ -44,8 +47,13 @@ export default function SalesForm() {
             images,
         }
 
-        await dispatch(postListedItem(data))
-
+        if (title || brand || size || description || categoryId || conditionId || genderId || images) {
+            error.push("Please fill out all fields including an item image.")
+        }
+        else {
+            await dispatch(postListedItem(data))
+        }
+        setErrors(error)
         // history.push('/profile/listings')
     }
 
@@ -61,6 +69,9 @@ export default function SalesForm() {
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <div className="form__container">
                 <form className="form__container-form" onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
+                    </ul>
                     <div className="input-label-container">
                         <h3>Listing Title</h3>
                         <input

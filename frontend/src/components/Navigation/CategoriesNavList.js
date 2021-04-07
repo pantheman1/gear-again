@@ -12,10 +12,6 @@ export default function CategoriesNavList() {
         dispatch(getCategories());
     }, []);
 
-    const handleCreateListing = async (e) => {
-        e.preventDefault();
-
-    }
 
     return (
         <>
