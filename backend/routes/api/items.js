@@ -1,8 +1,6 @@
 const express = require('express');
 const { multiplePublicFileUpload } = require('../../awsS3');
 const { multipleMulterUpload } = require('../../awsS3');
-const { singlePublicFileUpload } = require('../../awsS3');
-const { singleMulterUpload } = require('../../awsS3');
 const asyncHandler = require('express-async-handler');
 const { Item, Photo, Category } = require('../../db/models');
 
@@ -110,22 +108,20 @@ router.get('/sales/:id', asyncHandler(async (req, res) => {
     return res.json(sales);
 }))
 
-router.get('/item/:id', asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    console.log("BACK END----------------")
-    const item = await Item.findAll({
-        where: {
-            id
-        }
-    })
-    return res.json({ item })
-}))
+// router.get('/item/:id', asyncHandler(async (req, res) => {
+//     const { id } = req.params;
+//     console.log("BACK END----------------")
+//     const item = await Item.findAll({
+//         where: {
+//             id
+//         }
+//     })
+//     return res.json({ item })
+// }))
 
 router.post('/:id',
     multipleMulterUpload("images"),
-    // singleMulterUpload("image"),
     asyncHandler(async (req, res) => {
-        console.log("BACK END POST-----------", req.body)
         const { id } = req.params;
         const {
             // userId,
@@ -155,12 +151,17 @@ router.post('/:id',
             genderId,
         })
 
+        const photoList = [];
+
         for (const image of images) {
-            await Photo.create({
+            const photo = await Photo.create({
                 itemId: newItem.id,
                 url: image
             })
+            photoList.push(photo.dataValues.url)
         }
+
+        newItem.dataValues['photos'] = photoList;
 
         return res.json(newItem)
     }))

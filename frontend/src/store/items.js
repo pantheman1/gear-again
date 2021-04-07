@@ -3,7 +3,7 @@ import { fetch } from './csrf.js';
 const GET_ITEMS = 'items/GET_ITEMS';
 const GET_ITEMS_BY_CAT = 'items/GET_ITEMS_BY_CAT';
 const GET_LISTED_ITEMS = 'items/GET_LISTED_ITEMS';
-// const POST_LISTING = 'items/POST_LISTING';
+const POST_LISTING = 'items/POST_LISTING';
 const GET_ONE_ITEM = 'items/GET_ONE_ITEM';
 
 // Action Creators
@@ -29,10 +29,17 @@ const getAllListedItems = (data) => {
     }
 }
 
-const getOneItemAction = (data) => {
+// const getOneItemAction = (data) => {
+//     return {
+//         type: GET_ONE_ITEM,
+//         data,
+//     }
+// }
+
+const postOneItem = (data) => {
     return {
-        type: GET_ONE_ITEM,
-        data,
+        type: POST_LISTING,
+        data
     }
 }
 
@@ -65,13 +72,13 @@ export const getPurchasedItems = (userId) => async dispatch => {
     }
 }
 
-export const getOneItem = (id) => async dispatch => {
-    const res = await fetch(`/api/items/item/${id}`)
-    debugger
-    if (res.ok) {
-        dispatch(getOneItemAction(res))
-    }
-}
+// export const getOneItem = (itemId) => async dispatch => {
+//     const res = await fetch(`/api/items/item/${itemId}`)
+//     // debugger
+//     if (res.ok) {
+//         dispatch(getOneItemAction(res))
+//     }
+// }
 
 export const postListedItem = (data) => async dispatch => {
     const {
@@ -106,8 +113,6 @@ export const postListedItem = (data) => async dispatch => {
         }
     }
 
-    console.log("-------", formData)
-
     // for single file
     // if (image) formData.append("image", image);
     // debugger
@@ -119,19 +124,10 @@ export const postListedItem = (data) => async dispatch => {
         body: formData
     })
     if (res.ok) {
-        dispatch(getAllListedItems(res))
+        dispatch(postOneItem(res.data))
     }
 }
 
-// export const getCatItems = (categoryId) => async dispatch => {
-//     const res = await fetch(`/api/items/${categoryId}`)
-//     if (res.ok) {
-//         // console.log("RESULT----->>>", res.data)
-//         dispatch(getItemsByCat(res.data))
-//     }
-// }
-
-// Reducer
 
 export default function ItemsReducer(state = {}, action) {
     let newState = {};
@@ -155,7 +151,10 @@ export default function ItemsReducer(state = {}, action) {
             newState = { ...newState };
             return newState
         case GET_ONE_ITEM:
-            newState = { ...newState };
+            newState = { ...action.data };
+            return newState;
+        case POST_LISTING:
+            newState = { ...action.data };
             return newState;
         default:
             return state
