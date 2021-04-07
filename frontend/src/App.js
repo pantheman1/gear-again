@@ -13,6 +13,7 @@ import SignupForm from "./components/SignupFormModal/SignupForm";
 import Profile from "./components/Profile";
 import Listings from "./components/Profile/Listings";
 import SalesForm from "./components/Selling/SalesForm";
+import ItemDetailPage from "./components/Items/ItemDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function App() {
               <Route exact path={`/:id`}>
                 <OtherCategoryItems />
               </Route>
+              {/* <Route exact path={`/:id/:id`}>
+                <ItemDetailPage />
+              </Route> */}
               <Route exact path={`/profile/sell`}>
                 <SalesForm />
               </Route>

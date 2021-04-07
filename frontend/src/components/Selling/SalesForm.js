@@ -1,22 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { postListedItem } from '../../store/items';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 
 
 
 export default function SalesForm() {
+    const user = useSelector(state => state?.session.user);
+    const dispatch = useDispatch();
     const [title, setTitle] = useState("");
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
-    const [price, setPrice] = useState("");
-    const [cost, setCost] = useState("");
+    const [price, setPrice] = useState(1);
+    const [cost, setCost] = useState(0);
     const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("");
-    const [condition, setCondition] = useState("");
-    const [gender, setGender] = useState("");
-    const [photoUrl, setPhotoUrl] = useState([]);
+    const [categoryId, setCategoryId] = useState(0);
+    const [conditionId, setConditionId] = useState(0);
+    const [genderId, setGenderId] = useState(0);
+    // for multiple file upload
+    const [images, setImages] = useState([]);
+    const history = useHistory();
+
+    // useEffect(() => {
+    //     dispatch()
+    // }, [])
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const data = {
+            userId: user?.id,
+            title,
+            brand,
+            size,
+            price,
+            cost,
+            description,
+            categoryId: Number(categoryId),
+            conditionId: Number(conditionId),
+            genderId: Number(genderId),
+            images,
+        }
+
+        await dispatch(postListedItem(data))
+
+        // history.push('/profile/listings')
+    }
+
+    //   for multiple file upload
+    const updateFiles = (e) => {
+        const files = e.target.files;
+        setImages(files);
     }
 
     return (
@@ -77,33 +113,54 @@ export default function SalesForm() {
                             type="number"
                             min={0}
                             value={cost}
-                            onChange={e => setPrice(e.target.value)}
+                            onChange={e => setCost(e.target.value)}
                         />
                     </div>
-                    <select className="select__container"
-                        name="gender"
-                        onSelect={e => setGender(e.target.value)}
-                    >
-                        <option hidden>Select one...</option>
-                        <option value="Boy" id="boy">Boy</option>
-                        <option value="Girl" id="girl">Girl</option>
-                        <option value="Neutral" id="neutral">Neutral</option>
-                    </select>
-                    <select className="select__container"
-                        name="gender"
-                        onSelect={e => setCategory(e.target.value)}
-                    >
-                        <option hidden>Select one...</option>
-                        <option value="Camp">Camp</option>
-                        <option value="Bike">Bike</option>
-                        <option value="Run">Run</option>
-                        <option value="Fitness">Fitness</option>
-                        <option value="Climb">Climb</option>
-                        <option value="Snow">Snow</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Fish">Fish</option>
-                        <option value="General">General</option>
-                    </select>
+                    <div className="input-label-container">
+                        <h3>Gender</h3>
+                        <select className="select__container"
+                            name="gender"
+                            onChange={e => setGenderId(e.target.value)}
+                            value={genderId}
+                        >
+                            <option hidden>Select one...</option>
+                            <option value={1} id={1}>Boy</option>
+                            <option value={2} id={2}>Girl</option>
+                            <option value={3} id={3}>Neutral</option>
+                        </select>
+                    </div>
+                    <div className="input-label-container">
+                        <h3>Category</h3>
+                        <select className="select__container"
+                            value={categoryId}
+                            onChange={e => setCategoryId(e.target.value)}
+                        >
+                            <option hidden>Select one...</option>
+                            <option value={1} id={1}>Camp</option>
+                            <option value={2} id={2}>Bike</option>
+                            <option value={3} id={3}>Run</option>
+                            <option value={4} id={4}>Fitness</option>
+                            <option value={5} id={5}>Climb</option>
+                            <option value={6} id={6}>Snow</option>
+                            <option value={7} id={7}>Sports</option>
+                            <option value={8} id={8}>Fish</option>
+                            <option value={9} id={9}>General</option>
+                        </select>
+                    </div>
+                    <div className="input-label-container">
+                        <h3>Condition</h3>
+                        <select className="select__container"
+                            name="condition"
+                            value={conditionId}
+                            onChange={e => setConditionId(e.target.value)}
+                        >
+                            <option hidden>Select one...</option>
+                            <option value={1} id={1}>New</option>
+                            <option value={2} id={2}>Good Condition</option>
+                            <option value={3} id={3}>Well used</option>
+                            <option value={4} id={4}>Just need it gone</option>
+                        </select>
+                    </div>
                     <div className="input-label-container">
                         <h3>Description</h3>
                         <textarea
@@ -114,6 +171,14 @@ export default function SalesForm() {
                             onChange={e => setDescription(e.target.value)}
                         />
                     </div>
+                    <div className="input-label-container">
+                        <label>Upload Images</label>
+                        <input
+                            type="file"
+                            multiple
+                            onChange={updateFiles} />
+                    </div>
+                    <button className="form-btn" type="submit">Submit</button>
                 </form>
             </div>
         </>

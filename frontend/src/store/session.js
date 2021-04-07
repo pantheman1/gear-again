@@ -29,7 +29,6 @@ export const restoreUser = () => async (dispatch) => {
 
 export const signup = (user) => async (dispatch) => {
   const { profileImageUrl, profileImageUrls, name, username, email, password } = user;
-  console.log("PROFILE IMAGE SIGNUP---------", profileImageUrl)
   const formData = new FormData();
   formData.append("name", name);
   formData.append("username", username);

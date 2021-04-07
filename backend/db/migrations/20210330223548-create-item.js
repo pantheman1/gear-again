@@ -31,8 +31,7 @@ module.exports = {
       },
       isSold: {
         type: Sequelize.BOOLEAN,
-        defaultStatus: false,
-        allowNull: false,
+        defaultValue: false,
       },
       userId: {
         type: Sequelize.INTEGER,
