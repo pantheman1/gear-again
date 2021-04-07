@@ -47,14 +47,14 @@ export default function SalesForm() {
             images,
         }
 
-        if (title || brand || size || description || categoryId || conditionId || genderId || images) {
+        if (title && brand && size && description && categoryId && conditionId && genderId && images.length !== 0) {
+            dispatch(postListedItem(data))
+            // history.push('/profile/listings')
+        } else {
             error.push("Please fill out all fields including an item image.")
+            setErrors(error)
+            return
         }
-        else {
-            await dispatch(postListedItem(data))
-        }
-        setErrors(error)
-        // history.push('/profile/listings')
     }
 
     //   for multiple file upload
