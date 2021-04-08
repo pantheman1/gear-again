@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postListedItem } from '../../store/items';
-import CategoriesNavList from '../Navigation/CategoriesNavList';
 
 
 
@@ -65,7 +64,6 @@ export default function SalesForm() {
 
     return (
         <>
-            <CategoriesNavList />
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <div className="form__container">
                 <form className="form__container-form" onSubmit={handleSubmit}>

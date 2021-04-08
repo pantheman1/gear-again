@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { postListedItem } from '../../store/items';
-import CategoriesNavList from '../Navigation/CategoriesNavList';
 import SalesForm from './SalesForm';
 
 

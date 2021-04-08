@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import CategoriesNavList from '../Navigation/CategoriesNavList';
 import UserInfo from './UserInfo';
 import Account from './Account';
 import Listings from './Listings';
@@ -41,7 +40,6 @@ export default function Profile() {
 
     return (
         <>
-            <CategoriesNavList />
             <UserInfo />
             <div className="product-view">
                 <button type="button" onClick={e => setItemView("Account")}>Account</button>

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import CategoriesNavList from '../Navigation/CategoriesNavList';
 import CategoryItemList from './CategoryItemList';
 import './Home.css';
 
@@ -10,9 +9,6 @@ export default function Home() {
     return (
         categories &&
         <>
-            <div className="categories__list">
-                <CategoriesNavList />
-            </div>
             <div className="category__container-items">
                 {categories && categories?.map(category => (
                     <div key={category.id} className="category__container">

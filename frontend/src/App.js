@@ -16,6 +16,7 @@ import SalesForm from "./components/Selling/SalesForm";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
 import { getItems } from "./store/items";
 import { getCategories } from "./store/categories";
+import CategoriesNavList from "./components/Navigation/CategoriesNavList";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <CategoriesNavList />
       <div className="page__container">
         <div className="nav__wrapper-content">
           {isLoaded && (
