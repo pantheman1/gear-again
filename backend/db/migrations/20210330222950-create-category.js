@@ -17,7 +17,7 @@ module.exports = {
           'Climb',
           'Snow',
           'Sports',
-          'Fishing',
+          'Fish',
           'General'),
         allowNull: false,
       },

@@ -37,7 +37,6 @@ function SignupForm() {
 
     const updateFile = (e) => {
         const file = e.target.files[0];
-        console.log("FILE--------SIGNUP", file)
         if (file) setProfileImageUrl(file)
     }
 

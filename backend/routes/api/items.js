@@ -1,4 +1,6 @@
 const express = require('express');
+const { multiplePublicFileUpload } = require('../../awsS3');
+const { multipleMulterUpload } = require('../../awsS3');
 const asyncHandler = require('express-async-handler');
 const { Item, Photo, Category } = require('../../db/models');
 
@@ -6,16 +8,13 @@ const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
     const items = await Item.findAll({
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
-            limit: 1,
         }, {
             model: Category,
             attributes: ['id', 'name'],
         }],
-        subQuery: false,
     });
     return res.json(items);
 }))
@@ -27,7 +26,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
             categoryId,
             isSold: false
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        // attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
@@ -47,8 +46,8 @@ router.get('/listings/:id', asyncHandler(async (req, res) => {
     const listings = await Item.findAll({
         where: {
             userId: id,
+            isSold: false,
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
             model: Category,
             attributes: ['id', 'name'],
@@ -68,7 +67,6 @@ router.get('/purchases/:id', asyncHandler(async (req, res) => {
         where: {
             id,
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
@@ -81,6 +79,83 @@ router.get('/purchases/:id', asyncHandler(async (req, res) => {
     })
     return res.json(purchases);
 }))
+
+router.get('/sales/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const sales = await Item.findAll({
+        where: {
+            userId: id,
+            isSold: true,
+        },
+        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        include: [{
+            model: Photo,
+            attributes: ['id', 'url'],
+            limit: 1,
+        }, {
+            model: Category,
+            attributes: ['id', 'name'],
+        }]
+    })
+    return res.json(sales);
+}))
+
+// router.get('/item/:id', asyncHandler(async (req, res) => {
+//     const { id } = req.params;
+//     console.log("BACK END----------------")
+//     const item = await Item.findAll({
+//         where: {
+//             id
+//         }
+//     })
+//     return res.json({ item })
+// }))
+
+router.post('/:id',
+    multipleMulterUpload("images"),
+    asyncHandler(async (req, res) => {
+        const { id } = req.params;
+        const {
+            title,
+            brand,
+            size,
+            price,
+            cost,
+            description,
+            categoryId,
+            conditionId,
+            genderId,
+        } = req.body;
+
+        const images = await multiplePublicFileUpload(req.files);
+
+        const newItem = await Item.create({
+            title,
+            brand,
+            size,
+            price,
+            cost,
+            description,
+            userId: id,
+            categoryId,
+            conditionId,
+            genderId,
+        })
+
+        const photoList = [];
+
+        for (const image of images) {
+            const photo = await Photo.create({
+                itemId: newItem.id,
+                url: image
+            })
+            photoList.push(photo.dataValues.url)
+        }
+
+        newItem.dataValues['photos'] = photoList;
+
+        return res.json(newItem)
+    }))
 
 
 module.exports = router;

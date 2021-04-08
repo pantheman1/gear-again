@@ -5,13 +5,16 @@ import Account from './Account';
 import Listings from './Listings';
 import Sold from './Sold';
 import Orders from './Orders';
+import { useHistory } from 'react-router';
 
 
 export default function Profile() {
     const [itemView, setItemView] = useState("Account");
+    const history = useHistory();
 
-    const handleListings = (e) => {
+    const handleListings = async (e) => {
         e.preventDefault();
+        // await history.push('/profile/listings')
         setItemView("Listings")
     }
 
@@ -44,8 +47,7 @@ export default function Profile() {
                 <button type="button" onClick={e => setItemView("Account")}>Account</button>
                 <button type="button" onClick={handlePurchases}>Purchases</button>
                 <button type="button" onClick={handleListings}>Listings</button>
-                <button type="button" onClick={handleSold}>Sold Items</button>
-                {/* <Button variant="link">Link</Button> */}
+                <button type="button" onClick={handleSold}>Sales</button>
             </div>
             {toggleView}
         </>

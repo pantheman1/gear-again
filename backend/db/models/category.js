@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         'Climb',
         'Snow',
         'Sports',
-        'Fishing',
+        'Fish',
         'General',
       ])
     }

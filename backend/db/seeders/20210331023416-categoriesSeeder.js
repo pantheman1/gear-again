@@ -10,7 +10,7 @@ module.exports = {
       { name: 'Climb' },
       { name: 'Snow' },
       { name: 'Sports' },
-      { name: 'Fishing' },
+      { name: 'Fish' },
       { name: 'General' },
     ], {});
   },

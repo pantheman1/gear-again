@@ -132,3 +132,7 @@ button:hover {
   border: 1px solid;
   border-radius: 6px;
 }
+
+.error-handling {
+  color: red;
+}

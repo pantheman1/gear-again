@@ -9,8 +9,8 @@ export default function Purchases() {
     const user = useSelector(state => state?.session.user);
     const purchases = useSelector(state => Object.values(state?.items))
 
-    useEffect(async () => {
-        await dispatch(getPurchasedItems(user?.id))
+    useEffect(() => {
+        dispatch(getPurchasedItems(user?.id))
     }, [dispatch])
 
     return (

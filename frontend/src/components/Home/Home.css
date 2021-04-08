@@ -21,6 +21,7 @@ ul.categories__list {
 .categories__container {
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .category-title {
@@ -31,4 +32,9 @@ ul.categories__list {
 
 .owl-item.active {
   padding-left: 10px;
+  max-width: 220px;
+}
+
+.owl-stage-outer {
+  margin-top: 20px;
 }

@@ -13,8 +13,11 @@ export const getFullOrderDetails = (orderId) => async dispatch => {
     const res = await fetch(`/api/orderDetails/${orderId}`);
     if (res.ok) {
         const data = await res.json()
-        dispatch(orderDetails(data))
+        const details = {}
+        details[data.orderId] = data;
+        dispatch(orderDetails(details))
     }
+    return res;
 }
 
 
@@ -22,11 +25,10 @@ export default function OrderDetailsReducer(state = {}, action) {
     let newState = {};
     switch (action.type) {
         case GET_ORDER_DETAILS:
-            debugger
-            action.orders.forEach(order => {
-                newState[order.id] = order;
-            })
-            return { ...state, ...newState }
+            // console.log("ORDERS------", action.orders)
+            // newState = Object.assign({}, state, action.orders);
+            newState = { ...state, ...action.orders }
+            return newState
         default:
             return state;
     }

@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import ItemSquare from '../Items';
 import { useParams } from 'react-router';
 import { getItems } from '../../store/items';
+import './Categories.css';
 
 export default function OtherCategoryItems() {
     const items = useSelector(state => Object.values(state?.items))
@@ -19,6 +20,9 @@ export default function OtherCategoryItems() {
         items &&
         <>
             <CategoriesNavList />
+            <div className="cat__container-name">
+                <h1>{id[0].toUpperCase() + id.slice(1)}</h1>
+            </div>
             <div className="item__container-listing">
                 <div className="item__listing">
                     {items && items?.filter(item => item.Category.name.toLowerCase() == id).map(item => (

@@ -195,6 +195,158 @@ module.exports = {
         itemId: 17,
         url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/t-shirt/shirt2.jpg'
       },
+      {
+        itemId: 18,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/camp-chairs/camp-chair1.jpeg'
+      },
+      {
+        itemId: 18,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/camp-chairs/camp-chair2.jpeg'
+      },
+      {
+        itemId: 19,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/flintnsteel/flintnsteel1.jpeg'
+      },
+      {
+        itemId: 19,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/flintnsteel/flintnsteel2.jpeg'
+      },
+      {
+        itemId: 20,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier1.jpg'
+      },
+      {
+        itemId: 20,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier2.jpg'
+      },
+      {
+        itemId: 20,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier3.jpg'
+      },
+      {
+        itemId: 21,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bugspray/bugspray1.jpeg'
+      },
+      {
+        itemId: 21,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bugspray/bugspray2.jpeg'
+      },
+      {
+        itemId: 21,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bugspray/bugspray3.jpeg'
+      },
+      {
+        itemId: 22,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/utinsels/utinsels1.jpeg'
+      },
+      {
+        itemId: 22,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/utinsels/utinsels2.jpeg'
+      },
+      {
+        itemId: 22,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/utinsels/utinsels3.jpeg'
+      },
+      {
+        itemId: 22,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/utinsels/utinsels4.jpeg'
+      },
+      {
+        itemId: 22,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/utinsels/utinsels5.jpeg'
+      },
+      {
+        itemId: 23,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/bikelight/bikelight1.jpeg'
+      },
+      {
+        itemId: 23,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/bikelight/bikelight2.jpeg'
+      },
+      {
+        itemId: 24,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/bikeseat/bikeseat1.jpeg'
+      },
+      {
+        itemId: 24,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/bikeseat/bikeseat2.jpeg'
+      },
+      {
+        itemId: 25,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/elbowpads/elbowpads1.jpeg'
+      },
+      {
+        itemId: 25,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/elbowpads/elbowpads2.jpeg'
+      },
+      {
+        itemId: 25,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/elbowpads/elbowpads3.jpeg'
+      },
+      {
+        itemId: 26,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/helmet/helmet1.jpeg'
+      },
+      {
+        itemId: 26,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/helmet/helmet2.jpeg'
+      },
+      {
+        itemId: 26,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/helmet/helmet3.jpeg'
+      },
+      {
+        itemId: 27,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/shorts/shorts1.jpeg'
+      },
+      {
+        itemId: 28,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/waterbottle/waterbottle1.jpeg'
+      },
+      {
+        itemId: 28,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/waterbottle/waterbottle2.png'
+      },
+      {
+        itemId: 28,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/bike/waterbottle/waterbottle3.jpeg'
+      },
+      {
+        itemId: 29,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/socks/socks1.jpeg'
+      },
+      {
+        itemId: 29,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/socks/socks2.png'
+      },
+      {
+        itemId: 29,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/socks/socks3.jpeg'
+      },
+      {
+        itemId: 30,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/heartmonitor/heartmonitor1.jpeg'
+      },
+      {
+        itemId: 31,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes1.jpg'
+      },
+      {
+        itemId: 31,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes2.jpg'
+      },
+      {
+        itemId: 31,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes3.jpg'
+      },
+      {
+        itemId: 32,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/sleeves/sleeves1.jpeg'
+      },
+      {
+        itemId: 33,
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/waterbottle/watterbottle1.jpeg'
+      },
     ], {});
   },
 
