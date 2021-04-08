@@ -6,18 +6,19 @@ import { postListedItem } from '../../store/items';
 
 export default function SalesForm({ header, items }) {
     const user = useSelector(state => state?.session.user);
+    const categories = useSelector(state => state?.categories);
     const dispatch = useDispatch();
-    const [title, setTitle] = useState(items?.title);
-    const [brand, setBrand] = useState(items?.brand);
-    const [size, setSize] = useState(items?.size);
-    const [price, setPrice] = useState(items?.price);
-    const [cost, setCost] = useState(items?.cost);
-    const [description, setDescription] = useState(items?.description);
-    const [categoryId, setCategoryId] = useState(items?.categoryId);
-    const [conditionId, setConditionId] = useState(items?.conditionId);
-    const [genderId, setGenderId] = useState(items?.genderId);
+    const [title, setTitle] = useState(items?.title ? items.title : "");
+    const [brand, setBrand] = useState(items?.brand || "");
+    const [size, setSize] = useState(items?.size || "");
+    const [price, setPrice] = useState(items?.price || 1);
+    const [cost, setCost] = useState(items?.cost || 0);
+    const [description, setDescription] = useState(items?.description || "");
+    const [categoryId, setCategoryId] = useState(items?.categoryId || 0);
+    const [conditionId, setConditionId] = useState(items?.conditionId || 0);
+    const [genderId, setGenderId] = useState(items?.genderId || 0);
     // for multiple file upload
-    const [images, setImages] = useState(items?.Photos);
+    const [images, setImages] = useState(items?.Photos || []);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 

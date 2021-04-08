@@ -8,7 +8,7 @@ export default function UpdateListing() {
 
     return (
         <>
-            <SalesForm header="New Listing" />
+            <SalesForm header="Update Listing" items={items} />
         </>
     )
 }

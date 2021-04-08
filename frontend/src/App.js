@@ -16,6 +16,7 @@ import { getItems } from "./store/items";
 import { getCategories } from "./store/categories";
 import CategoriesNavList from "./components/Navigation/CategoriesNavList";
 import NewListing from "./components/Selling/NewListing";
+import UpdateListing from "./components/Selling/UpdateListing";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,6 +63,9 @@ function App() {
               </Route> */}
               <Route exact path={`/profile/sell`}>
                 <NewListing />
+              </Route>
+              <Route exact path={`/:id/:id`}>
+                <UpdateListing />
               </Route>
               {/* <Route exact path={`/profile/listings`}>
                 <Listings />

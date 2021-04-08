@@ -156,7 +156,7 @@ router.post('/:id',
 
         const categories = await Category.findByPk(newItem.dataValues.categoryId);
 
-        newItem.dataValues['Categories'] = categories;
+        newItem.dataValues['Category'] = categories;
 
         return res.json(newItem)
     }))

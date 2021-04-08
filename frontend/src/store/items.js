@@ -125,10 +125,10 @@ export const postListedItem = (data) => async dispatch => {
     if (res.ok) {
         await dispatch(postOneItem(res.data))
         console.log("RES>DAT0-------", res.data)
-        console.log("RES>DATIDDDD-------", res.data.id)
+        console.log("RES>DATIDDDD-------", res.data.Category.name)
         return {
             id: res.data.id,
-            category: res.data.brand,
+            category: res.data.Category.name,
         }
     } else {
         return "Something went wrong with the server. It's not you, it's me...please try again later."
