@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import ItemSquare from '../Items';
 import OwlCarousel from 'react-owl-carousel';
@@ -37,6 +37,7 @@ export default function CategoryItemList({ categoryName, categoryId }) {
 
 
     return (
+        carouselItems &&
         <OwlCarousel
             className="owl-carousel owl-theme"
             {...options}

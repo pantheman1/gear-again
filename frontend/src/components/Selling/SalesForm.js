@@ -4,21 +4,20 @@ import { useHistory } from 'react-router';
 import { postListedItem } from '../../store/items';
 
 
-
-export default function SalesForm() {
+export default function SalesForm({ header, items }) {
     const user = useSelector(state => state?.session.user);
     const dispatch = useDispatch();
-    const [title, setTitle] = useState("");
-    const [brand, setBrand] = useState("");
-    const [size, setSize] = useState("");
-    const [price, setPrice] = useState(1);
-    const [cost, setCost] = useState(0);
-    const [description, setDescription] = useState("");
-    const [categoryId, setCategoryId] = useState(0);
-    const [conditionId, setConditionId] = useState(0);
-    const [genderId, setGenderId] = useState(0);
+    const [title, setTitle] = useState(items?.title);
+    const [brand, setBrand] = useState(items?.brand);
+    const [size, setSize] = useState(items?.size);
+    const [price, setPrice] = useState(items?.price);
+    const [cost, setCost] = useState(items?.cost);
+    const [description, setDescription] = useState(items?.description);
+    const [categoryId, setCategoryId] = useState(items?.categoryId);
+    const [conditionId, setConditionId] = useState(items?.conditionId);
+    const [genderId, setGenderId] = useState(items?.genderId);
     // for multiple file upload
-    const [images, setImages] = useState([]);
+    const [images, setImages] = useState(items?.Photos);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 
@@ -62,6 +61,10 @@ export default function SalesForm() {
         setImages(files);
     }
 
+    if (title === "New Listing") {
+
+    }
+
     return (
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
@@ -70,8 +73,9 @@ export default function SalesForm() {
                     <ul>
                         {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
                     </ul>
+                    <h1>{header}</h1>
                     <div className="input-label-container">
-                        <h3>Listing Title</h3>
+                        <h3>Title</h3>
                         <input
                             className="form__text--input"
                             name="title"

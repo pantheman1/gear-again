@@ -22,7 +22,7 @@ export default function AllItems() {
             </div>
             <div className="item__container-listing">
                 <div className="item__listing">
-                    {isLoaded && items?.map(item => (
+                    {isLoaded && items.filter(item => item.isSold === false).map(item => (
                         <div key={item.id}>
                             <ItemSquare item={item} categoryName={category[item.categoryId].name} />
                         </div>

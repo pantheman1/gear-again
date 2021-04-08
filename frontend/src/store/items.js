@@ -143,7 +143,7 @@ export default function ItemsReducer(state = {}, action) {
             action.data.data.forEach(item => {
                 newState[item.id] = item;
             })
-            newState = { ...newState }
+            newState = { ...state, ...newState }
             return newState;
         case GET_ITEMS_BY_CAT:
             action.data.forEach(item => {
@@ -162,8 +162,7 @@ export default function ItemsReducer(state = {}, action) {
             return newState;
         case POST_LISTING:
             newState[action.data.id] = action.data
-            console.log("NEWSTATE", newState)
-            return newState;
+            return { ...state, ...newState };
         default:
             return state
     }

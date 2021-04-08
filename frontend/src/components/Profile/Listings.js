@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getListedItems } from '../../store/items';
 import ItemSquare from '../Items';
@@ -8,12 +8,6 @@ export default function Listings() {
     const user = useSelector(state => state?.session.user);
     const listings = useSelector(state => Object.values(state?.items))
     const dispatch = useDispatch();
-
-    // useEffect(async () => {
-    //     await dispatch(getListedItems(user?.id))
-    // }, [dispatch])
-
-
 
     return (
         listings &&

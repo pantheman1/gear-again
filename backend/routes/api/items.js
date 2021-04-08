@@ -152,7 +152,11 @@ router.post('/:id',
             photoList.push(photo.dataValues.url)
         }
 
-        newItem.dataValues['photos'] = photoList;
+        newItem.dataValues['Photos'] = photoList;
+
+        const categories = await Category.findByPk(newItem.dataValues.categoryId);
+
+        newItem.dataValues['Categories'] = categories;
 
         return res.json(newItem)
     }))
