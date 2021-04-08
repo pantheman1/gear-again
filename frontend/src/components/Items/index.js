@@ -7,6 +7,7 @@ export default function ItemSquare({ categoryName, item }) {
 
 
     return (
+        item &&
         <>
             <div className="item__container">
                 <NavLink to={`/${categoryName?.toLowerCase()}/${item?.id}`}>

@@ -53,7 +53,6 @@ export const getItems = () => async dispatch => {
 export const getCatItems = (categoryId) => async dispatch => {
     const res = await fetch(`/api/items/${categoryId}`)
     if (res.ok) {
-        // console.log("RESULT----->>>", res.data)
         dispatch(getItemsByCat(res.data))
     }
 }
@@ -124,7 +123,15 @@ export const postListedItem = (data) => async dispatch => {
         body: formData
     })
     if (res.ok) {
-        dispatch(postOneItem(res.data))
+        await dispatch(postOneItem(res.data))
+        console.log("RES>DAT0-------", res.data)
+        console.log("RES>DATIDDDD-------", res.data.id)
+        return {
+            id: res.data.id,
+            category: res.data.brand,
+        }
+    } else {
+        return "Something went wrong with the server. It's not you, it's me...please try again later."
     }
 }
 
@@ -136,7 +143,7 @@ export default function ItemsReducer(state = {}, action) {
             action.data.data.forEach(item => {
                 newState[item.id] = item;
             })
-            newState = { ...state, ...newState }
+            newState = { ...newState }
             return newState;
         case GET_ITEMS_BY_CAT:
             action.data.forEach(item => {
@@ -154,7 +161,8 @@ export default function ItemsReducer(state = {}, action) {
             newState = { ...action.data };
             return newState;
         case POST_LISTING:
-            newState = { ...action.data };
+            newState[action.data.id] = action.data
+            console.log("NEWSTATE", newState)
             return newState;
         default:
             return state

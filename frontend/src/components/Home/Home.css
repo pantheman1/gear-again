@@ -32,4 +32,9 @@ ul.categories__list {
 
 .owl-item.active {
   padding-left: 10px;
+  max-width: 220px;
+}
+
+.owl-stage-outer {
+  margin-top: 20px;
 }

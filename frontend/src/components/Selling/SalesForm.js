@@ -48,8 +48,8 @@ export default function SalesForm() {
         }
 
         if (title && brand && size && description && categoryId && conditionId && genderId && images.length !== 0) {
-            dispatch(postListedItem(data))
-            // history.push('/profile/listings')
+            const item = await dispatch(postListedItem(data))
+            history.push(`/${item.category}/${item.id}`)
         } else {
             error.push("Please fill out all fields including an item image.")
             setErrors(error)
@@ -79,6 +79,7 @@ export default function SalesForm() {
                             name="title"
                             type="text"
                             value={title}
+                            autoComplete="off"
                             onChange={e => setTitle(e.target.value)}
                             required
                         />
@@ -90,6 +91,7 @@ export default function SalesForm() {
                             name="brand"
                             type="text"
                             value={brand}
+                            autoComplete="off"
                             onChange={e => setBrand(e.target.value)}
                         />
                     </div>
@@ -100,6 +102,7 @@ export default function SalesForm() {
                             name="size"
                             type="text"
                             value={size}
+                            autoComplete="off"
                             onChange={e => setSize(e.target.value)}
                             required
                         />

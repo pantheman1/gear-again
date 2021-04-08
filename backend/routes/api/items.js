@@ -8,19 +8,13 @@ const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
     const items = await Item.findAll({
-        where: {
-            isSold: false,
-        },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId', 'isSold'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
-            limit: 1,
         }, {
             model: Category,
             attributes: ['id', 'name'],
         }],
-        subQuery: false,
     });
     return res.json(items);
 }))
@@ -32,7 +26,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
             categoryId,
             isSold: false
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
+        // attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
@@ -54,7 +48,6 @@ router.get('/listings/:id', asyncHandler(async (req, res) => {
             userId: id,
             isSold: false,
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId', 'userId'],
         include: [{
             model: Category,
             attributes: ['id', 'name'],
@@ -74,7 +67,6 @@ router.get('/purchases/:id', asyncHandler(async (req, res) => {
         where: {
             id,
         },
-        attributes: ['id', 'title', 'size', 'price', 'categoryId'],
         include: [{
             model: Photo,
             attributes: ['id', 'url', 'itemId'],
@@ -124,7 +116,6 @@ router.post('/:id',
     asyncHandler(async (req, res) => {
         const { id } = req.params;
         const {
-            // userId,
             title,
             brand,
             size,

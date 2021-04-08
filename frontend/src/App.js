@@ -14,12 +14,18 @@ import Profile from "./components/Profile";
 import Listings from "./components/Profile/Listings";
 import SalesForm from "./components/Selling/SalesForm";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
+import { getItems } from "./store/items";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getItems());
   }, [dispatch]);
 
   return (
