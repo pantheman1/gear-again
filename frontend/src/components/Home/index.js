@@ -1,18 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import CategoriesNavList from '../Navigation/CategoriesNavList';
 import CategoryItemList from './CategoryItemList';
-import { getCategories } from '../../store/categories';
 import './Home.css';
 
 export default function Home() {
-    const dispatch = useDispatch();
     const categories = useSelector(state => Object.values(state.categories));
-
-    useEffect(() => {
-        dispatch(getCategories());
-    }, []);
-
 
     return (
         categories &&

@@ -15,6 +15,7 @@ import Listings from "./components/Profile/Listings";
 import SalesForm from "./components/Selling/SalesForm";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
 import { getItems } from "./store/items";
+import { getCategories } from "./store/categories";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getItems());
+    dispatch(getCategories());
   }, [dispatch]);
 
   return (

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCatItems } from '../../store/items';
+import { useSelector } from 'react-redux';
 import ItemSquare from '../Items';
-import { nanoid } from 'nanoid';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -44,7 +42,7 @@ export default function CategoryItemList({ categoryName, categoryId }) {
             {...options}
         >
             {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 6).map(item => (
-                <ItemSquare key={nanoid()} item={item} categoryName={categoryName} />
+                <ItemSquare key={item.id} item={item} categoryName={categoryName} />
             ))}
         </OwlCarousel>
     )
