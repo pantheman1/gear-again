@@ -193,7 +193,7 @@ module.exports = {
       },
       {
         itemId: 17,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/t-shirt/shirt2.jpg'
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/t-shirt/shirt2.jpeg'
       },
       {
         itemId: 18,
@@ -217,11 +217,11 @@ module.exports = {
       },
       {
         itemId: 20,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier2.jpg'
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier2.jpeg'
       },
       {
         itemId: 20,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier3.jpg'
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/waterpurifier/waterpurifier3.jpeg'
       },
       {
         itemId: 21,
@@ -333,11 +333,11 @@ module.exports = {
       },
       {
         itemId: 31,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes2.jpg'
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes2.jpeg'
       },
       {
         itemId: 31,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes3.jpg'
+        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/running/shoes/runningshoes3.jpeg'
       },
       {
         itemId: 32,
