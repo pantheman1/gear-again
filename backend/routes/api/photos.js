@@ -1,4 +1,6 @@
 const express = require('express');
+const { singlePublicFileUpload } = require('../../awsS3');
+const { singleMulterUpload } = require('../../awsS3');
 const asyncHandler = require('express-async-handler');
 const { Photo, Item } = require('../../db/models');
 
@@ -15,6 +17,21 @@ router.get('/', asyncHandler(async (req, res) => {
     })
     return res.json(photos);
 }))
+
+router.post('/:id',
+    singleMulterUpload("image"),
+    asyncHandler(async (req, res) => {
+        console.log("BACKEND POST-------------", req.params)
+        const { id } = req.params;
+        const image = await singlePublicFileUpload(req.file);
+        // console.log("IMAGE------", image)
+
+        const newPhoto = await Photo.create({
+            itemId: id,
+            url: image,
+        });
+        return res.json(newPhoto);
+    }))
 
 
 module.exports = router;

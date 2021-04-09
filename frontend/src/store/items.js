@@ -116,7 +116,7 @@ export const postListedItem = (data) => async dispatch => {
     // if (image) formData.append("image", image);
     // debugger
     const res = await fetch(`/api/items/${userId}`, {
-        method: "PUT",
+        method: "POST",
         headers: {
             "Content-Type": "multipart/form-data",
         },

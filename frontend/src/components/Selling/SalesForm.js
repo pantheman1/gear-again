@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postListedItem } from '../../store/items';
+import LoginFormModal from '../LoginFormModal';
 import ItemImages from './ItemImages';
 
 // item = {
@@ -44,6 +45,8 @@ export default function SalesForm({ header, buttonText, item }) {
 
         const error = [];
 
+
+
         const data = {
             userId: user?.id,
             title,
@@ -59,7 +62,7 @@ export default function SalesForm({ header, buttonText, item }) {
         }
 
         if (title && brand && size && description && categoryId && conditionId && genderId && images.length !== 0) {
-            const item = await dispatch(postListedItem(data))
+            const item = dispatch(postListedItem(data))
             history.push(`/${item.category}/${item.id}`)
         } else {
             error.push("Please fill out all fields including an item image.")
@@ -75,6 +78,7 @@ export default function SalesForm({ header, buttonText, item }) {
     }
 
     let addImage = "";
+    let imageBox = "";
     if (buttonText === "Submit") {
         addImage = (
             <>
@@ -88,18 +92,20 @@ export default function SalesForm({ header, buttonText, item }) {
             </>
         )
     } else {
-
+        imageBox = (
+            <div className="item__container-images">
+                <LoginFormModal itemId={item?.id} updateFiles={updateFiles} />
+            </div>
+        )
     }
 
     return (
         categories &&
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
-            <form className="form__container-form" onSubmit={handleSubmit}>
-                <div className="form__container form__grid">
-                    <div className="item__container-images">
-                        <ItemImages />
-                    </div>
+            <form className="form__container-form">
+                <div className={buttonText === "Submit" ? "form__container" : "form__container form__grid"}>
+                    {imageBox}
                     <div className="grid-div">
                         <ul>
                             {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
@@ -111,7 +117,7 @@ export default function SalesForm({ header, buttonText, item }) {
                                 className="form__text--input"
                                 name="title"
                                 type="text"
-                                value={title}
+                                value={title ? title : ""}
                                 autoComplete="off"
                                 onChange={e => setTitle(e.target.value)}
                                 required
@@ -123,7 +129,7 @@ export default function SalesForm({ header, buttonText, item }) {
                                 className="form__text--input"
                                 name="brand"
                                 type="text"
-                                value={brand}
+                                value={brand ? brand : ""}
                                 autoComplete="off"
                                 onChange={e => setBrand(e.target.value)}
                             />
@@ -134,7 +140,7 @@ export default function SalesForm({ header, buttonText, item }) {
                                 className="form__text--input"
                                 name="size"
                                 type="text"
-                                value={size}
+                                value={size ? size : ""}
                                 autoComplete="off"
                                 onChange={e => setSize(e.target.value)}
                                 required
@@ -214,12 +220,12 @@ export default function SalesForm({ header, buttonText, item }) {
                                 className="form__text--input"
                                 name="description"
                                 type="textarea"
-                                value={description}
+                                value={description ? description : ""}
                                 onChange={e => setDescription(e.target.value)}
                             />
                         </div>
                         {addImage}
-                        <button className="form-btn" type="submit">{buttonText}</button>
+                        <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
                     </div>
                 </div>
             </form>

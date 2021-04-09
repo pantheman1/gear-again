@@ -32,12 +32,12 @@ const options = {
     },
 };
 
-export default function CategoryItemList({ categoryName, categoryId }) {
-    const carouselItems = useSelector(state => Object.values(state?.items))
+export default function CategoryItemList({ carouselItems, categoryName, categoryId }) {
 
+    // console.log("CAROUSEL-----", carouselItems)
 
     return (
-        carouselItems &&
+        carouselItems.length > 0 &&
         <OwlCarousel
             className="owl-carousel owl-theme"
             {...options}

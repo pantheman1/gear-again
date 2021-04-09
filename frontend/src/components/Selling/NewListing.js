@@ -25,6 +25,7 @@ export default function NewListing() {
                 // listingCallback={postListedItem}
                 buttonText="Submit"
                 item={item}
+
             />
         </>
     )
