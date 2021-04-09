@@ -5,13 +5,12 @@ import { useParams } from 'react-router';
 
 
 export default function ItemDetailPage() {
-    const dispatch = useDispatch();
     const user = useSelector(state => state?.session.user);
+    const items = useSelector(state => Object.values(state.items));
     const { id } = useParams();
 
-    // useEffect(() => {
-    //     dispatch(getOneItem(id))
-    // }, [])
+    console.log("id---------", id)
+
 
     return (
         <>

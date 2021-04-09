@@ -1,31 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postListedItem } from '../../store/items';
 
+// item = {
+//     title: "",
+//     brand: "",
+//     size: "",
+//     price: 1,
+//     cost: 0,
+//     description: "",
+//     categoryId: 0,
+//     conditionId: 0,
+//     genderId: 0,
+//     images: [],
+// }
 
-export default function SalesForm({ header, items }) {
+export default function SalesForm({ header, buttonText, item }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
     const dispatch = useDispatch();
-    const [title, setTitle] = useState(items?.title ? items.title : "");
-    const [brand, setBrand] = useState(items?.brand || "");
-    const [size, setSize] = useState(items?.size || "");
-    const [price, setPrice] = useState(items?.price || 1);
-    const [cost, setCost] = useState(items?.cost || 0);
-    const [description, setDescription] = useState(items?.description || "");
-    const [categoryId, setCategoryId] = useState(items?.categoryId || 0);
-    const [conditionId, setConditionId] = useState(items?.conditionId || 0);
-    const [genderId, setGenderId] = useState(items?.genderId || 0);
+    const [title, setTitle] = useState(item?.title);
+    const [brand, setBrand] = useState(item?.brand);
+    const [size, setSize] = useState(item?.size);
+    const [price, setPrice] = useState(item?.price);
+    const [cost, setCost] = useState(item?.cost);
+    const [description, setDescription] = useState(item?.description);
+    const [categoryId, setCategoryId] = useState(item?.categoryId);
+    const [conditionId, setConditionId] = useState(item?.conditionId);
+    const [genderId, setGenderId] = useState(item?.genderId);
     // for multiple file upload
-    const [images, setImages] = useState(items?.Photos || []);
+    const [images, setImages] = useState(item?.Photos);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
 
     // useEffect(() => {
-    //     dispatch()
-    // }, [])
+    // }, [item])
 
+    console.log("itemsss-------->>>", item?.title)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -62,11 +74,9 @@ export default function SalesForm({ header, items }) {
         setImages(files);
     }
 
-    if (title === "New Listing") {
-
-    }
 
     return (
+        categories &&
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <div className="form__container">
@@ -195,7 +205,7 @@ export default function SalesForm({ header, items }) {
                             multiple
                             onChange={updateFiles} />
                     </div>
-                    <button className="form-btn" type="submit">Submit</button>
+                    <button className="form-btn" type="submit">{buttonText}</button>
                 </form>
             </div>
         </>

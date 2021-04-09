@@ -116,7 +116,7 @@ export const postListedItem = (data) => async dispatch => {
     // if (image) formData.append("image", image);
     // debugger
     const res = await fetch(`/api/items/${userId}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "multipart/form-data",
         },
@@ -124,8 +124,6 @@ export const postListedItem = (data) => async dispatch => {
     })
     if (res.ok) {
         await dispatch(postOneItem(res.data))
-        console.log("RES>DAT0-------", res.data)
-        console.log("RES>DATIDDDD-------", res.data.Category.name)
         return {
             id: res.data.id,
             category: res.data.Category.name,
@@ -134,6 +132,10 @@ export const postListedItem = (data) => async dispatch => {
         return "Something went wrong with the server. It's not you, it's me...please try again later."
     }
 }
+
+// export const updateListing = (data) => async dispatch => {
+
+// }
 
 
 export default function ItemsReducer(state = {}, action) {

@@ -111,7 +111,7 @@ router.get('/sales/:id', asyncHandler(async (req, res) => {
 //     return res.json({ item })
 // }))
 
-router.post('/:id',
+router.put('/:id',
     multipleMulterUpload("images"),
     asyncHandler(async (req, res) => {
         const { id } = req.params;
