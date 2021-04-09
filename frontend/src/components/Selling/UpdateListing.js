@@ -12,8 +12,6 @@ export default function UpdateListing() {
 
     // }, [items[id]])
 
-    console.log("id---------", id)
-    console.log("ITEMS-----", items[id])
 
     return (
         items &&
