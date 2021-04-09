@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postListedItem } from '../../store/items';
-import ItemImages from './Images';
+import ItemImages from './ItemImages';
 
 // item = {
 //     title: "",

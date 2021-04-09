@@ -33,7 +33,7 @@ const options = {
 };
 
 export default function CategoryItemList({ categoryName, categoryId }) {
-    const carouselItems = useSelector(state => Object.values(state.items))
+    const carouselItems = useSelector(state => Object.values(state?.items))
 
 
     return (
@@ -43,7 +43,7 @@ export default function CategoryItemList({ categoryName, categoryId }) {
             {...options}
         >
             {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 6).map(item => (
-                <ItemSquare key={item.id} item={item} categoryName={categoryName} />
+                <ItemSquare key={item?.id} item={item} categoryName={categoryName} />
             ))}
         </OwlCarousel>
     )
