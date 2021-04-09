@@ -1,5 +1,8 @@
 /* TODO Add site wide styles */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Exo&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo:wght@400;800&display=swap");
 
 :root {
   --primary-color: #313131;
@@ -19,6 +22,12 @@
   font-family: "Roboto", sans-serif;
 }
 
+h1,
+h2,
+h3 {
+  font-family: "Exo", sans-serif;
+}
+
 li {
   text-decoration: none;
   list-style: none;
@@ -27,12 +36,25 @@ li {
 a {
   text-decoration: none;
   font-size: larger;
-  font-weight: bolder;
+  font-weight: bold;
   color: var(--primary-color);
 }
+/* 
+a:hover {
+  font-size: bolder;
+} */
 
 div#root {
   height: 100vh;
+}
+
+#logo {
+  font-family: "Exo", sans-serif;
+}
+
+#logo2 {
+  font-family: "Exo", sans-serif;
+  font-weight: 400px;
 }
 
 .page__container {
@@ -135,4 +157,8 @@ button:hover {
 
 .error-handling {
   color: red;
+}
+
+.logo__text-bold {
+  font-weight: bold;
 }

@@ -1,24 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
-import { postListedItem } from '../../store/items';
-import CategoriesNavList from '../Navigation/CategoriesNavList';
+import React from 'react';
 import SalesForm from './SalesForm';
-
+// import { postListedItem } from '../../store/items';
 
 
 export default function NewListing() {
-    const user = useSelector(state => state?.session.user);
-    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     dispatch()
-    // }, [])
+    const item = {
+        title: "",
+        brand: "",
+        size: "",
+        price: 1,
+        cost: 0,
+        description: "",
+        categoryId: 0,
+        conditionId: 0,
+        genderId: 0,
+        images: [],
+    }
 
     return (
         <>
-            <SalesForm title="" />
+            <SalesForm
+                header="New Listing"
+                // listingCallback={postListedItem}
+                buttonText="Submit"
+                item={item}
+            />
         </>
     )
-
 }

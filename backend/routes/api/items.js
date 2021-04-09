@@ -111,7 +111,7 @@ router.get('/sales/:id', asyncHandler(async (req, res) => {
 //     return res.json({ item })
 // }))
 
-router.post('/:id',
+router.put('/:id',
     multipleMulterUpload("images"),
     asyncHandler(async (req, res) => {
         const { id } = req.params;
@@ -152,7 +152,11 @@ router.post('/:id',
             photoList.push(photo.dataValues.url)
         }
 
-        newItem.dataValues['photos'] = photoList;
+        newItem.dataValues['Photos'] = photoList;
+
+        const categories = await Category.findByPk(newItem.dataValues.categoryId);
+
+        newItem.dataValues['Category'] = categories;
 
         return res.json(newItem)
     }))

@@ -14,10 +14,46 @@
   border: 1px solid black;
 }
 
+.profileNav__container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-right: 3%;
+}
+
 .navbar__container-login,
 .navbar__container-signup,
 .navbar__container-home,
 .navbar__container-profile {
   margin-left: 40px;
   text-decoration: none;
+}
+
+.image__text {
+  position: absolute;
+}
+
+.image__text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image__text-firstLine {
+  color: white;
+  font-size: 3vw;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.image__text-secondLine {
+  color: white;
+  text-align: right;
+  font-size: 3vw;
+}
+
+span.gear-logo {
+  font-size: 4vw;
+  font-family: "Exo", sans-serif;
+  font-weight: 800;
 }

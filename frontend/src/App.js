@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 // import SignupFormModal from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
@@ -11,15 +11,17 @@ import AllItems from "./components/Category/AllItems";
 import OtherCategoryItems from "./components/Category/OtherCategories";
 import SignupForm from "./components/SignupFormModal/SignupForm";
 import Profile from "./components/Profile";
-import Listings from "./components/Profile/Listings";
 import SalesForm from "./components/Selling/SalesForm";
-import ItemDetailPage from "./components/Items/ItemDetailPage";
 import { getItems } from "./store/items";
 import { getCategories } from "./store/categories";
+import CategoriesNavList from "./components/Navigation/CategoriesNavList";
+import NewListing from "./components/Selling/NewListing";
+import UpdateListing from "./components/Selling/UpdateListing";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const user = useSelector(state => state.session.user)
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -33,6 +35,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      {user ? <CategoriesNavList /> : ""}
       <div className="page__container">
         <div className="nav__wrapper-content">
           {isLoaded && (
@@ -59,7 +62,10 @@ function App() {
                 <ItemDetailPage />
               </Route> */}
               <Route exact path={`/profile/sell`}>
-                <SalesForm />
+                <NewListing />
+              </Route>
+              <Route exact path={`/:id/:id`}>
+                <UpdateListing />
               </Route>
               {/* <Route exact path={`/profile/listings`}>
                 <Listings />

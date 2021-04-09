@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import CategoriesNavList from '../Navigation/CategoriesNavList';
 import CategoryItemList from './CategoryItemList';
 import './Home.css';
 
 export default function Home() {
-    const categories = useSelector(state => Object.values(state.categories));
+    const categories = useSelector(state => Object.values(state?.categories));
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    console.log("DOES THIS WORK0------", categories)
+
+    useEffect(() => {
+        setIsLoaded(true)
+    }, [setIsLoaded])
 
     return (
-        categories &&
+        isLoaded &&
         <>
-            <div className="categories__list">
-                <CategoriesNavList />
-            </div>
             <div className="category__container-items">
-                {categories && categories?.map(category => (
+                {isLoaded && categories?.map(category => (
                     <div key={category.id} className="category__container">
                         <div className="category-title">
                             <h2>{category?.name}</h2>
@@ -24,6 +27,5 @@ export default function Home() {
                 ))}
             </div>
         </>
-
     )
 }

@@ -116,7 +116,7 @@ export const postListedItem = (data) => async dispatch => {
     // if (image) formData.append("image", image);
     // debugger
     const res = await fetch(`/api/items/${userId}`, {
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "multipart/form-data",
         },
@@ -124,16 +124,18 @@ export const postListedItem = (data) => async dispatch => {
     })
     if (res.ok) {
         await dispatch(postOneItem(res.data))
-        console.log("RES>DAT0-------", res.data)
-        console.log("RES>DATIDDDD-------", res.data.id)
         return {
             id: res.data.id,
-            category: res.data.brand,
+            category: res.data.Category.name,
         }
     } else {
         return "Something went wrong with the server. It's not you, it's me...please try again later."
     }
 }
+
+// export const updateListing = (data) => async dispatch => {
+
+// }
 
 
 export default function ItemsReducer(state = {}, action) {
@@ -143,7 +145,7 @@ export default function ItemsReducer(state = {}, action) {
             action.data.data.forEach(item => {
                 newState[item.id] = item;
             })
-            newState = { ...newState }
+            newState = { ...state, ...newState }
             return newState;
         case GET_ITEMS_BY_CAT:
             action.data.forEach(item => {
@@ -162,8 +164,7 @@ export default function ItemsReducer(state = {}, action) {
             return newState;
         case POST_LISTING:
             newState[action.data.id] = action.data
-            console.log("NEWSTATE", newState)
-            return newState;
+            return { ...state, ...newState };
         default:
             return state
     }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import ItemSquare from '../Items';
 import OwlCarousel from 'react-owl-carousel';
@@ -33,16 +33,17 @@ const options = {
 };
 
 export default function CategoryItemList({ categoryName, categoryId }) {
-    const carouselItems = useSelector(state => Object.values(state.items))
+    const carouselItems = useSelector(state => Object.values(state?.items))
 
 
     return (
+        carouselItems &&
         <OwlCarousel
             className="owl-carousel owl-theme"
             {...options}
         >
             {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 6).map(item => (
-                <ItemSquare key={item.id} item={item} categoryName={categoryName} />
+                <ItemSquare key={item?.id} item={item} categoryName={categoryName} />
             ))}
         </OwlCarousel>
     )
