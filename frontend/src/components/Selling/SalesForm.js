@@ -75,6 +75,7 @@ export default function SalesForm({ header, buttonText, item }) {
     }
 
     let addImage = "";
+    let imageBox = "";
     if (buttonText === "Submit") {
         addImage = (
             <>
@@ -88,7 +89,11 @@ export default function SalesForm({ header, buttonText, item }) {
             </>
         )
     } else {
-
+        imageBox = (
+            <div className="item__container-images">
+                <ItemImages />
+            </div>
+        )
     }
 
     return (
@@ -96,10 +101,8 @@ export default function SalesForm({ header, buttonText, item }) {
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <form className="form__container-form" onSubmit={handleSubmit}>
-                <div className="form__container form__grid">
-                    <div className="item__container-images">
-                        <ItemImages />
-                    </div>
+                <div className={buttonText === "Submit" ? "form__container" : "form__container form__grid"}>
+                    {imageBox}
                     <div className="grid-div">
                         <ul>
                             {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
