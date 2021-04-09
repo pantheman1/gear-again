@@ -5,6 +5,7 @@ import './Home.css';
 
 export default function Home() {
     const categories = useSelector(state => Object.values(state?.categories));
+    const carouselItems = useSelector(state => Object.values(state?.items))
     const [isLoaded, setIsLoaded] = useState(false);
 
     console.log("DOES THIS WORK0------", categories)
@@ -22,7 +23,7 @@ export default function Home() {
                         <div className="category-title">
                             <h2>{category?.name}</h2>
                         </div>
-                        <CategoryItemList categoryName={category.name} categoryId={category?.id} />
+                        <CategoryItemList carouselItems={carouselItems} categoryName={category.name} categoryId={category?.id} />
                     </div>
                 ))}
             </div>

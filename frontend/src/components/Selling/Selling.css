@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+.image__container-buttons:hover {
+  border: 2px solid #888888;
+}
+
 .form__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
