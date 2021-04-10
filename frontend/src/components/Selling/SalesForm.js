@@ -18,7 +18,7 @@ import ItemImages from './ItemImages';
 //     images: [],
 // }
 
-export default function SalesForm({ header, buttonText, item, cancelUpdate = "" }) {
+export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
     const dispatch = useDispatch();
@@ -39,14 +39,11 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate = "" 
     // useEffect(() => {
     // }, [item])
 
-    console.log("CATSSS-----", categories)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const error = [];
-
-
 
         const data = {
             userId: user?.id,
@@ -63,8 +60,11 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate = "" 
         }
 
         if (title && brand && size && description && categoryId && conditionId && genderId && images.length !== 0) {
-            const item = dispatch(postListedItem(data))
-            history.push(`/${item.category}/${item.id}`)
+            const item = await dispatch(postListedItem(data))
+            console.log("ITEM----", item)
+            // console.log("data----", item)
+
+            history.push(`/${item.category.toLowerCase()}/${item.id}`)
         } else {
             error.push("Please fill out all fields including an item image.")
             setErrors(error)

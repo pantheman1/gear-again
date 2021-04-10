@@ -11,6 +11,7 @@ export default function UpdateListing() {
 
     console.log("ID----updateListing page---", id)
 
+    // debugger
     const cancelUpdate = (e) => {
         e.preventDefault();
         history.push(`/${items[id]?.Category.name.toLowerCase()}/${items[id]?.id}`)
@@ -18,7 +19,7 @@ export default function UpdateListing() {
 
 
     return (
-        items &&
+        Object.values(items).length > 0 &&
         <>
             <SalesForm
                 header="Update Listing"

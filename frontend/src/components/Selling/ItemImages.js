@@ -10,6 +10,7 @@ import { Modal } from '../../context/Modal';
 
 export default function ItemImages() {
     const items = useSelector(state => state?.items);
+    const photos = useSelector(state => Object.values(state?.photos));
     const [imageLoading, setImageLoading] = useState(false);
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
@@ -20,6 +21,10 @@ export default function ItemImages() {
         e.preventDefault();
         setImageLoading(true)
     }
+
+    // useEffect(() => {
+
+    // }, [photos])
 
 
     const updateFile = (e) => {
