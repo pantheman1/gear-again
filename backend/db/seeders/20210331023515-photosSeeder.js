@@ -85,19 +85,19 @@ module.exports = {
       },
       {
         itemId: 10,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes.jpeg'
+        url: 'https://images.asics.com/is/image/asics/1012A592_002_SR_RT_GLB-1?$sfcc-product$'
       },
       {
         itemId: 10,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes1.jpeg'
+        url: 'https://www.cnet.com/a/img/VKmy0taw5V9f5iwiDsYgCVa5AS0=/940x528/2020/11/06/c2991e77-c9ab-433a-b73d-98be38b30421/mizuno.jpg'
       },
       {
         itemId: 10,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes2.jpeg'
+        url: 'https://images.asics.com/is/image/asics/1012A592_002_SR_RT_GLB-1?$sfcc-product$'
       },
       {
         itemId: 10,
-        url: 'https://gear-again.s3-us-west-1.amazonaws.com/Products/tennis-shoes/tennis-shoes3.jpeg'
+        url: 'https://images.asics.com/is/image/asics/1012A592_002_SR_RT_GLB-1?$sfcc-product$'
       },
       {
         itemId: 11,

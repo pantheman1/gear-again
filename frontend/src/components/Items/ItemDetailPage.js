@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import AddToCart from '../Cart';
 
 
 
@@ -12,14 +13,13 @@ export default function ItemDetailPage() {
     const history = useHistory();
     const item = items[id];
 
-    console.log("ID from ItemDETAIL PAGE-----", id)
-    console.log("ITEM from ItemDETAIL PAGE-----", items[id])
+    // console.log("ID from ItemDETAIL PAGE-----", id)
+    // console.log("ITEM from ItemDETAIL PAGE-----", items[id])
 
 
     // debugger
     const editButton = (e) => {
         e.preventDefault();
-        ///////////////this magical button is magically incrementing item.id and causing all sorts of magical issues. What is happening here???
         history.push(`/${item.Category.name.toLowerCase()}/${item.id}/edit`)
     }
 
@@ -31,7 +31,8 @@ export default function ItemDetailPage() {
     if (item?.userId !== user?.id) {
         cartBtn = (
             <>
-                <button className="form-btn" type="button" onClick={addToCart}>Add to Cart</button>
+                {/* <button className="form-btn" type="button" onClick={addToCart}>Add to Cart</button> */}
+                <AddToCart />
             </>
         )
     }

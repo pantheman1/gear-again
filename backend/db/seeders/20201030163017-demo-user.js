@@ -11,7 +11,7 @@ module.exports = {
           email: 'demo@user.io',
           username: 'Demo',
           name: 'Demo Boss',
-          profileImageUrl: 'https://gear-again.s3.us-west-1.amazonaws.com/1617815463978.jpeg',
+          profileImageUrl: 'https://www.ecoparent.ca/sites/default/files/styles/max_width_800px/public/2019-08/canstockphoto27315421.jpg?itok=AuG50amW',
           bio: "I'm a super happy person who loves to shop and sell.",
           hashedPassword: bcrypt.hashSync('password'),
         },

@@ -18,6 +18,8 @@ import CategoriesNavList from "./components/Navigation/CategoriesNavList";
 import NewListing from "./components/Selling/NewListing";
 import UpdateListing from "./components/Selling/UpdateListing";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
+import { CartItem } from "./components/Cart/CartItem";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,7 @@ function App() {
     dispatch(getItems());
     dispatch(getCategories());
   }, [dispatch]);
+
 
   return (
     <>
@@ -56,6 +59,9 @@ function App() {
               <Route path="/all" exact={true}>
                 <AllItems />
               </Route>
+              <Route path="/cart" exact={true}>
+                <Cart />
+              </Route>
               <Route exact path={`/:id`}>
                 <OtherCategoryItems />
               </Route>
@@ -65,7 +71,7 @@ function App() {
               <Route exact path={`/:id/:id`}>
                 <ItemDetailPage />
               </Route>
-              <Route exact path={`/:id/:id/edit`}>
+              <Route exact={true} path={`/:id/:id/edit`}>
                 <UpdateListing />
               </Route>
               {/* <Route exact path={`/profile/listings`}>
