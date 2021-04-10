@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router';
+import { Redirect, useHistory, useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -11,17 +12,33 @@ export default function ItemDetailPage() {
     const history = useHistory();
     const item = items[id];
 
+    console.log("ID from ItemDETAIL PAGE-----", id)
+
     const editButton = (e) => {
         e.preventDefault();
-        history.push(`/${item.Category.name}/${item.id}/edit`)
+        ///////////////this magical button is magically incrementing item.id and causing all sorts of magical issues. What is happening here???
+        history.push(`/${item.Category.name.toLowerCase()}/${item.id}/edit`)
+    }
+
+    const addToCart = (e) => {
+        e.preventDefault();
+    }
+
+    let cartBtn;
+    if (item?.userId !== user?.id) {
+        cartBtn = (
+            <>
+                <button className="form-btn" type="button" onClick={addToCart}>Add to Cart</button>
+            </>
+        )
     }
 
     let editBtn;
     let costField;
-    if (items[id]?.userId === user?.id) {
+    if (item?.userId === user?.id) {
         editBtn = (
             <>
-                <button className="form-btn" type="button" onClick={editButton}>Edit</button>
+                <NavLink to={`/${item.Category.name.toLowerCase()}/${item.id}/edit`} className="form-btn" onClick={editButton}>Edit</NavLink>
             </>
         )
         costField = (
@@ -36,9 +53,31 @@ export default function ItemDetailPage() {
         )
     }
 
+    // render gender--optimize later
+    let gender;
+    if (item?.genderId === 1) {
+        gender = "Boy"
+    } else if (item?.genderId === 2) {
+        gender = "Girl"
+    } else {
+        gender = "Neutral"
+    }
+
+    // render gender--optimize later
+    let condition;
+    if (item?.conditionId === 1) {
+        condition = "New"
+    } else if (item?.conditionId === 2) {
+        condition = "Good condition"
+    } else if (item?.conditionId === 3) {
+        condition = "Well used"
+    } else {
+        condition = "Just need it gone!"
+    }
+
     return (
         items.length > 0 &&
-        <>
+        <div className="itemDetails__container">
             <h1>Item Details</h1>
             <div className="item__container">
                 <div className="item__container-label">
@@ -73,15 +112,40 @@ export default function ItemDetailPage() {
                 </div>
             </div>
             {costField}
-            {/* <div className="item__container">
+            <div className="item__container">
                 <div className="item__container-label">
-                    <h2>Price</h2>
+                    <h2>Gender</h2>
                 </div>
                 <div className="item__container-value">
-                    {item.gender}
+                    {gender}
                 </div>
-            </div> */}
+            </div>
+            <div className="item__container">
+                <div className="item__container-label">
+                    <h2>Category</h2>
+                </div>
+                <div className="item__container-value">
+                    {item.Category.name}
+                </div>
+            </div>
+            <div className="item__container">
+                <div className="item__container-label">
+                    <h2>Condition</h2>
+                </div>
+                <div className="item__container-value">
+                    {condition}
+                </div>
+            </div>
+            <div className="item__container">
+                <div className="item__container-label">
+                    <h2>Description</h2>
+                </div>
+                <div className="item__container-value">
+                    {item.description}
+                </div>
+            </div>
             {editBtn}
-        </>
+            {cartBtn}
+        </div>
     )
 }

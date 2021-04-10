@@ -35,7 +35,8 @@ export default function ItemImages() {
             image,
         }
         const photoUrl = dispatch(postPhoto(data))
-
+        //this gives me access to the photo that was just posted
+        setUrl(photoUrl);
     }
     // items[id].Photos[0].url
     // let styles = {

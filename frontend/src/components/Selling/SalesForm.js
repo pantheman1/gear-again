@@ -18,7 +18,7 @@ import ItemImages from './ItemImages';
 //     images: [],
 // }
 
-export default function SalesForm({ header, buttonText, item }) {
+export default function SalesForm({ header, buttonText, item, cancelUpdate = "" }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
     const dispatch = useDispatch();
@@ -39,6 +39,7 @@ export default function SalesForm({ header, buttonText, item }) {
     // useEffect(() => {
     // }, [item])
 
+    console.log("CATSSS-----", categories)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -100,7 +101,7 @@ export default function SalesForm({ header, buttonText, item }) {
     }
 
     return (
-        categories &&
+        Object.keys(categories).length > 0 &&
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <form className="form__container-form">
@@ -226,6 +227,7 @@ export default function SalesForm({ header, buttonText, item }) {
                         </div>
                         {addImage}
                         <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
+                        <button className="form-btn" onClick={cancelUpdate}>Cancel</button>
                     </div>
                 </div>
             </form>

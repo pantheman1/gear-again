@@ -59,16 +59,13 @@ function App() {
               <Route exact path={`/:id`}>
                 <OtherCategoryItems />
               </Route>
-              {/* <Route exact path={`/:id/:id`}>
-                <ItemDetailPage />
-              </Route> */}
               <Route exact path={`/profile/sell`}>
                 <NewListing />
               </Route>
               <Route exact path={`/:id/:id`}>
                 <ItemDetailPage />
               </Route>
-              <Route exact path={`/:id/edit/:id`}>
+              <Route exact path={`/:id/:id/edit`}>
                 <UpdateListing />
               </Route>
               {/* <Route exact path={`/profile/listings`}>
