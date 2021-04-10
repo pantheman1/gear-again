@@ -17,6 +17,7 @@ import { getCategories } from "./store/categories";
 import CategoriesNavList from "./components/Navigation/CategoriesNavList";
 import NewListing from "./components/Selling/NewListing";
 import UpdateListing from "./components/Selling/UpdateListing";
+import ItemDetailPage from "./components/Items/ItemDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -65,6 +66,9 @@ function App() {
                 <NewListing />
               </Route>
               <Route exact path={`/:id/:id`}>
+                <ItemDetailPage />
+              </Route>
+              <Route exact path={`/:id/edit/:id`}>
                 <UpdateListing />
               </Route>
               {/* <Route exact path={`/profile/listings`}>

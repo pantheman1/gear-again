@@ -34,7 +34,7 @@ export default function ItemImages() {
             itemId: id,
             image,
         }
-        const photos = dispatch(postPhoto(data))
+        const photoUrl = dispatch(postPhoto(data))
 
     }
     // items[id].Photos[0].url

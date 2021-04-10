@@ -14,21 +14,11 @@ const options = {
     navText: ["Prev", "Next"],
     smartSpeed: 1000,
     responsive: {
-        0: {
-            items: 1,
-        },
-        380: {
-            items: 2,
-        },
-        660: {
-            items: 3,
-        },
-        990: {
-            items: 4,
-        },
-        1100: {
-            items: 5,
-        },
+        0: { items: 1, },
+        380: { items: 2, },
+        660: { items: 3, },
+        990: { items: 4, },
+        1100: { items: 5, },
     },
 };
 
