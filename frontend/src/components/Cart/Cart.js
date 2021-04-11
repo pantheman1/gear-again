@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { CartItem } from "./CartItem";
 import Cookies from 'universal-cookie';
 import { useSelector } from "react-redux";
+import './Cart.css';
 const { USER_CART_COOKIE } = require('../../globals.js')
 
 
