@@ -21,6 +21,7 @@ import ItemImages from './ItemImages';
 export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
+    const photos = useSelector(state => state?.itemPhotos);
     const dispatch = useDispatch();
     const [title, setTitle] = useState(item?.title);
     const [brand, setBrand] = useState(item?.brand);
@@ -38,6 +39,8 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
 
     // useEffect(() => {
     // }, [item])
+
+    console.log("PHOTOS-----", photos)
 
 
     const handleSubmit = async (e) => {
