@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div className="navbar__container-home">
-          <NavLink exact to="/"><span id="logo">Gear</span><span id="logo2">Again</span></NavLink>
+          <NavLink className="logo-header" exact to="/"><span id="logo">Gear</span><span id="logo2">Again</span></NavLink>
         </div>
         <div className="profileNav__container">
           <div className="navbar__container-profile">

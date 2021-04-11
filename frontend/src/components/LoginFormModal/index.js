@@ -24,13 +24,16 @@ function LoginFormModal({ itemId }) {
       <a className="image__container-buttons" onClick={() => setShowModal(true)}>+</a>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <form className="input-label-container">
-            <label>Upload Images</label>
-            <input
-              type="file"
-              onChange={e => setImage(e.target.files[0])} />
-            <button className="form-btn" onClick={onSubmit}>Upload Image</button>
-          </form>
+          <div className="flex-modal-container">
+            <form className="modal-label-container">
+              <h2>Upload Images</h2>
+              <input
+                className="form__text--input"
+                type="file"
+                onChange={e => setImage(e.target.files[0])} />
+              <button className="form-btn" onClick={onSubmit}>Upload Image</button>
+            </form>
+          </div>
         </Modal>
       )}
     </>

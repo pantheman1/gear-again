@@ -149,9 +149,9 @@ export default function ItemDetailPage() {
                         {item?.description}
                     </div>
                 </div>
+                {editBtn}
+                {cartBtn}
             </div>
-            {editBtn}
-            {cartBtn}
         </div>
     )
 }

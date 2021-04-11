@@ -95,7 +95,7 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         )
     } else {
         imageBox = (
-            <div className="item__container-images">
+            <div className="input__container-images">
                 <LoginFormModal itemId={item?.id} updateFiles={updateFiles} />
             </div>
         )

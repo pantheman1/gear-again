@@ -71,3 +71,12 @@ span.gear-logo {
   color: white;
   font-size: 20px;
 }
+
+.logo-header:hover {
+  border-bottom: none;
+  font-size: 20px;
+}
+
+.logo-header:active {
+  font-size: 19.5px;
+}

@@ -39,3 +39,9 @@
   justify-content: center;
   gap: 20px;
 }
+
+.input__container-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
