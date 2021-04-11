@@ -24,15 +24,13 @@ const options = {
 
 export default function CategoryItemList({ carouselItems, categoryName, categoryId }) {
 
-    // console.log("CAROUSEL-----", carouselItems)
-
     return (
         carouselItems.length > 0 &&
         <OwlCarousel
             className="owl-carousel owl-theme"
             {...options}
         >
-            {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 6).map(item => (
+            {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 10).map(item => (
                 <ItemSquare key={item?.id} item={item} categoryName={categoryName} />
             ))}
         </OwlCarousel>

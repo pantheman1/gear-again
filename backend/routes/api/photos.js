@@ -13,7 +13,6 @@ router.get('/', asyncHandler(async (req, res) => {
             model: Item,
             attributes: ['id', 'title', 'brand', 'price', 'categoryId'],
         },
-        limit: 1
     })
     return res.json(photos);
 }))

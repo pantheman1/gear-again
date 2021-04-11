@@ -21,6 +21,7 @@ import ItemImages from './ItemImages';
 export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
+    const photos = useSelector(state => Object.values(state?.itemPhotos));
     const dispatch = useDispatch();
     const [title, setTitle] = useState(item?.title);
     const [brand, setBrand] = useState(item?.brand);
@@ -35,6 +36,7 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
     const [images, setImages] = useState(item?.Photos);
     const [errors, setErrors] = useState([]);
     const history = useHistory();
+    // const photos = item.Photos
 
     // useEffect(() => {
     // }, [item])
@@ -61,8 +63,6 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
 
         if (title && brand && size && description && categoryId && conditionId && genderId && images.length !== 0) {
             const item = await dispatch(postListedItem(data))
-            console.log("ITEM----", item)
-            // console.log("data----", item)
 
             history.push(`/${item.category.toLowerCase()}/${item.id}`)
         } else {
@@ -84,8 +84,9 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         addImage = (
             <>
                 <div className="input-label-container">
-                    <label>Upload Images</label>
+                    <h3>Upload Images</h3>
                     <input
+                        className="form__text--input"
                         type="file"
                         multiple
                         onChange={updateFiles} />
@@ -94,9 +95,16 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         )
     } else {
         imageBox = (
-            <div className="item__container-images">
-                <LoginFormModal itemId={item?.id} updateFiles={updateFiles} />
-            </div>
+            <>
+                <div className="input__container-images">
+                    <LoginFormModal itemId={item?.id} updateFiles={updateFiles} />
+                </div>
+                <div className="input__container-images">
+                    {photos.length > 0 && photos?.map(photo => (
+                        <div key={photo?.id} className="image-container-div"><img className="item__square-image image-border" src={photo?.url} /></div>
+                    ))}
+                </div>
+            </>
         )
     }
 
@@ -105,8 +113,10 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <form className="form__container-form">
-                <div className={buttonText === "Submit" ? "form__container" : "form__container form__grid"}>
-                    {imageBox}
+                <div className={buttonText === "Submit" ? "form-container" : "form-container form__grid"}>
+                    <div className="images-flex-div">
+                        {imageBox}
+                    </div>
                     <div className="grid-div">
                         <ul>
                             {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
@@ -148,23 +158,25 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
                             />
                         </div>
                         <div className="input-label-container">
-                            <h3>Price</h3>
+                            <h3>Price $</h3>
                             <input
                                 className="form__text--input"
                                 name="price"
                                 type="number"
                                 min={1}
+                                step="0.01"
                                 value={price}
                                 onChange={e => setPrice(e.target.value)}
                                 required
                             />
                         </div>
                         <div className="input-label-container">
-                            <h3>Cost</h3>
+                            <h3>Cost $</h3>
                             <input
                                 className="form__text--input"
                                 name="cost"
                                 type="number"
+                                step="0.01"
                                 min={0}
                                 value={cost}
                                 onChange={e => setCost(e.target.value)}
@@ -226,8 +238,10 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
                             />
                         </div>
                         {addImage}
-                        <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
-                        <button className="form-btn" onClick={cancelUpdate}>Cancel</button>
+                        <div className="btn-container">
+                            <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
+                            <button className="form-btn-cancel" onClick={cancelUpdate}>Cancel</button>
+                        </div>
                     </div>
                 </div>
             </form>

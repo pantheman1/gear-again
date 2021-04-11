@@ -9,9 +9,6 @@ export default function UpdateListing() {
     const items = useSelector(state => state?.items);
     const history = useHistory();
 
-    console.log("ID----updateListing page---", id)
-
-    // debugger
     const cancelUpdate = (e) => {
         e.preventDefault();
         history.push(`/${items[id]?.Category.name.toLowerCase()}/${items[id]?.id}`)

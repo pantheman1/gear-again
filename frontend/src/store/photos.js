@@ -41,7 +41,6 @@ export const postPhoto = (data) => async dispatch => {
     });
 
     if (res.ok) {
-        console.log("IMAGE--RES----", res.data)
         dispatch(postAPhoto(res.data))
         return res.data.url
     }

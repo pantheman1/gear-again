@@ -7,14 +7,34 @@
 
 .footer__text-container {
   display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+p.footer__text {
+  margin-right: 30px;
+  font-size: larger;
+  font-family: "Exo", sans-serif;
 }
 
 .main-footer {
   color: black;
   background-color: white;
   border-top: 1px solid;
-  padding-top: 3em;
+  height: 50px;
   position: relative;
   bottom: 0;
   width: 100%;
+}
+
+.footer-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-footer {
+  display: flex;
+  gap: 8px;
 }

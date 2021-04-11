@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import CategoryItemList from './CategoryItemList';
 import './Home.css';
 
 export default function Home() {
+    const user = useSelector(state => state.session.user);
     const categories = useSelector(state => Object.values(state?.categories));
     const carouselItems = useSelector(state => Object.values(state?.items))
     const [isLoaded, setIsLoaded] = useState(false);
+    const history = useHistory();
 
-    console.log("DOES THIS WORK0------", categories)
+    if (!user) {
+        history.push('/login')
+    }
 
     useEffect(() => {
         setIsLoaded(true)

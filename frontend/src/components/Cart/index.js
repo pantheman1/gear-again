@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import Form from "usetheform";
-// import { Cart } from "./Cart";
 import Cookies from 'universal-cookie';
 const { USER_CART_COOKIE } = require('../../globals.js')
 
@@ -35,7 +33,6 @@ export default function AddToCart() {
         cookies.set(USER_CART_COOKIE, itemIds, { path: '/' })
         // setCartItem((prev) => [...prev, item]);
         setButtonTxt("Continue to cart")
-        console.log("ITEMS CART", items)
     };
 
     const navToCart = async (e) => {
