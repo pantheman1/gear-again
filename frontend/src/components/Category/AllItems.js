@@ -13,7 +13,7 @@ export default function AllItems() {
         //     // await dispatch(getItems())
         setIsLoaded(true)
     }, [dispatch])
-
+    // debugger
     return (
         isLoaded &&
         <>
@@ -24,7 +24,7 @@ export default function AllItems() {
                 <div className="item__listing">
                     {isLoaded && items.filter(item => item.isSold === false).map(item => (
                         <div key={item.id}>
-                            <ItemSquare item={item} categoryName={category[item.categoryId].name} />
+                            <ItemSquare item={item} categoryName={category[item?.categoryId]?.name} />
                         </div>
                     ))}
                 </div>
