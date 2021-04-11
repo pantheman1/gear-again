@@ -18,7 +18,7 @@ import ItemImages from './ItemImages';
 //     images: [],
 // }
 
-export default function SalesForm({ header, buttonText, item }) {
+export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
     const dispatch = useDispatch();
@@ -45,8 +45,6 @@ export default function SalesForm({ header, buttonText, item }) {
 
         const error = [];
 
-
-
         const data = {
             userId: user?.id,
             title,
@@ -62,8 +60,11 @@ export default function SalesForm({ header, buttonText, item }) {
         }
 
         if (title && brand && size && description && categoryId && conditionId && genderId && images.length !== 0) {
-            const item = dispatch(postListedItem(data))
-            history.push(`/${item.category}/${item.id}`)
+            const item = await dispatch(postListedItem(data))
+            console.log("ITEM----", item)
+            // console.log("data----", item)
+
+            history.push(`/${item.category.toLowerCase()}/${item.id}`)
         } else {
             error.push("Please fill out all fields including an item image.")
             setErrors(error)
@@ -100,7 +101,7 @@ export default function SalesForm({ header, buttonText, item }) {
     }
 
     return (
-        categories &&
+        Object.keys(categories).length > 0 &&
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <form className="form__container-form">
@@ -226,6 +227,7 @@ export default function SalesForm({ header, buttonText, item }) {
                         </div>
                         {addImage}
                         <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
+                        <button className="form-btn" onClick={cancelUpdate}>Cancel</button>
                     </div>
                 </div>
             </form>

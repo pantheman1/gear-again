@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 // name of your bucket here
-const GEAR_AGAIN = "gear-again";
+const GEAR_AGAIN = "gearagain";
 
 const multer = require("multer");
 

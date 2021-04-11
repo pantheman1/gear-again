@@ -16,7 +16,9 @@
     "react-scripts": "4.0.0",
     "react-tinder-card": "^1.3.1",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "universal-cookie": "^4.0.4",
+    "usetheform": "^3.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

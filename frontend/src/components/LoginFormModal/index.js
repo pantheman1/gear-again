@@ -29,7 +29,7 @@ function LoginFormModal({ itemId }) {
             <input
               type="file"
               onChange={e => setImage(e.target.files[0])} />
-            <button onClick={onSubmit}>Upload Image</button>
+            <button className="form-btn" onClick={onSubmit}>Upload Image</button>
           </form>
         </Modal>
       )}

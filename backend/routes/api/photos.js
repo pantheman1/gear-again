@@ -18,6 +18,20 @@ router.get('/', asyncHandler(async (req, res) => {
     return res.json(photos);
 }))
 
+// router.post('/:id', asyncHandler(async (req, res) => {
+//     console.log("BACKEND POST-------------", req.params)
+//     const { id } = req.params;
+//     const { image } = req.body;
+//     console.log("IMAGE------", image)
+
+//     const newPhoto = await Photo.create({
+//         itemId: id,
+//         url: image,
+//     });
+//     return res.json(newPhoto);
+// }))
+
+//This route is a POST route for AWS
 router.post('/:id',
     singleMulterUpload("image"),
     asyncHandler(async (req, res) => {

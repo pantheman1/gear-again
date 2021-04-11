@@ -4,10 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 export default function ItemSquare({ categoryName, item }) {
 
-    console.log("ITEM------TEST")
-
+    // debugger
     return (
-        item &&
+        Object.values(item).length > 0 &&
         <>
             <div className="item__container">
                 <NavLink to={`/${categoryName?.toLowerCase()}/${item?.id}`}>

@@ -11,7 +11,7 @@ module.exports = {
           email: 'demo@user.io',
           username: 'Demo',
           name: 'Demo Boss',
-          profileImageUrl: 'https://gear-again.s3.us-west-1.amazonaws.com/1617815463978.jpeg',
+          profileImageUrl: 'https://gearagain.s3-us-west-1.amazonaws.com/Products/worms/worms1.jpeg',
           bio: "I'm a super happy person who loves to shop and sell.",
           hashedPassword: bcrypt.hashSync('password'),
         },
