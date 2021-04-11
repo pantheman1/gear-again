@@ -29,20 +29,19 @@ function ProfileButton({ user }) {
     e.preventDefault();
     await dispatch(sessionActions.logout());
     history.push('/login')
-    // return <Redirect to='/signup' />
   };
 
   return (
     <>
       <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+        <img className="profile-circle-img" src={user.profileImageUrl} />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="logout" onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}

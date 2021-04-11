@@ -84,8 +84,9 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         addImage = (
             <>
                 <div className="input-label-container">
-                    <label>Upload Images</label>
+                    <h3>Upload Images</h3>
                     <input
+                        className="form__text--input"
                         type="file"
                         multiple
                         onChange={updateFiles} />
@@ -105,7 +106,7 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         <>
             {/* <h2>Give your dusty outdoor gear new life by listing it here!</h2> */}
             <form className="form__container-form">
-                <div className={buttonText === "Submit" ? "form__container" : "form__container form__grid"}>
+                <div className={buttonText === "Submit" ? "form-container" : "form-container form__grid"}>
                     {imageBox}
                     <div className="grid-div">
                         <ul>
@@ -226,8 +227,10 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
                             />
                         </div>
                         {addImage}
-                        <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
-                        <button className="form-btn" onClick={cancelUpdate}>Cancel</button>
+                        <div className="btn-container">
+                            <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
+                            <button className="form-btn" onClick={cancelUpdate}>Cancel</button>
+                        </div>
                     </div>
                 </div>
             </form>

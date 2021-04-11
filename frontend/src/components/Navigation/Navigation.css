@@ -1,6 +1,8 @@
 .profile-dropdown {
   position: absolute;
   z-index: 1;
+  color: white;
+  font-size: 20px;
 }
 
 .nav__wrapper {
@@ -19,6 +21,7 @@
   width: 100%;
   justify-content: flex-end;
   margin-right: 3%;
+  align-items: center;
 }
 
 .navbar__container-login,
@@ -56,4 +59,15 @@ span.gear-logo {
   font-size: 4vw;
   font-family: "Exo", sans-serif;
   font-weight: 800;
+}
+
+.profile-circle-img {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.logout {
+  color: white;
+  font-size: 20px;
 }
