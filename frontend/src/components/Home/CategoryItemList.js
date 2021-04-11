@@ -30,7 +30,7 @@ export default function CategoryItemList({ carouselItems, categoryName, category
             className="owl-carousel owl-theme"
             {...options}
         >
-            {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 6).map(item => (
+            {carouselItems && carouselItems?.filter(item => item?.categoryId === categoryId && item.isSold === false).filter((item, i) => i < 10).map(item => (
                 <ItemSquare key={item?.id} item={item} categoryName={categoryName} />
             ))}
         </OwlCarousel>

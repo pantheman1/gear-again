@@ -26,7 +26,7 @@ function Navigation({ isLoaded }) {
             <ProfileButton user={sessionUser} />
           </div>
           <div className="navbar__container-profile">
-            <NavLink exact to="/cart"><i class="fas fa-cart-plus"></i></NavLink>
+            <NavLink exact to="/cart"><i className="fas fa-cart-plus"></i></NavLink>
           </div>
         </div>
       </>
