@@ -24,8 +24,6 @@ const options = {
 
 export default function CategoryItemList({ carouselItems, categoryName, categoryId }) {
 
-    // console.log("CAROUSEL-----", carouselItems)
-
     return (
         carouselItems.length > 0 &&
         <OwlCarousel

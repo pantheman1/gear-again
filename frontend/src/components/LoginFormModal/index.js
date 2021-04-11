@@ -16,6 +16,7 @@ function LoginFormModal({ itemId }) {
       itemId
     }
     dispatch(postPhoto(data))
+    setShowModal(false)
   }
 
 

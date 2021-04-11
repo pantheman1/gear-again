@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 // import { Input } from "usetheform";
 import Cookies from 'universal-cookie';
+import './Cart.css'
 const { USER_CART_COOKIE } = require('../../globals.js')
 
 const preventNegativeQty = val => (val < 1 ? 1 : val);
 export function CartItem({ item, itemIds }) {
     const user = useSelector(state => state.session.user);
-    // debugger
+    if (!item) {
+        return (
+            <div className="cart-div">
+                <h2>There is nothing in your cart!</h2>
+            </div>
+        )
+    }
     const { id, title, brand, size, price, userId, Photos } = item;
     const imageUrl = Photos[0].url;
     const cookies = new Cookies();
 
     const onRemoveItem = e => {
-        // debugger
         e.preventDefault();
         const newIds = itemIds.filter(itemId => itemId != id).join(",");
         cookies.set(USER_CART_COOKIE, newIds, { path: '/' });
         itemIds = cookies.get(USER_CART_COOKIE);
-        // debugger
     }
 
-
-    console.log("CART ITEM PAGE-------")
 
     // setCartItem((prev) => prev.filter(({ id }) => id !== idToRemove));
     // debugger

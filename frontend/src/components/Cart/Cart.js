@@ -15,8 +15,6 @@ export default function Cart() {
     }, [USER_CART_COOKIE])
 
 
-    console.log("ITEMS CART COMP-----")
-
     if (!cookies.get(USER_CART_COOKIE)) {
         // debugger
         cookies.set(USER_CART_COOKIE, "", { path: '/' });
@@ -28,13 +26,28 @@ export default function Cart() {
     //     </Collection>
     // </Collection>
     // debugger
+
+    const handlePurchase = (e) => {
+        e.preventDefault();
+    }
+
     return (
         Object.values(allItems).length > 0 &&
         itemIds.length > 0 &&
         <>
-            {itemIds.map(itemId => (
-                <CartItem item={allItems[Number(itemId)]} itemIds={itemIds} key={itemId} />
-            ))}
+            <div className="cart-stuff">
+                <h2>Items In Your Cart</h2>
+                <div className="cart__container">
+                    {itemIds.map(itemId => (
+                        <div key={itemId} className="cart__container-item">
+                            <CartItem item={allItems[Number(itemId)]} itemIds={itemIds} />
+                        </div>
+                    ))}
+                </div>
+                <div className="purchase-btn">
+                    <button className="form-btn" type="submit" onClick={handlePurchase}>Complete Your Purchase</button>
+                </div>
+            </div>
         </>
     );
 }

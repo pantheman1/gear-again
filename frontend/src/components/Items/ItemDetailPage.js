@@ -14,11 +14,6 @@ export default function ItemDetailPage() {
     const item = items[id];
     const photos = item?.Photos;
 
-    console.log("ID from ItemDETAIL PAGE-----", photos)
-    // console.log("ITEM from ItemDETAIL PAGE-----", items[id])
-
-
-    // debugger
     const editButton = (e) => {
         e.preventDefault();
         history.push(`/${item.Category.name.toLowerCase()}/${item.id}/edit`)
@@ -49,7 +44,7 @@ export default function ItemDetailPage() {
         costField = (
             <div className="item__container">
                 <div className="item__container-label">
-                    <h2>Cost</h2>
+                    <h2>Cost $</h2>
                 </div>
                 <div className="item__container-value">
                     {item?.cost}
@@ -85,8 +80,8 @@ export default function ItemDetailPage() {
         <div className="form__grid">
             <div className="images-flex-div">
                 <div className="input__container-images">
-                    {photos.length > 0 && photos.map(photo => (
-                        <div key={photo.id} className="image-container-div"><img className="item__square-image image-border" src={photo.url} /></div>
+                    {photos.length > 0 && photos?.map(photo => (
+                        <div key={photo?.id} className="image-container-div"><img className="item__square-image image-border" src={photo?.url} /></div>
                     ))}
                 </div>
             </div>
@@ -119,7 +114,7 @@ export default function ItemDetailPage() {
                     </div>
                     <div className="item__container">
                         <div className="item__container-label">
-                            <h2>Price</h2>
+                            <h2>Price $</h2>
                         </div>
                         <div className="item__container-value">
                             {item?.price}
