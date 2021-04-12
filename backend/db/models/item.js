@@ -21,13 +21,13 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     const columnMappingCart = {
-      through: 'CartItem',
-      otherKey: 'cartId',
+      through: 'CartDetail',
+      otherKey: 'userId',
       foreignKey: 'itemId',
     }
 
     Item.belongsToMany(models.Order, columnMapping);
-    Item.belongsToMany(models.Cart, columnMappingCart);
+    Item.belongsToMany(models.User, columnMappingCart);
     Item.hasMany(models.Photo, { foreignKey: 'itemId' });
     Item.belongsTo(models.User, { foreignKey: 'userId' });
     Item.belongsTo(models.Category, { foreignKey: 'categoryId' });

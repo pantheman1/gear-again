@@ -6,6 +6,7 @@ import ItemsReducer from './items';
 import PhotosReducer from './photos';
 import OrdersReducer from './orders';
 import OrderDetailsReducer from './orderDetails';
+import CartReducer from './cart';
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   itemPhotos: PhotosReducer,
   orders: OrdersReducer,
   orderDetails: OrderDetailsReducer,
+  cart: CartReducer,
 });
 
 let enhancer;
