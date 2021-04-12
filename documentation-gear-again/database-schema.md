@@ -19,6 +19,7 @@
 - Unique index on `[email]`
 - `users` has a `one-to-many` `orders` association.
 - `users` has a `one-to-many` `items` association.
+- `users` has a `one-to-one` `carts` association.
 
 ---
 
@@ -39,6 +40,8 @@
 - `orders` `belongs-to` `users`
 - `orders` has a `one-to-many` `orderDetails` association.
 
+---
+
 ## OrderDetails
 
 | Attribute Name | Attribute Type | Constraints           |
@@ -51,6 +54,8 @@
 
 - `orderDetails` `belongs-to` `orders`
 - `orderDetails` `belongs-to` `items`
+
+---
 
 ## Items
 
@@ -80,6 +85,35 @@
 - `Items` `belongs-to` `Categories`
 - `Items` `belongs-to` `Conditions`
 - `Items` `belongs-to` `Gender`
+
+---
+
+## Cart
+
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| userId         | integer        | Foreign Key, Not Null |
+
+### Model Associations:
+
+- `cart` `belongs-to` `users`
+- `cart` has a `one-to-many` `cartItems` association.
+
+---
+
+## CartItem
+
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| cartId         | integer        | Foreign Key, Not Null |
+| itemId         | integer        | Foreign Key, Not Null |
+
+### Model Associations:
+
+- `cartItems` `belongs-to` `carts`
+- `cartItems` `belongs-to` `items`
 
 ---
 
