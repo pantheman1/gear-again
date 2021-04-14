@@ -16,9 +16,14 @@ export default function Cart() {
     }
     // debugger
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
-    console.log("FILTERED ITEMS", filteredItems)
+    const totalPrice = filteredItems?.map(item => {
+        return Number(item.price)
+    }).reduce((acc, el) => {
+        return acc + el;
+    })
+    console.log("FILTERED ITEMS", totalPrice)
 
-    console.log("CartItemsArr-------", cart)
+    // console.log("CartItemsArr-------", cart)
     if (cartItems.length === 0) {
         // console.log("NO CART ITEMS--------")
         return (
@@ -45,11 +50,9 @@ export default function Cart() {
                 </div>
                 <div className="checkout__container">
                     <div className="checkout__container-totals">
-                        {cartItems?.map(item => (
-                            <div key={item.id} className="checkout__totals-totalQty">
-
-                            </div>
-                        ))}
+                        <div className="checkout__totals-totalQty">
+                            {totalPrice}
+                        </div>
                         <div className="checkout__totals-totalShipping">
 
                         </div>
