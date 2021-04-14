@@ -11,14 +11,12 @@ import AllItems from "./components/Category/AllItems";
 import OtherCategoryItems from "./components/Category/OtherCategories";
 import SignupForm from "./components/SignupFormModal/SignupForm";
 import Profile from "./components/Profile";
-import SalesForm from "./components/Selling/SalesForm";
 import { getItems } from "./store/items";
 import { getCategories } from "./store/categories";
 import CategoriesNavList from "./components/Navigation/CategoriesNavList";
 import NewListing from "./components/Selling/NewListing";
 import UpdateListing from "./components/Selling/UpdateListing";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
-import { CartItem } from "./components/Cart/CartItem";
 import Cart from "./components/Cart/Cart";
 
 function App() {

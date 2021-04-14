@@ -1,37 +1,49 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import Cookies from 'universal-cookie';
-const { USER_CART_COOKIE } = require('../../globals.js')
+import { postItem } from "../../store/cart";
+// import Cookies from 'universal-cookie';
+// const { USER_CART_COOKIE } = require('../../globals.js')
 
 
 export default function AddToCart() {
     const { id } = useParams();
-    const item = useSelector(state => state?.items[id])
+    const user = useSelector(state => state.session.user);
+    const item = useSelector(state => state?.items[id]);
     const [items, setCartItem] = useState([]);
     const [buttonTxt, setButtonTxt] = useState("Add item to cart")
+    const dispatch = useDispatch();
     const history = useHistory();
-    const cookies = new Cookies();
+    // const cookies = new Cookies();
 
 
-    const onRemoveItem = (idToRemove) =>
-        setCartItem((prev) => prev.filter(({ id }) => id !== idToRemove));
+    // const onRemoveItem = (idToRemove) =>
+    //     setCartItem((prev) => prev.filter(({ id }) => id !== idToRemove));
 
-    const onAddItem = async () => {
+    const onAddItem = async (e) => {
         // debugger
-        let itemIds = cookies.get("userCart");
-        if (itemIds) {
-            //this ensures the item is not already in the cookie
-            if (!itemIds.split(',').includes(`${item.id}`)) {
-                itemIds += `,${item.id}`;
-            }
-        } else {
-            itemIds = `${item.id}`;
-        }
+        e.preventDefault();
+        const data = {
+            itemId: Number(id),
+            qty: 1,
+            userId: user?.id
+        };
         // debugger
-        // const item = createRandomItem();
-        cookies.set(USER_CART_COOKIE, itemIds, { path: '/' })
-        // setCartItem((prev) => [...prev, item]);
+        console.log("data------", data)
+        dispatch(postItem(data))
+        // let itemIds = cookies.get("userCart");
+        // if (itemIds) {
+        //     //this ensures the item is not already in the cookie
+        //     if (!itemIds.split(',').includes(`${item.id}`)) {
+        //         itemIds += `,${item.id}`;
+        //     }
+        // } else {
+        //     itemIds = `${item.id}`;
+        // }
+        // // debugger
+        // // const item = createRandomItem();
+        // cookies.set(USER_CART_COOKIE, itemIds, { path: '/' })
+        // // setCartItem((prev) => [...prev, item]);
         setButtonTxt("Continue to cart")
     };
 
