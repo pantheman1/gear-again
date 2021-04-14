@@ -53,7 +53,7 @@ export const postItem = (data) => async dispatch => {
         body: JSON.stringify(data),
     });
     if (res.ok) {
-        await dispatch(postCartItem(res))
+        await dispatch(postCartItem(res.data))
     }
 }
 
@@ -81,10 +81,11 @@ export default function CartReducer(state = initialState, action) {
                 // Making the itemId the key
                 newState[cartItem.itemId] = cartItem;
             });
-            return { ...state, ...newState };
+            return newState
         case POST_CART:
+            newState = { ...state }
             newState[action.data.itemId] = action.data;
-            return { ...state, ...newState };
+            return newState;
         case DELETE_ITEM:
             newState = JSON.parse(JSON.stringify(state));
             delete newState[action.itemId];

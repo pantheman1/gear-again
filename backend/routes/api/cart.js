@@ -56,7 +56,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
             id: cartItemId
         }
     });
-    // return res.json({'Success'})
+    return res.json("ok");
 }))
 
 

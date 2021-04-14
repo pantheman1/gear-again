@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import { postItem } from "../../store/cart";
-// import Cookies from 'universal-cookie';
-// const { USER_CART_COOKIE } = require('../../globals.js')
+import { getCart, postItem } from "../../store/cart";
 
 
 export default function AddToCart() {
     const { id } = useParams();
     const user = useSelector(state => state.session.user);
     const item = useSelector(state => state?.items[id]);
+    const cart = useSelector(state => state?.cart);
     const [items, setCartItem] = useState([]);
     const [buttonTxt, setButtonTxt] = useState("Add item to cart")
     const dispatch = useDispatch();
     const history = useHistory();
-    // const cookies = new Cookies();
 
+
+    useEffect(() => {
+        if (cart[item?.id]) {
+            setButtonTxt("Continue to cart");
+        }
+    }, [])
+
+    // console.log("CART ADDTOCART", cart, item, id)
 
     // const onRemoveItem = (idToRemove) =>
     //     setCartItem((prev) => prev.filter(({ id }) => id !== idToRemove));
@@ -30,20 +36,8 @@ export default function AddToCart() {
         };
         // debugger
         console.log("data------", data)
+
         dispatch(postItem(data))
-        // let itemIds = cookies.get("userCart");
-        // if (itemIds) {
-        //     //this ensures the item is not already in the cookie
-        //     if (!itemIds.split(',').includes(`${item.id}`)) {
-        //         itemIds += `,${item.id}`;
-        //     }
-        // } else {
-        //     itemIds = `${item.id}`;
-        // }
-        // // debugger
-        // // const item = createRandomItem();
-        // cookies.set(USER_CART_COOKIE, itemIds, { path: '/' })
-        // // setCartItem((prev) => [...prev, item]);
         setButtonTxt("Continue to cart")
     };
 
@@ -57,10 +51,6 @@ export default function AddToCart() {
     return (
         Object.values(item).length > 0 &&
         <div className="App">
-            {/* <Form onChange={onChange} onSubmit={onSubmit}>
-                <Cart items={items} onRemoveItem={onRemoveItem} />
-                <button className="form-btn" type="submit">Submit</button>
-            </Form> */}
             <br />
             <button className="form-btn" type="button" onClick={buttonTxt === "Add item to cart" ? onAddItem : navToCart}>
                 {buttonTxt}
