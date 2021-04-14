@@ -14,8 +14,11 @@ export default function Cart() {
     const handlePurchase = (e) => {
         e.preventDefault();
     }
+    // debugger
+    const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
+    console.log("FILTERED ITEMS", filteredItems)
 
-    console.log("CartItemsArr-------", cartItems)
+    console.log("CartItemsArr-------", cart)
     if (cartItems.length === 0) {
         // console.log("NO CART ITEMS--------")
         return (
@@ -24,6 +27,8 @@ export default function Cart() {
             </div>
         )
     }
+
+    // filter items where item.id === cart[itemId].itemId
 
     return (
         Object.values(allItems).length > 0 &&
@@ -38,8 +43,26 @@ export default function Cart() {
                         </div>
                     ))}
                 </div>
-                <div className="purchase-btn">
-                    <button className="form-btn" type="submit" onClick={handlePurchase}>Complete Your Purchase</button>
+                <div className="checkout__container">
+                    <div className="checkout__container-totals">
+                        {cartItems?.map(item => (
+                            <div key={item.id} className="checkout__totals-totalQty">
+
+                            </div>
+                        ))}
+                        <div className="checkout__totals-totalShipping">
+
+                        </div>
+                        <div className="checkout__totals-salesTax">
+
+                        </div>
+                        <div className="checkout__totals-totalCost">
+
+                        </div>
+                    </div>
+                    <div className="purchase-btn">
+                        <button className="form-btn" type="submit" onClick={handlePurchase}>Proceed to Checkout</button>
+                    </div>
                 </div>
             </div>
         </>
