@@ -1,13 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeCartItem } from "../../store/cart";
 // import { Input } from "usetheform";
 // import Cookies from 'universal-cookie';
 import './Cart.css'
 // const { USER_CART_COOKIE } = require('../../globals.js')
 
 const preventNegativeQty = val => (val < 1 ? 1 : val);
-export function CartItem({ item }) {
+export function CartItem({ item, cart }) {
     const user = useSelector(state => state.session.user);
+    const cartItem = cart[item?.id]
+    const dispatch = useDispatch();
     // if (!item) {
     //     return (
     //         <div className="cart-div">
@@ -15,12 +18,19 @@ export function CartItem({ item }) {
     //         </div>
     //     )
     // }
+    // debugger
     const { id, title, brand, size, price, userId, Photos } = item;
     const imageUrl = Photos[0].url;
     // const cookies = new Cookies();
 
     const onRemoveItem = e => {
         e.preventDefault();
+        const data = {
+            itemId: id,
+            cartItemId: cartItem?.id,
+        }
+        console.log("data from cartItems------", data)
+        dispatch(removeCartItem(data))
         // const newIds = itemIds.filter(itemId => itemId != id).join(",");
         // cookies.set(USER_CART_COOKIE, newIds, { path: '/' });
         // itemIds = cookies.get(USER_CART_COOKIE);
@@ -54,9 +64,7 @@ export function CartItem({ item }) {
                 <div>{price}</div>
             </div>
             <div className="field">
-                <button className="form-btn-cancel" type="button" onClick={onRemoveItem}>
-                    Remove
-        </button>
+                <button className="form-btn-cancel" type="button" onClick={onRemoveItem}>Remove</button>
             </div>
         </>
     );

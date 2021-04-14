@@ -9,14 +9,14 @@ import './Cart.css';
 
 export default function Cart() {
     const allItems = useSelector(state => state.items);
-    const cartItems = useSelector(state => Object.values(state.cart));
+    const cart = useSelector(state => state.cart);
     // const cookies = new Cookies();
 
+    const cartItems = Object.values(cart);
     // useEffect(() => {
     //     cookies.get(USER_CART_COOKIE);
     // }, [USER_CART_COOKIE])
 
-    console.log("NO CART ITEMS OUTSIDE--------", cartItems)
     if (cartItems.length === 0) {
         // console.log("NO CART ITEMS--------")
         return (
@@ -52,7 +52,7 @@ export default function Cart() {
                 <div className="cart__container">
                     {cartItems.map(item => (
                         <div key={item.id} className="cart__container-item">
-                            <CartItem item={allItems[item.itemId]} />
+                            <CartItem cart={cart} item={allItems[item.itemId]} />
                         </div>
                     ))}
                 </div>

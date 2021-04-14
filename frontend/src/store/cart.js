@@ -32,6 +32,7 @@ const deleteCartItem = (itemId) => {
 export const getCart = (userId) => async dispatch => {
     const res = await fetch(`/api/cart/${userId}`)
     if (res.ok) {
+        console.log("RES.DATA--------", res.data)
         dispatch(getUserCart(res.data));
     }
 };
@@ -56,11 +57,13 @@ export const postItem = (data) => async dispatch => {
     }
 }
 
-export const removeCartItem = (itemId) => async dispatch => {
+export const removeCartItem = (data) => async dispatch => {
+    const { itemId } = data;
     // Data should include itemId so we can remove the item from state
     // and cartDetails id to remove it from the database.
-    const res = await fetch(`/cart/${itemId}`, {
+    const res = await fetch(`/api/cart/${itemId}`, {
         method: "DELETE",
+        body: JSON.stringify(data)
     })
     dispatch(deleteCartItem(itemId));
 }
