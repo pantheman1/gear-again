@@ -34,6 +34,7 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 // post an item to the users cart 
 router.post('/:id', asyncHandler(async (req, res) => {
     // itemId
+    console.log("REQ.BODY-------", req.body)
     const { qty, itemId, userId } = req.body;
 
     const newCartItem = await CartDetail.create({
@@ -41,7 +42,7 @@ router.post('/:id', asyncHandler(async (req, res) => {
         itemId,
         userId,
     });
-    console.log("-------------", newCartItem)
+    // console.log("-------------", newCartItem)
 
     return res.json(newCartItem)
 }))

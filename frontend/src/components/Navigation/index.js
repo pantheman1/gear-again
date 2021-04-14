@@ -7,6 +7,7 @@ import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 import LoginFormPage from '../LoginFormPage';
 import SignupForm from '../SignupFormModal/SignupForm';
+import Search from './Search';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -17,6 +18,9 @@ function Navigation({ isLoaded }) {
       <>
         <div className="navbar__container-home">
           <NavLink className="logo-header" exact to="/"><span id="logo">Gear</span><span id="logo2">Again</span></NavLink>
+        </div>
+        <div className="searchbar">
+          <Search />
         </div>
         <div className="profileNav__container">
           <div className="navbar__container-profile">
