@@ -81,7 +81,7 @@ span.gear-logo {
   font-size: 19.5px;
 }
 
-.search-input {
+.search__container-input {
   min-width: 200px;
   width: 400px;
   padding: 9px 13px;

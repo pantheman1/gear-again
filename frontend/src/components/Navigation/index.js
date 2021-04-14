@@ -1,16 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-// import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
-import LoginFormPage from '../LoginFormPage';
-import SignupForm from '../SignupFormModal/SignupForm';
 import Search from './Search';
+import { getCart } from '../../store/cart';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch([]);
+
+  const handleCart = (e) => {
+    e.preventDefault();
+    dispatch(getCart(sessionUser?.id));
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -30,7 +33,7 @@ function Navigation({ isLoaded }) {
             <ProfileButton user={sessionUser} />
           </div>
           <div className="navbar__container-profile">
-            <NavLink exact to="/cart"><i className="fas fa-cart-plus"></i></NavLink>
+            <NavLink exact to="/cart" onClick={handleCart}><i className="fas fa-cart-plus"></i></NavLink>
           </div>
         </div>
       </>

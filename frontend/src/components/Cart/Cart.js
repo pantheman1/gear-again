@@ -16,7 +16,7 @@ export default function Cart() {
     //     cookies.get(USER_CART_COOKIE);
     // }, [USER_CART_COOKIE])
 
-    // console.log("NO CART ITEMS OUTSIDE--------", cartItems)
+    console.log("NO CART ITEMS OUTSIDE--------", cartItems)
     if (cartItems.length === 0) {
         // console.log("NO CART ITEMS--------")
         return (

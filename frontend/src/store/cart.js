@@ -30,9 +30,9 @@ const deleteCartItem = (itemId) => {
 // Thunk Action Creators
 
 export const getCart = (userId) => async dispatch => {
-    const res = await fetch(`/cart/${userId}`)
+    const res = await fetch(`/api/cart/${userId}`)
     if (res.ok) {
-        dispatch(getUserCart(res));
+        dispatch(getUserCart(res.data));
     }
 };
 
@@ -44,11 +44,11 @@ export const postItem = (data) => async dispatch => {
     // formData.append("qty", qty);
     // formData.append("userId", userId)
 
-    const res = await fetch(`/cart/${itemId}`, {
+    const res = await fetch(`/api/cart`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        // headers: {
+        //     "Content-Type": "application/json",
+        // },
         body: JSON.stringify(data),
     });
     if (res.ok) {
