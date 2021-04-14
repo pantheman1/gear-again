@@ -19,10 +19,10 @@ export default function ItemDetailPage() {
         history.push(`/${item.Category.name.toLowerCase()}/${item.id}/edit`)
     }
 
+    console.log("ITEM DETAIL PAGE------")
     const addToCart = (e) => {
         e.preventDefault();
     }
-
     let cartBtn;
     if (item?.userId !== user?.id) {
         cartBtn = (
