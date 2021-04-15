@@ -14,7 +14,10 @@ export default function CheckoutTotals({ allItems }) {
 
     const handlePurchase = (e) => {
         e.preventDefault();
-
+        // when someone clicks on purchase:
+        // mark all items in cart to isSold: true
+        // remove all cart items from cart
+        // create an order - 
     }
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
