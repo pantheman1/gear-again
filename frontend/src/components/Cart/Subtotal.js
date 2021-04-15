@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useHistory } from "react-router";
 import './Cart.css';
 
 
 export default function Subtotal({ cart, cartCount, allItems }) {
-    // const allItems = useSelector(state => state.items);
-    // const cart = useSelector(state => state?.cart);
+    const history = useHistory();
 
-    // const cartItems = Object.values(cart);
-    // console.log("Cart-------", cart)
-
-    const handlePurchase = (e) => {
+    const handleProceedToCheckout = (e) => {
         e.preventDefault();
+        history.push('/checkout');
     }
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
-    // const cartCount = filteredItems?.length;
-    console.log("CART COUNT", cartCount)
 
     const totalPrice = filteredItems?.map(item => {
         return Number(item.price)
@@ -32,12 +27,12 @@ export default function Subtotal({ cart, cartCount, allItems }) {
             <div className="checkout__container">
                 <div className="order-label">
                     <h2>
-                        {cartCount === 1 ? `Subtotal (${cartCount} item) $${totalProductPrice}` :
-                            `Subtotal (${cartCount} items) $${totalProductPrice}`}
+                        {cartCount === 1 ? `Subtotal (${cartCount} item): $${totalProductPrice}` :
+                            `Subtotal (${cartCount} items): $${totalProductPrice}`}
                     </h2>
                 </div>
                 <div className="purchase-btn">
-                    <button className="form-btn-purchase" type="submit" onClick={handlePurchase}>Proceed to Checkout</button>
+                    <button className="form-btn-purchase" type="submit" onClick={handleProceedToCheckout}>Proceed to Checkout</button>
                 </div>
             </div>
         </>

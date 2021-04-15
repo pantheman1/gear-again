@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CartItem } from "./CartItem";
 import { useSelector } from "react-redux";
 import './Cart.css';
+import CheckoutTotals from "./CheckoutTotals";
 import Subtotal from "./Subtotal";
 
 
-export default function Cart() {
+export default function Checkout() {
     const allItems = useSelector(state => state.items);
     const cart = useSelector(state => state?.cart);
 
     const cartItems = Object.values(cart);
 
-    if (cartItems.length === 0) {
-        return (
-            <div className="cart-div">
-                <h2>There is nothing in your cart!</h2>
-            </div>
-        )
+    const handlePurchase = (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -36,7 +33,7 @@ export default function Cart() {
                         ))}
                     </div>
                 </div>
-                <Subtotal cart={cart} allItems={allItems} cartCount={cartItems?.length} />
+                <CheckoutTotals allItems={allItems} />
             </div>
         </>
     );
