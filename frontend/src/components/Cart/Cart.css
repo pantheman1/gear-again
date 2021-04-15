@@ -7,6 +7,41 @@
   margin-top: 70px;
 }
 
+.form-btn-purchase {
+  background-color: white;
+  color: #2ea44f;
+  position: relative;
+  display: inline-block;
+  padding: 5px 16px;
+  line-height: 20px;
+  font-weight: bolder;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 1px solid;
+  border-radius: 6px;
+}
+
+.form-btn-purchase:hover {
+  background-color: #2ea44f;
+  color: white;
+  position: relative;
+  display: inline-block;
+  padding: 5px 16px;
+  line-height: 20px;
+  font-weight: bolder;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  border: 1px solid;
+  border-radius: 6px;
+  transition: all 250ms ease;
+}
+
 .cart__container {
   display: flex;
   justify-content: center;
