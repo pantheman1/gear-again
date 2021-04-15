@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import './Cart.css';
 import CheckoutTotals from "./CheckoutTotals";
 import Subtotal from "./Subtotal";
+import CheckoutItem from "./CheckoutItem";
 
 
 export default function Checkout() {
@@ -16,6 +17,8 @@ export default function Checkout() {
         e.preventDefault();
     }
 
+    const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
+
     return (
         Object.values(allItems).length > 0 &&
         cartItems.length > 0 &&
@@ -26,9 +29,9 @@ export default function Checkout() {
                         <h2>Items In Your Cart</h2>
                     </div>
                     <div className="cart__container">
-                        {cartItems?.map(item => (
+                        {filteredItems?.map(item => (
                             <div key={item.id} className="cart__container-item">
-                                <CartItem cart={cart} item={allItems[item.itemId]} />
+                                <CheckoutItem cart={cart} item={item} />
                             </div>
                         ))}
                     </div>

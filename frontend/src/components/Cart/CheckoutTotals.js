@@ -40,38 +40,38 @@ export default function CheckoutTotals({ allItems }) {
                 </div>
                 {/* <div className="checkout__container-totals"> */}
                 <div className="total__container">
-                    <div className="checkout-label">{`Items ${cartCount}`}</div>
+                    <div className="checkout-label">{`Items (${cartCount}):`}</div>
                     <div className="total__container-amount">
                         {`$${totalProductPrice}`}
                     </div>
                 </div>
                 <div className="total__container">
-                    <div className="checkout-label">Shipping & handling</div>
+                    <div className="checkout-label">Shipping & handling:</div>
                     <div className="total__container-amount">
                         {`$${shipping}.00`}
                     </div>
                 </div>
                 <div className="total__container">
-                    <div className="checkout-label">Total before tax</div>
+                    <div className="checkout-label">Total before tax:</div>
                     <div className="total__container-amount">
                         {`$${totalBeforeTax}`}
                     </div>
                 </div>
                 <div className="total__container">
-                    <div className="checkout-label">Estimated tax ({`${tax * 100}%`})</div>
+                    <div className="checkout-label">Estimated tax ({`${tax * 100}%`}):</div>
                     <div className="total__container-amount">
                         {`$${totalTax}`}
                     </div>
                 </div>
                 <div className="total__container-order">
-                    <div className="checkout-label">Order Total</div>
+                    <div className="checkout-label">Order Total:</div>
                     <div className="total__container-amount">
                         {`$${total}`}
                     </div>
                 </div>
                 {/* </div> */}
                 <div className="purchase-btn">
-                    <button className="form-btn-purchase" type="submit" onClick={handlePurchase}>Proceed to Checkout</button>
+                    <button className="form-btn-purchase" type="submit" onClick={handlePurchase}>Checkout</button>
                 </div>
             </div>
         </>
