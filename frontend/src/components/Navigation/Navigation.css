@@ -3,6 +3,10 @@
   z-index: 1;
   color: white;
   font-size: 20px;
+  border: 1px solid #1969bb;
+  background: #1969bb;
+  padding: 6px;
+  margin-top: 3px;
 }
 
 .nav__wrapper {
@@ -70,6 +74,11 @@ span.gear-logo {
 .logout {
   color: white;
   font-size: 20px;
+}
+
+button.logout:hover {
+  font-size: 19.5px;
+  border-bottom: 2px solid;
 }
 
 .logo-header:hover {
