@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import './Cart.css';
 
@@ -14,6 +14,7 @@ export default function CheckoutTotals({ allItems }) {
 
     const handlePurchase = (e) => {
         e.preventDefault();
+
     }
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
@@ -71,7 +72,7 @@ export default function CheckoutTotals({ allItems }) {
                 </div>
                 {/* </div> */}
                 <div className="purchase-btn">
-                    <button className="form-btn-purchase" type="submit" onClick={handlePurchase}>Checkout</button>
+                    <button className="form-btn-purchase" type="submit" onClick={handlePurchase}>Place your order</button>
                 </div>
             </div>
         </>
