@@ -32,6 +32,7 @@ const deleteCartItem = (itemId) => {
 export const getCart = (userId) => async dispatch => {
     const res = await fetch(`/api/cart/${userId}`)
     if (res.ok) {
+        console.log("RES.DATA--------", res.data)
         dispatch(getUserCart(res.data));
     }
 };
@@ -52,15 +53,17 @@ export const postItem = (data) => async dispatch => {
         body: JSON.stringify(data),
     });
     if (res.ok) {
-        await dispatch(postCartItem(res))
+        await dispatch(postCartItem(res.data))
     }
 }
 
-export const removeCartItem = (itemId) => async dispatch => {
+export const removeCartItem = (data) => async dispatch => {
+    const { itemId } = data;
     // Data should include itemId so we can remove the item from state
     // and cartDetails id to remove it from the database.
-    const res = await fetch(`/cart/${itemId}`, {
+    const res = await fetch(`/api/cart/${itemId}`, {
         method: "DELETE",
+        body: JSON.stringify(data)
     })
     dispatch(deleteCartItem(itemId));
 }
@@ -78,10 +81,11 @@ export default function CartReducer(state = initialState, action) {
                 // Making the itemId the key
                 newState[cartItem.itemId] = cartItem;
             });
-            return { ...state, ...newState };
+            return newState
         case POST_CART:
+            newState = { ...state }
             newState[action.data.itemId] = action.data;
-            return { ...state, ...newState };
+            return newState;
         case DELETE_ITEM:
             newState = JSON.parse(JSON.stringify(state));
             delete newState[action.itemId];

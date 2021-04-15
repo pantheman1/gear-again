@@ -1,22 +1,30 @@
-import React, { useEffect } from "react";
-// import { Collection } from "usetheform";
+import React, { useEffect, useState } from "react";
 import { CartItem } from "./CartItem";
-// import Cookies from 'universal-cookie';
 import { useSelector } from "react-redux";
 import './Cart.css';
-// const { USER_CART_COOKIE } = require('../../globals.js')
 
 
 export default function Cart() {
     const allItems = useSelector(state => state.items);
-    const cartItems = useSelector(state => Object.values(state.cart));
-    // const cookies = new Cookies();
+    const cart = useSelector(state => state?.cart);
+    const [shipping, setShipping] = useState(5);
+    const [tax, setTax] = useState(0.075);
 
-    // useEffect(() => {
-    //     cookies.get(USER_CART_COOKIE);
-    // }, [USER_CART_COOKIE])
+    const cartItems = Object.values(cart);
+    // console.log("Cart-------", cart)
 
-    console.log("NO CART ITEMS OUTSIDE--------", cartItems)
+    const handlePurchase = (e) => {
+        e.preventDefault();
+    }
+    // debugger
+    const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
+    const totalPrice = filteredItems?.map(item => {
+        return Number(item.price)
+    }).reduce((acc, el) => {
+        return acc + el;
+    }, 0)
+
+    // console.log("CartItemsArr-------", cart)
     if (cartItems.length === 0) {
         // console.log("NO CART ITEMS--------")
         return (
@@ -25,41 +33,65 @@ export default function Cart() {
             </div>
         )
     }
+    const totalProductPrice = Math.ceil((totalPrice + Number.EPSILON) * 100) / 100;
+    const totalTax = Math.ceil(((totalProductPrice * tax) + Number.EPSILON) * 100) / 100;
+    const total = Math.round(((totalProductPrice + shipping + totalTax) + Number.EPSILON) * 100) / 100;
 
-
-    // if (!cookies.get(USER_CART_COOKIE)) {
-    //     // debugger
-    //     cookies.set(USER_CART_COOKIE, "", { path: '/' });
-    // }
-    // let itemIds = cookies.get(USER_CART_COOKIE).split(",");
-
-    // <Collection object name="cart">
-    //     <Collection array name="items">
-    //     </Collection>
-    // </Collection>
-    // debugger
-
-    const handlePurchase = (e) => {
-        e.preventDefault();
-    }
+    // filter items where item.id === cart[itemId].itemId
 
     return (
         Object.values(allItems).length > 0 &&
         cartItems.length > 0 &&
         <>
             <div className="cart-stuff">
-                <h2>Items In Your Cart</h2>
-                <div className="cart__container">
-                    {cartItems.map(item => (
-                        <div key={item.id} className="cart__container-item">
-                            <CartItem item={allItems[item.itemId]} />
-                        </div>
-                    ))}
+                <div className="cart__wrapper-items">
+                    <div className="cart-label">
+                        <h2>Items In Your Cart</h2>
+                    </div>
+                    <div className="cart__container">
+                        {cartItems?.map(item => (
+                            <div key={item.id} className="cart__container-item">
+                                <CartItem cart={cart} item={allItems[item.itemId]} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-                <div className="purchase-btn">
-                    <button className="form-btn" type="submit" onClick={handlePurchase}>Complete Your Purchase</button>
+                <div className="checkout__container">
+                    <div className="order-label">
+                        <h2>Order Details</h2>
+                    </div>
+                    {/* <div className="checkout__container-totals"> */}
+                    <div className="total__container">
+                        <div className="checkout-label">Total Product Price</div>
+                        <div className="total__container-amount">
+                            {`$${totalProductPrice}`}
+                        </div>
+                    </div>
+                    <div className="total__container">
+                        <div className="checkout-label">Flat Rate Shipping</div>
+                        <div className="total__container-amount">
+                            {`$${shipping}.00`}
+                        </div>
+                    </div>
+                    <div className="total__container">
+                        <div className="checkout-label">Sales Tax ({`${tax * 100}%`})</div>
+                        <div className="total__container-amount">
+                            {`$${totalTax}`}
+                        </div>
+                    </div>
+                    <div className="total__container-order">
+                        <div className="checkout-label">Order Total</div>
+                        <div className="total__container-amount">
+                            {`$${total}`}
+                        </div>
+                    </div>
+                    {/* </div> */}
+                    <div className="purchase-btn">
+                        <button className="form-btn" type="submit" onClick={handlePurchase}>Proceed to Checkout</button>
+                    </div>
                 </div>
             </div>
         </>
     );
+
 }

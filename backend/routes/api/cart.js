@@ -8,13 +8,13 @@ const router = express.Router();
 router.get('/:id', asyncHandler(async (req, res, next) => {
     // userId
     const id = req.params.id;
-    console.log("-=-----------------", req.params)
 
     // try {
     const cart = await CartDetail.findAll({
         where: {
             userId: id,
         },
+        attributes: ['id', 'qty', 'itemId', 'userId']
     })
     return res.json(cart);
     // } catch (error) {
@@ -48,9 +48,15 @@ router.post('/', asyncHandler(async (req, res) => {
 }))
 
 //delete item from cart
-router.delete(':id', asyncHandler(async (req, res) => {
-    const { itemId } = req.params;
-    const item = await CartDetail.create()
+router.delete('/:id', asyncHandler(async (req, res) => {
+    const { cartItemId } = req.body;
+    console.log("ID-----------Backend", req.body)
+    await CartDetail.destroy({
+        where: {
+            id: cartItemId
+        }
+    });
+    return res.json("ok");
 }))
 
 

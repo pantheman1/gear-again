@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
+import { getCart } from '../../store/cart';
 import AddToCart from '../Cart';
 
 
@@ -9,10 +10,16 @@ import AddToCart from '../Cart';
 export default function ItemDetailPage() {
     const user = useSelector(state => state?.session.user);
     const items = useSelector(state => state?.items);
+    const cart = useSelector(state => state?.cart);
     const { id } = useParams();
     const history = useHistory();
     const item = items[id];
     const photos = item?.Photos;
+    const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch(getCart(user?.id));
+    // }, [dispatch])
 
     const editButton = (e) => {
         e.preventDefault();
@@ -23,6 +30,8 @@ export default function ItemDetailPage() {
     const addToCart = (e) => {
         e.preventDefault();
     }
+    //Props for AddToCart
+    //cartItem={cart[id]} items={items} itemId={id} userId={user?.id}
     let cartBtn;
     if (item?.userId !== user?.id) {
         cartBtn = (

@@ -18,6 +18,7 @@ import NewListing from "./components/Selling/NewListing";
 import UpdateListing from "./components/Selling/UpdateListing";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
 import Cart from "./components/Cart/Cart";
+import { getCart } from "./store/cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,14 @@ function App() {
   useEffect(() => {
     dispatch(getItems());
     dispatch(getCategories());
+    console.log("IN APP.JS---------")
   }, [dispatch]);
+
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(getCart(user?.id))
+    }
+  }, [dispatch, user?.id])
 
 
   return (
