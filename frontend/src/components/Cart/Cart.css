@@ -39,7 +39,6 @@
   user-select: none;
   border: 1px solid;
   border-radius: 6px;
-  transition: all 250ms ease;
 }
 
 .cart__container {
