@@ -35,20 +35,16 @@ export function CartItem({ item, cart }) {
                 <div>{}</div>
             </div> */}
             <div className="field">
-                <h2>Title</h2>
+                <h3>Title</h3>
                 <div>{title}</div>
             </div>
             <div className="field">
-                <h2>Brand</h2>
+                <h3>Brand</h3>
                 <div>{brand}</div>
             </div>
             <div className="field">
-                <h2>Size</h2>
-                <div>{size}</div>
-            </div>
-            <div className="field">
-                <h2>Price $</h2>
-                <div>{price}</div>
+                <h3>Price $</h3>
+                <div>{`$${price}`}</div>
             </div>
             <div className="field">
                 <button className="form-btn-cancel" type="button" onClick={onRemoveItem}>Remove</button>

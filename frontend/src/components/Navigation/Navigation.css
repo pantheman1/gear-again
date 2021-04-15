@@ -81,6 +81,11 @@ button.logout:hover {
   border-bottom: 2px solid;
 }
 
+.username-dropdown {
+  font-family: "Exo", sans-serif;
+  font-weight: 800;
+}
+
 .logo-header:hover {
   border-bottom: none;
   font-size: 20px;

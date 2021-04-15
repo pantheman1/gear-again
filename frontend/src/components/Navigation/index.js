@@ -29,9 +29,6 @@ function Navigation({ isLoaded }) {
         </div>
         <div className="profileNav__container">
           <div className="navbar__container-profile">
-            {/* <NavLink exact to="/profile">Profile</NavLink> */}
-          </div>
-          <div className="navbar__container-profile">
             <ProfileButton user={sessionUser} />
           </div>
           <div className="navbar__container-profile">
