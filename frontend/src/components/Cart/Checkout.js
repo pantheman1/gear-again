@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CartItem } from "./CartItem";
 import { useSelector } from "react-redux";
 import './Cart.css';
+import CheckoutTotals from "./CheckoutTotals";
 import Subtotal from "./Subtotal";
+import CheckoutItem from "./CheckoutItem";
 
 
-export default function Cart() {
+export default function Checkout() {
     const allItems = useSelector(state => state.items);
     const cart = useSelector(state => state?.cart);
 
     const cartItems = Object.values(cart);
 
-    if (cartItems.length === 0) {
-        return (
-            <div className="cart-div">
-                <h2>There is nothing in your cart!</h2>
-            </div>
-        )
+    const handlePurchase = (e) => {
+        e.preventDefault();
     }
+
+    const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
 
     return (
         Object.values(allItems).length > 0 &&
@@ -29,14 +29,14 @@ export default function Cart() {
                         <h2>Items In Your Cart</h2>
                     </div>
                     <div className="cart__container">
-                        {cartItems?.map(item => (
+                        {filteredItems?.map(item => (
                             <div key={item.id} className="cart__container-item">
-                                <CartItem cart={cart} item={allItems[item.itemId]} />
+                                <CheckoutItem cart={cart} item={item} />
                             </div>
                         ))}
                     </div>
                 </div>
-                <Subtotal cart={cart} allItems={allItems} cartCount={cartItems?.length} />
+                <CheckoutTotals allItems={allItems} />
             </div>
         </>
     );

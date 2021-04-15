@@ -19,6 +19,7 @@ import UpdateListing from "./components/Selling/UpdateListing";
 import ItemDetailPage from "./components/Items/ItemDetailPage";
 import Cart from "./components/Cart/Cart";
 import { getCart } from "./store/cart";
+import Checkout from "./components/Cart/Checkout";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,6 @@ function App() {
   useEffect(() => {
     dispatch(getItems());
     dispatch(getCategories());
-    console.log("IN APP.JS---------")
   }, [dispatch]);
 
   useEffect(() => {
@@ -67,6 +67,9 @@ function App() {
               </Route>
               <Route path="/cart" exact={true}>
                 <Cart />
+              </Route>
+              <Route exact={true} path={"/checkout"}>
+                <Checkout />
               </Route>
               <Route exact path={`/:id`}>
                 <OtherCategoryItems />
