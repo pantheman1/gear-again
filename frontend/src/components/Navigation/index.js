@@ -43,11 +43,13 @@ function Navigation({ isLoaded }) {
         {/* <div className="navbar__container-login">
           <LoginFormPage />
         </div> */}
-        <div className="navbar__container-home">
-          <NavLink exact to="/login">Login</NavLink>
-        </div>
-        <div className="navbar__container-signup">
-          <NavLink exact to="/signup">Sign up</NavLink>
+        <div className="login-signup">
+          <div className="navbar__container-home">
+            <NavLink exact to="/login">Login</NavLink>
+          </div>
+          <div className="navbar__container-signup">
+            <NavLink exact to="/signup">Sign up</NavLink>
+          </div>
         </div>
       </>
     );
