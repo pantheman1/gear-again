@@ -2,19 +2,25 @@
 
 ## Users
 
-| Attribute Name   | Attribute Type | Constraints                         |
-| ---------------- | -------------- | ----------------------------------- |
-| id               | integer        | Primary Key, Not Null               |
-| name             | string         | Not Null, 100 chars or less         |
-| username         | string         | Not Null, 30 chars or less          |
-| profileImageUrl  | string         | Nullable, 2000 chars or less        |
-| bio              | text           | Nullable                            |
-| shipping address | string         | Nullable                            |
-| billing address  | string         | Nullable                            |
-| email            | string         | Not Null, Unique, 255 chars or less |
-| hashedPassword   | string.binary  | Not Null                            |
-| createdAt        | datetime       | Not Null                            |
-| updatedAt        | datetime       | Not Null                            |
+| Attribute Name    | Attribute Type | Constraints                         |
+| ----------------- | -------------- | ----------------------------------- |
+| id                | integer        | Primary Key, Not Null               |
+| name              | string         | Not Null, 100 chars or less         |
+| username          | string         | Not Null, 30 chars or less          |
+| profileImageUrl   | string         | Nullable, 2000 chars or less        |
+| bio               | text           | Nullable                            |
+| shipStreetAddress | string         | Nullable                            |
+| shipCityAddress   | string         | Nullable                            |
+| shipStateAddress  | string         | Nullable                            |
+| shipZip           | Integer        | Nullable                            |
+| billStreetAddress | string         | Nullable                            |
+| billCityAddress   | string         | Nullable                            |
+| billStateAddress  | string         | Nullable                            |
+| billZip           | Integer        | Nullable                            |
+| email             | string         | Not Null, Unique, 255 chars or less |
+| hashedPassword    | string.binary  | Not Null                            |
+| createdAt         | datetime       | Not Null                            |
+| updatedAt         | datetime       | Not Null                            |
 
 ### Model Associations:
 

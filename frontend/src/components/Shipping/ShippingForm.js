@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../store/session';
 
 export default function ShippingForm() {
     const user = useSelector(state => state?.session.user);
-    const [shipStreetAddress, setShipStreetAddress] = useState(user?.shippingStreetAddress || "");
-    const [shipCityAddress, setShipCityAddress] = useState(user?.shippingCityAddress || "");
-    const [shipStateAddress, setShipStateAddress] = useState(user?.shippingStateAddress || "");
-    const [shipZip, setShipZip] = useState(user?.shippingZipAddress || "");
-    const [billStreetAddress, setBillStreetAddress] = useState(user?.billingStreetAddress || "");
-    const [billCityAddress, setBillCityAddress] = useState(user?.billingCityAddress || "");
-    const [billStateAddress, setBillStateAddress] = useState(user?.billingStateAddress || "");
-    const [billZip, setBillZip] = useState(user?.billingZipAddress || "");
+    const [shipStreetAddress, setShipStreetAddress] = useState(user?.shipStreetAddress || "");
+    const [shipCityAddress, setShipCityAddress] = useState(user?.shipCityAddress || "");
+    const [shipStateAddress, setShipStateAddress] = useState(user?.shipStateAddress || "");
+    const [shipZip, setShipZip] = useState(user?.shipZip || "");
+    const [billStreetAddress, setBillStreetAddress] = useState(user?.billStreetAddress || "");
+    const [billCityAddress, setBillCityAddress] = useState(user?.billCityAddress || "");
+    const [billStateAddress, setBillStateAddress] = useState(user?.billStateAddress || "");
+    const [billZip, setBillZip] = useState(user?.billZip || "");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
@@ -39,7 +40,7 @@ export default function ShippingForm() {
             billCityAddress &&
             billStateAddress &&
             billZip) {
-            await dispatch(postShippingInfo(data))
+            await dispatch(updateUser(data))
 
         } else {
             error.push("Please fill out all shipping fields.")
@@ -61,9 +62,9 @@ export default function ShippingForm() {
                         <h3>Street Address</h3>
                         <input
                             className="form__text--input"
-                            name="shippingStreetAddress"
+                            name="shipStreetAddress"
                             type="text"
-                            value={shippingStreetAddress ? shippingStreetAddress : ""}
+                            value={shipStreetAddress ? shipStreetAddress : ""}
                             autoComplete="off"
                             onChange={e => setShipStreetAddress(e.target.value)}
                             required
@@ -73,9 +74,9 @@ export default function ShippingForm() {
                         <h3>City</h3>
                         <input
                             className="form__text--input"
-                            name="shippingCity"
+                            name="shipCity"
                             type="text"
-                            value={shippingCityAddress ? shippingCityAddress : ""}
+                            value={shipCityAddress ? shipCityAddress : ""}
                             autoComplete="off"
                             onChange={e => setShipCityAddress(e.target.value)}
                             required
@@ -85,9 +86,9 @@ export default function ShippingForm() {
                         <h3>State</h3>
                         <input
                             className="form__text--input"
-                            name="shippingState"
+                            name="shipState"
                             type="text"
-                            value={shippingStateAddress ? shippingStateAddress : ""}
+                            value={shipStateAddress ? shipStateAddress : ""}
                             autoComplete="off"
                             onChange={e => setShipStateAddress(e.target.value)}
                             required
@@ -97,7 +98,7 @@ export default function ShippingForm() {
                         <h3>Zip Code</h3>
                         <input
                             className="form__text--input"
-                            name="shippingZip"
+                            name="shipZip"
                             type="text"
                             value={shipZip ? shipZip : ""}
                             autoComplete="off"
@@ -111,9 +112,9 @@ export default function ShippingForm() {
                         <h3>Street Address</h3>
                         <input
                             className="form__text--input"
-                            name="billingStreetAddress"
+                            name="billStreetAddress"
                             type="text"
-                            value={billingStreetAddress ? billingStreetAddress : ""}
+                            value={billStreetAddress ? billStreetAddress : ""}
                             autoComplete="off"
                             onChange={e => setBillStreetAddress(e.target.value)}
                             required
@@ -123,9 +124,9 @@ export default function ShippingForm() {
                         <h3>City</h3>
                         <input
                             className="form__text--input"
-                            name="billingCity"
+                            name="billCity"
                             type="text"
-                            value={billingCityAddress ? billingCityAddress : ""}
+                            value={billCityAddress ? billCityAddress : ""}
                             autoComplete="off"
                             onChange={e => setBillCityAddress(e.target.value)}
                             required
@@ -135,9 +136,9 @@ export default function ShippingForm() {
                         <h3>State</h3>
                         <input
                             className="form__text--input"
-                            name="billingState"
+                            name="billState"
                             type="text"
-                            value={billingStateAddress ? billingStateAddress : ""}
+                            value={billStateAddress ? billStateAddress : ""}
                             autoComplete="off"
                             onChange={e => setBillStateAddress(e.target.value)}
                             required
@@ -147,7 +148,7 @@ export default function ShippingForm() {
                         <h3>Zip Code</h3>
                         <input
                             className="form__text--input"
-                            name="billingZip"
+                            name="billZip"
                             type="text"
                             value={billZip ? billZip : ""}
                             autoComplete="off"
@@ -155,6 +156,9 @@ export default function ShippingForm() {
                             required
                         />
                     </div>
+                </div>
+                <div>
+                    <button type="submit" onClick={handleSubmitShipping}>Update Shipping Info</button>
                 </div>
             </form>
         </>

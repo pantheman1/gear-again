@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       shipZip: {
         type: DataTypes.INTEGER,
       },
-      bilStreetAddress: {
+      billStreetAddress: {
         type: DataTypes.STRING,
       },
       billCityAddress: {
