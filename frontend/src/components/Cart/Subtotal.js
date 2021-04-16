@@ -8,7 +8,7 @@ export default function Subtotal({ cart, cartCount, allItems }) {
 
     const handleProceedToCheckout = (e) => {
         e.preventDefault();
-        history.push('/checkout');
+        history.push('/cart/checkout');
     }
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)

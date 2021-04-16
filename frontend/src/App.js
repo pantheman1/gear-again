@@ -68,7 +68,7 @@ function App() {
               <Route path="/cart" exact={true}>
                 <Cart />
               </Route>
-              <Route exact={true} path={"/checkout"}>
+              <Route exact={true} path={"/cart/checkout"}>
                 <Checkout />
               </Route>
               <Route exact path={`/:id`}>
