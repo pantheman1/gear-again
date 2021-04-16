@@ -7,6 +7,8 @@
   background: #1969bb;
   padding: 6px;
   margin-top: 3px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav__wrapper {
@@ -19,6 +21,10 @@
   align-items: center;
   height: 44px;
   border: 1px solid black;
+}
+
+.login-signup {
+  display: flex;
 }
 
 .profileNav__container {
