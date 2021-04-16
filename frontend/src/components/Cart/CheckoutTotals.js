@@ -16,7 +16,7 @@ export default function CheckoutTotals({ allItems }) {
         e.preventDefault();
         // when someone clicks on purchase:
         // mark all items in cart to isSold: true
-        // remove all cart items from cart
+        // remove all cart items from cart -- destroy cart based on cart.id
         // create an order - 
     }
 

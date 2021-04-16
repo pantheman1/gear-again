@@ -6,20 +6,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     total: DataTypes.DECIMAL(10, 2),
-    shippingAddress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 500],
-      },
-    },
-    billingAddress: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 500],
-      },
-    },
+    tax: DataTypes.DECIMAL(10, 2),
+    shipping: DataTypes.DECIMAL(10, 2),
     orderComplete: DataTypes.BOOLEAN
   }, {});
   Order.associate = function (models) {
