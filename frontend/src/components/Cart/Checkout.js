@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { CartItem } from "./CartItem";
+import React from "react";
 import { useSelector } from "react-redux";
 import './Cart.css';
 import CheckoutTotals from "./CheckoutTotals";
-import Subtotal from "./Subtotal";
 import CheckoutItem from "./CheckoutItem";
 
 

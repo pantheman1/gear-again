@@ -24,7 +24,6 @@ export default function CheckoutItem({ item }) {
             itemId: id,
             cartItemId: cart[id].id,
         }
-        console.log("data from cartItems------", data)
         dispatch(removeCartItem(data))
     }
 

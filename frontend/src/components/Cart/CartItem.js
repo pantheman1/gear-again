@@ -9,8 +9,6 @@ export function CartItem({ item, cart }) {
     const cartItem = cart[item?.id]
     const dispatch = useDispatch();
 
-    console.log("ITEM---", item)
-
     const { id, title, brand, size, price, userId, Photos } = item;
     const imageUrl = Photos[0].url;
 
@@ -20,7 +18,6 @@ export function CartItem({ item, cart }) {
             itemId: id,
             cartItemId: cartItem?.id,
         }
-        console.log("data from cartItems------", data)
         dispatch(removeCartItem(data))
     }
 

@@ -58,5 +58,12 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(formattedResult);
 }))
 
+router.put('/', asyncHandler(async (req, res) => {
+    const itemIdsArr = req.body;
+
+    // Create order
+
+}))
+
 
 module.exports = router;
