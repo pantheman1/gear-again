@@ -7,6 +7,7 @@ import './Cart.css';
 
 export default function CheckoutTotals({ allItems }) {
     // const allItems = useSelector(state => state.items);
+    const user = useSelector(state => state.session.user);
     const cart = useSelector(state => state?.cart);
     const [shipping, setShipping] = useState(5);
     const [taxRate, setTaxRate] = useState(0.075);
@@ -35,6 +36,7 @@ export default function CheckoutTotals({ allItems }) {
         const cartItemIds = Object.keys(cart);
         dispatch(updateIsSold(cartItemIds));
         const data = {
+            userId: user?.id,
             cartItemIds,
             totalTax,
             shipping,

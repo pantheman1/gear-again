@@ -58,11 +58,27 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(formattedResult);
 }))
 
-router.put('/', asyncHandler(async (req, res) => {
-    const itemIdsArr = req.body;
+// Create new order, new orderDetail
+router.post('/', asyncHandler(async (req, res) => {
+    const { userId, cartItemIds, totalTax, shipping, totalCost } = req.body;
 
-    // Create order
+    // Create order--need userId, tax, shipping, total
+    const newOrder = await Order.create({
+        userId,
+        totalTax,
+        shipping,
+        totalCost,
+    });
 
+    // Create orderDetails--one for each itemId--I'll need the orderId and the itemId
+    const orderId = newOrder.id;
+    for (let i = 0; i < cartItemIds.length; i++) {
+        const itemId = Number(cartItemIds[i]);
+        await OrderDetail.create({
+            itemId,
+            orderId,
+        });
+    }
 }))
 
 

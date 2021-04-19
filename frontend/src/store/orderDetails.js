@@ -32,7 +32,7 @@ export const getFullOrderDetails = (orderId) => async dispatch => {
 
 export const postOrderDetails = data => async dispatch => {
     const res = await fetch(`/api/orderDetails`, {
-        method: "PUT",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
