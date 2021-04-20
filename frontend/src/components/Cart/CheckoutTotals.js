@@ -33,6 +33,8 @@ export default function CheckoutTotals({ allItems }) {
     const totalCost = Math.round(((totalProductPrice + shipping + totalTax) + Number.EPSILON) * 100) / 100;
 
     const handlePurchase = async (e) => {
+        // CHECK TO VERIFY THAT ITEM IS STILL AVAILABLE BEFORE PURCHASING
+
         e.preventDefault();
         const cartItemIds = Object.keys(cart);
         await dispatch(updateIsSold(cartItemIds));
