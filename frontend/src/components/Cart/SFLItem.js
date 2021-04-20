@@ -1,23 +1,35 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+// import React from 'react';
+// import { useSelector } from 'react-redux';
 
 
-export default function SFLItem() {
-    const items = useSelector(state => Object.values(state.items));
+// export default function SFLItem() {
+//     const items = useSelector(state => Object.values(state.items));
 
+//     const handleMoveToCart = (e) => {
+//         e.preventDefault();
+//     };
 
-    const sflItems = items?.filter(item => item.saved === true);
+//     const handleRemove = e => {
+//         e.preventDefault();
+//         const data = {
+//             itemId: e.target.id,
+//             cartItemId: cartItem?.id,
+//         }
+//         dispatch(removeCartItem(data))
+//     }
 
-    return (
-        items.length > 0 &&
-        <div className="sfl__container-item">
-            {sflItems && sflItems.map(item => (
-                <ul>
-                    <li key={item.id}>{item.title}</li>
-                    <button>Move to cart</button>
-                    <button>Remove from cart</button>
-                </ul>
-            ))}
-        </div>
-    )
-}
+//     const sflItems = items?.filter(item => item.saved === true);
+
+//     return (
+//         items.length > 0 &&
+//         <div className="sfl__container-item">
+//             {sflItems && sflItems.map(item => (
+//                 <ul>
+//                     <li key={item.id}>{item.title}</li>
+//                     <button onClick={handleMoveToCart}>Move to cart</button>
+//                     <button id={item.id} onClick={handleRemove}>Remove from cart</button>
+//                 </ul>
+//             ))}
+//         </div>
+//     )
+// }
