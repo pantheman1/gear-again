@@ -34,7 +34,6 @@ export default function Checkout() {
                             </div>
                         ))}
                     </div>
-                    {/* <SavedForLater /> */}
                 </div>
                 <CheckoutTotals allItems={allItems} />
             </div>

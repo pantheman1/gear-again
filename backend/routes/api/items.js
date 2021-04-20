@@ -31,14 +31,6 @@ router.patch('/', asyncHandler(async (req, res) => {
     return res.json("Success")
 }))
 
-router.patch('/:id', asyncHandler(async (req, res) => {
-    const id = req.params;
-    const item = await Item.findByPk(id);
-    item.saved = !saved;
-    await item.save()
-    return res.json("Success")
-}))
-
 router.get('/:id', asyncHandler(async (req, res) => {
     const categoryId = req.params.id;
     const items = await Item.findAll({

@@ -98,16 +98,6 @@ export const updateIsSold = (data) => async dispatch => {
     })
 }
 
-export const updateSaved = (id) => async dispatch => {
-    const res = await fetch(`/api/items/${id}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(id),
-    })
-}
-
 
 export default function ItemsReducer(state = {}, action) {
     let newState = {};
