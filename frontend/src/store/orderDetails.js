@@ -39,6 +39,7 @@ export const postOrderDetails = data => async dispatch => {
         body: JSON.stringify(data),
     });
     if (res.ok) {
+        console.log("res.data------", res.data)
         dispatch(postToOrderDetails(res.data))
     }
 }
@@ -52,6 +53,7 @@ export default function OrderDetailsReducer(state = {}, action) {
             newState = { ...state, ...action.orders }
             return newState
         case POST_ORDER_DETAILS:
+            console.log("ACTION.DATA.ID-------", action.data.id)
             newState[action.data.id] = action.data;
             return { ...state, ...newState };
         default:

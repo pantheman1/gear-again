@@ -65,13 +65,14 @@ router.post('/', asyncHandler(async (req, res) => {
     // Create order--need userId, tax, shipping, total
     const newOrder = await Order.create({
         userId,
-        totalTax,
+        tax: totalTax,
         shipping,
-        totalCost,
+        total: totalCost,
     });
 
     // Create orderDetails--one for each itemId--I'll need the orderId and the itemId
     const orderId = newOrder.id;
+
     for (let i = 0; i < cartItemIds.length; i++) {
         const itemId = Number(cartItemIds[i]);
         await OrderDetail.create({
@@ -79,6 +80,12 @@ router.post('/', asyncHandler(async (req, res) => {
             orderId,
         });
     }
+
+    const order = await OrderDetail.findByPk(orderId, {
+        include: Order,
+        attributes: ['id', 'itemId', 'orderId'],
+    })
+    return res.json(order)
 }))
 
 
