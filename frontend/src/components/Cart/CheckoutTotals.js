@@ -15,8 +15,6 @@ export default function CheckoutTotals({ allItems }) {
     const dispatch = useDispatch();
 
     const cartItems = Object.values(cart);
-    const cartItemIds = Object.keys(cart);
-    console.log("Cart Ids---", cartItemIds)
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
     const cartCount = filteredItems?.length;

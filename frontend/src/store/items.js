@@ -96,7 +96,16 @@ export const updateIsSold = (data) => async dispatch => {
         },
         body: JSON.stringify(data),
     })
+}
 
+export const updateSaved = (id) => async dispatch => {
+    const res = await fetch(`/api/items/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(id),
+    })
 }
 
 

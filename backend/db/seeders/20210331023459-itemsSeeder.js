@@ -12,7 +12,7 @@ module.exports = {
         weight: 7,
         description: 'The tent is in great condition but has a small tear in the door. Nothing that will stop a great camper like you!',
         isSold: false,
-        saved: false,
+        saved: true,
         userId: 2,
         categoryId: 1,
         conditionId: 2,

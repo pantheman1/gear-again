@@ -12,7 +12,11 @@ export default function SFLItem() {
         items.length > 0 &&
         <div className="sfl__container-item">
             {sflItems && sflItems.map(item => (
-                <li key={item.id}>{item.title}</li>
+                <ul>
+                    <li key={item.id}>{item.title}</li>
+                    <button>Move to cart</button>
+                    <button>Remove from cart</button>
+                </ul>
             ))}
         </div>
     )
