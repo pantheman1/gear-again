@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import './Cart.css';
 import CheckoutTotals from "./CheckoutTotals";
 import CheckoutItem from "./CheckoutItem";
+import SavedForLater from "./SavedForLater";
 
 
 export default function Checkout() {
@@ -33,6 +34,7 @@ export default function Checkout() {
                             </div>
                         ))}
                     </div>
+                    <SavedForLater />
                 </div>
                 <CheckoutTotals allItems={allItems} />
             </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { removeCartItem } from "../../store/cart";
 import { updateIsSold } from "../../store/items";
 import { postOrderDetails } from "../../store/orderDetails";
 import './Cart.css';
@@ -31,10 +32,10 @@ export default function CheckoutTotals({ allItems }) {
     const totalTax = Math.ceil(((totalProductPrice * taxRate) + Number.EPSILON) * 100) / 100;
     const totalCost = Math.round(((totalProductPrice + shipping + totalTax) + Number.EPSILON) * 100) / 100;
 
-    const handlePurchase = (e) => {
+    const handlePurchase = async (e) => {
         e.preventDefault();
         const cartItemIds = Object.keys(cart);
-        dispatch(updateIsSold(cartItemIds));
+        await dispatch(updateIsSold(cartItemIds));
         const data = {
             userId: user?.id,
             cartItemIds,
@@ -42,13 +43,13 @@ export default function CheckoutTotals({ allItems }) {
             shipping,
             totalCost,
         }
-        dispatch(postOrderDetails(data));
+        await dispatch(postOrderDetails(data));
         // when someone clicks on purchase:
         // mark all items in cart to isSold: true
         // remove all cart items from cart -- destroy cart based on cart.id
         // create an order - 
         // create orderDetails
-
+        // await dispatch(removeCartItem())
     }
 
     return (

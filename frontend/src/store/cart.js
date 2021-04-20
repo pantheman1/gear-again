@@ -58,9 +58,9 @@ export const postItem = (data) => async dispatch => {
 }
 
 export const removeCartItem = (data) => async dispatch => {
-    const { itemId } = data;
     // Data should include itemId so we can remove the item from state
     // and cartDetails id to remove it from the database.
+    const { itemId } = data;
     const res = await fetch(`/api/cart/${itemId}`, {
         method: "DELETE",
         body: JSON.stringify(data)
