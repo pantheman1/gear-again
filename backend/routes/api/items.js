@@ -23,7 +23,7 @@ router.patch('/', asyncHandler(async (req, res) => {
     const itemIdsArr = req.body;
 
     for (let i = 0; i < itemIdsArr.length; i++) {
-        let itemId = itemIdsArr[i];
+        let itemId = Number(itemIdsArr[i]);
         const item = await Item.findByPk(itemId);
         item.isSold = true;
         await item.save()

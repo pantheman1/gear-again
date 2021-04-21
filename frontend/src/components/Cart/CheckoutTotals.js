@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeCartItem } from "../../store/cart";
+import { useHistory } from "react-router-dom";
+import { removeAllItems, removeCartItem } from "../../store/cart";
 import { updateIsSold } from "../../store/items";
 import { postOrderDetails } from "../../store/orderDetails";
 import './Cart.css';
@@ -13,8 +14,10 @@ export default function CheckoutTotals({ allItems }) {
     const [shipping, setShipping] = useState(5);
     const [taxRate, setTaxRate] = useState(0.075);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const cartItems = Object.values(cart);
+    const cartIds = cartItems?.map(cartItem => cartItem.id);
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
     const cartCount = filteredItems?.length;
@@ -32,7 +35,6 @@ export default function CheckoutTotals({ allItems }) {
 
     const handlePurchase = async (e) => {
         // CHECK TO VERIFY THAT ITEM IS STILL AVAILABLE BEFORE PURCHASING
-
         e.preventDefault();
         const cartItemIds = Object.keys(cart);
         await dispatch(updateIsSold(cartItemIds));
@@ -50,6 +52,9 @@ export default function CheckoutTotals({ allItems }) {
         // create an order - 
         // create orderDetails
         // await dispatch(removeCartItem())
+        await dispatch(removeAllItems(cartIds))
+        history.push('/');
+
     }
 
     return (

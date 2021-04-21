@@ -3,6 +3,7 @@ import { fetch } from './csrf.js';
 const GET_CART = 'cart/GET_CART';
 const POST_CART = 'cart/POST_CART';
 const DELETE_ITEM = 'cart/DELETE_ITEM';
+const DELETE_ALL_ITEMS = 'cart/DELETE_ALL_ITEMS';
 
 // Action Creators
 
@@ -24,6 +25,12 @@ const deleteCartItem = (itemId) => {
     return {
         type: DELETE_ITEM,
         itemId,
+    }
+}
+
+const deleteAllCartItems = () => {
+    return {
+        type: DELETE_ALL_ITEMS,
     }
 }
 
@@ -68,6 +75,16 @@ export const removeCartItem = (data) => async dispatch => {
     dispatch(deleteCartItem(itemId));
 }
 
+export const removeAllItems = (data) => async dispatch => {
+    const res = await fetch(`/api/cart`, {
+        method: "DELETE",
+        body: JSON.stringify(data)
+    })
+    if (res.ok) {
+        dispatch(deleteAllCartItems());
+    }
+}
+
 
 // Reducer
 
@@ -90,6 +107,8 @@ export default function CartReducer(state = initialState, action) {
             newState = JSON.parse(JSON.stringify(state));
             delete newState[action.itemId];
             return newState;
+        case DELETE_ALL_ITEMS:
+            return state;
         default:
             return state;
     }

@@ -48,12 +48,27 @@ router.post('/', asyncHandler(async (req, res) => {
 //delete item from cart
 router.delete('/:id', asyncHandler(async (req, res) => {
     const { cartItemId } = req.body;
-    console.log("ID-----------Backend", req.body)
     await CartDetail.destroy({
         where: {
             id: cartItemId
         }
     });
+    return res.json("ok");
+}))
+
+//delete all items from cart
+router.delete('/', asyncHandler(async (req, res) => {
+    const cartIds = req.body;
+    console.log("ID-----------Backend", cartIds)
+
+    for (let i = 0; i < cartIds.length; i++) {
+        const cartId = cartIds[i]
+        await CartDetail.destroy({
+            where: {
+                id: cartId
+            }
+        });
+    }
     return res.json("ok");
 }))
 
