@@ -20,6 +20,13 @@ const postOneItem = (data) => {
     }
 }
 
+const updateIsSoldTrue = (data) => {
+    return {
+        type: UPDATE_IS_SOLD,
+        data,
+    }
+}
+
 // Thunk Action Creators
 
 export const getItems = () => async dispatch => {
@@ -96,6 +103,7 @@ export const updateIsSold = (data) => async dispatch => {
         },
         body: JSON.stringify(data),
     })
+    dispatch(updateIsSoldTrue(data))
 }
 
 
@@ -111,6 +119,13 @@ export default function ItemsReducer(state = {}, action) {
         case POST_LISTING:
             newState[action.data.id] = action.data
             return { ...state, ...newState };
+        case UPDATE_IS_SOLD:
+            newState = { ...state }
+            console.log("STATE---", action.data)
+            action.data.forEach(item => {
+                newState[Number(item)].isSold = true;
+            })
+            return newState
         default:
             return state
     }
