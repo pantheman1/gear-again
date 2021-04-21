@@ -20,7 +20,7 @@ import ItemDetailPage from "./components/Items/ItemDetailPage";
 import Cart from "./components/Cart/Cart";
 import { getCart } from "./store/cart";
 import Checkout from "./components/Cart/Checkout";
-import ShippingForm from "./components/Shipping/ShippingForm";
+// import ShippingForm from "./components/Shipping/ShippingForm";
 
 function App() {
   const dispatch = useDispatch();
