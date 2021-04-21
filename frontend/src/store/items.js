@@ -121,7 +121,6 @@ export default function ItemsReducer(state = {}, action) {
             return { ...state, ...newState };
         case UPDATE_IS_SOLD:
             newState = { ...state }
-            console.log("STATE---", action.data)
             action.data.forEach(item => {
                 newState[Number(item)].isSold = true;
             })

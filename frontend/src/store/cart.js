@@ -108,7 +108,7 @@ export default function CartReducer(state = initialState, action) {
             delete newState[action.itemId];
             return newState;
         case DELETE_ALL_ITEMS:
-            return state;
+            return {};
         default:
             return state;
     }
