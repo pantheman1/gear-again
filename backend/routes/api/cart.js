@@ -34,7 +34,6 @@ router.get('/:id', asyncHandler(async (req, res, next) => {
 // post an item to the users cart 
 router.post('/', asyncHandler(async (req, res) => {
     // itemId
-    console.log("REQ.BODY-------", req.body)
     const { qty, itemId, userId } = req.body;
 
     const newCartItem = await CartDetail.create({
@@ -42,7 +41,6 @@ router.post('/', asyncHandler(async (req, res) => {
         itemId,
         userId,
     });
-    // console.log("-------------", newCartItem)
 
     return res.json(newCartItem)
 }))
@@ -50,12 +48,27 @@ router.post('/', asyncHandler(async (req, res) => {
 //delete item from cart
 router.delete('/:id', asyncHandler(async (req, res) => {
     const { cartItemId } = req.body;
-    console.log("ID-----------Backend", req.body)
     await CartDetail.destroy({
         where: {
             id: cartItemId
         }
     });
+    return res.json("ok");
+}))
+
+//delete all items from cart
+router.delete('/', asyncHandler(async (req, res) => {
+    const cartIds = req.body;
+    console.log("ID-----------Backend", cartIds)
+
+    for (let i = 0; i < cartIds.length; i++) {
+        const cartId = cartIds[i]
+        await CartDetail.destroy({
+            where: {
+                id: cartId
+            }
+        });
+    }
     return res.json("ok");
 }))
 

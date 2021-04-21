@@ -27,16 +27,12 @@ export default function AddToCart() {
     //     setCartItem((prev) => prev.filter(({ id }) => id !== idToRemove));
 
     const onAddItem = async (e) => {
-        // debugger
         e.preventDefault();
         const data = {
             itemId: Number(id),
             qty: 1,
             userId: user?.id
         };
-        // debugger
-        console.log("data------", data)
-
         dispatch(postItem(data))
         setButtonTxt("Continue to cart")
     };

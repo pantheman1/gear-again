@@ -27,6 +27,30 @@ module.exports = {
       bio: {
         type: Sequelize.TEXT,
       },
+      shipStreetAddress: {
+        type: Sequelize.STRING(500),
+      },
+      shipCityAddress: {
+        type: Sequelize.STRING(500),
+      },
+      shipStateAddress: {
+        type: Sequelize.STRING(30),
+      },
+      shipZip: {
+        type: Sequelize.INTEGER,
+      },
+      billStreetAddress: {
+        type: Sequelize.STRING(500),
+      },
+      billCityAddress: {
+        type: Sequelize.STRING(500),
+      },
+      billStateAddress: {
+        type: Sequelize.STRING(30),
+      },
+      billZip: {
+        type: Sequelize.INTEGER,
+      },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
         allowNull: false

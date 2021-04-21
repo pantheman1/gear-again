@@ -1,10 +1,8 @@
 import { fetch } from './csrf.js';
 
 const GET_ITEMS = 'items/GET_ITEMS';
-const GET_ITEMS_BY_CAT = 'items/GET_ITEMS_BY_CAT';
-const GET_LISTED_ITEMS = 'items/GET_LISTED_ITEMS';
 const POST_LISTING = 'items/POST_LISTING';
-const GET_ONE_ITEM = 'items/GET_ONE_ITEM';
+const UPDATE_IS_SOLD = 'items/UPDATE_IS_SOLD';
 
 // Action Creators
 
@@ -15,31 +13,17 @@ const getItemsList = (data) => {
     }
 }
 
-const getItemsByCat = (data) => {
-    return {
-        type: GET_ITEMS_BY_CAT,
-        data,
-    }
-}
-
-const getAllListedItems = (data) => {
-    return {
-        type: GET_LISTED_ITEMS,
-        data,
-    }
-}
-
-// const getOneItemAction = (data) => {
-//     return {
-//         type: GET_ONE_ITEM,
-//         data,
-//     }
-// }
-
 const postOneItem = (data) => {
     return {
         type: POST_LISTING,
         data
+    }
+}
+
+const updateIsSoldTrue = (data) => {
+    return {
+        type: UPDATE_IS_SOLD,
+        data,
     }
 }
 
@@ -50,34 +34,12 @@ export const getItems = () => async dispatch => {
     dispatch(getItemsList(res))
 }
 
-export const getCatItems = (categoryId) => async dispatch => {
-    const res = await fetch(`/api/items/${categoryId}`)
-    if (res.ok) {
-        dispatch(getItemsByCat(res.data))
-    }
-}
-
-export const getListedItems = (userId) => async dispatch => {
-    const res = await fetch(`api/items/listings/${userId}`)
-    if (res.ok) {
-        dispatch(getAllListedItems(res))
-    }
-}
-
 export const getPurchasedItems = (userId) => async dispatch => {
     const res = await fetch(`api/items/purchases/${userId}`)
     if (res.ok) {
         dispatch(getItemsList(res))
     }
 }
-
-// export const getOneItem = (itemId) => async dispatch => {
-//     const res = await fetch(`/api/items/item/${itemId}`)
-//     // debugger
-//     if (res.ok) {
-//         dispatch(getOneItemAction(res))
-//     }
-// }
 
 export const postListedItem = (data) => async dispatch => {
     const {
@@ -133,9 +95,16 @@ export const postListedItem = (data) => async dispatch => {
     }
 }
 
-// export const updateListing = (data) => async dispatch => {
-
-// }
+export const updateIsSold = (data) => async dispatch => {
+    const res = await fetch(`/api/items`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    dispatch(updateIsSoldTrue(data))
+}
 
 
 export default function ItemsReducer(state = {}, action) {
@@ -147,24 +116,15 @@ export default function ItemsReducer(state = {}, action) {
             })
             newState = { ...state, ...newState }
             return newState;
-        case GET_ITEMS_BY_CAT:
-            action.data.forEach(item => {
-                newState[item.id] = item;
-            })
-            newState = { ...state, ...newState }
-            return newState;
-        case GET_LISTED_ITEMS:
-            action.data.data.forEach(item => {
-                newState[item.id] = item;
-            })
-            newState = { ...newState };
-            return newState
-        case GET_ONE_ITEM:
-            newState = { ...action.data };
-            return newState;
         case POST_LISTING:
             newState[action.data.id] = action.data
             return { ...state, ...newState };
+        case UPDATE_IS_SOLD:
+            newState = { ...state }
+            action.data.forEach(item => {
+                newState[Number(item)].isSold = true;
+            })
+            return newState
         default:
             return state
     }

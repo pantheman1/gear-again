@@ -1,24 +1,23 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { removeAllItems, removeCartItem } from "../../store/cart";
+import { updateIsSold } from "../../store/items";
+import { postOrderDetails } from "../../store/orderDetails";
 import './Cart.css';
 
 
 export default function CheckoutTotals({ allItems }) {
     // const allItems = useSelector(state => state.items);
+    const user = useSelector(state => state.session.user);
     const cart = useSelector(state => state?.cart);
     const [shipping, setShipping] = useState(5);
-    const [tax, setTax] = useState(0.075);
+    const [taxRate, setTaxRate] = useState(0.075);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const cartItems = Object.values(cart);
-    // console.log("Cart-------", cart)
-
-    const handlePurchase = (e) => {
-        e.preventDefault();
-        // when someone clicks on purchase:
-        // mark all items in cart to isSold: true
-        // remove all cart items from cart
-        // create an order - 
-    }
+    const cartIds = cartItems?.map(cartItem => cartItem.id);
 
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
     const cartCount = filteredItems?.length;
@@ -31,8 +30,32 @@ export default function CheckoutTotals({ allItems }) {
 
     const totalProductPrice = Math.ceil((totalPrice + Number.EPSILON) * 100) / 100;
     const totalBeforeTax = Math.round(((totalProductPrice + shipping) + Number.EPSILON) * 100) / 100;
-    const totalTax = Math.ceil(((totalProductPrice * tax) + Number.EPSILON) * 100) / 100;
-    const total = Math.round(((totalProductPrice + shipping + totalTax) + Number.EPSILON) * 100) / 100;
+    const totalTax = Math.ceil(((totalProductPrice * taxRate) + Number.EPSILON) * 100) / 100;
+    const totalCost = Math.round(((totalProductPrice + shipping + totalTax) + Number.EPSILON) * 100) / 100;
+
+    const handlePurchase = async (e) => {
+        // CHECK TO VERIFY THAT ITEM IS STILL AVAILABLE BEFORE PURCHASING
+        e.preventDefault();
+        const cartItemIds = Object.keys(cart);
+        await dispatch(updateIsSold(cartItemIds));
+        const data = {
+            userId: user?.id,
+            cartItemIds,
+            totalTax,
+            shipping,
+            totalCost,
+        }
+        await dispatch(postOrderDetails(data));
+        // when someone clicks on purchase:
+        // mark all items in cart to isSold: true
+        // remove all cart items from cart -- destroy cart based on cart.id
+        // create an order - 
+        // create orderDetails
+        // await dispatch(removeCartItem())
+        await dispatch(removeAllItems(cartIds))
+        history.push('/');
+
+    }
 
     return (
         Object.values(allItems).length > 0 &&
@@ -62,7 +85,7 @@ export default function CheckoutTotals({ allItems }) {
                     </div>
                 </div>
                 <div className="total__container">
-                    <div className="checkout-label">Estimated tax ({`${tax * 100}%`}):</div>
+                    <div className="checkout-label">Estimated tax ({`${taxRate * 100}%`}):</div>
                     <div className="total__container-amount">
                         {`$${totalTax}`}
                     </div>
@@ -70,7 +93,7 @@ export default function CheckoutTotals({ allItems }) {
                 <div className="total__container-order">
                     <div className="checkout-label">Order Total:</div>
                     <div className="total__container-amount">
-                        {`$${total}`}
+                        {`$${totalCost}`}
                     </div>
                 </div>
                 {/* </div> */}

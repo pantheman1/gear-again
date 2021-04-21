@@ -17,12 +17,12 @@ module.exports = {
         type: Sequelize.DECIMAL(10, 2),
         allowNull: false
       },
-      shippingAddress: {
-        type: Sequelize.STRING(500),
+      tax: {
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false
       },
-      billingAddress: {
-        type: Sequelize.STRING(500),
+      shipping: {
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false
       },
       orderComplete: {

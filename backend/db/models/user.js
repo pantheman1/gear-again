@@ -16,6 +16,30 @@ module.exports = (sequelize, DataTypes) => {
       profileImageUrl: {
         type: DataTypes.STRING,
       },
+      shipStreetAddress: {
+        type: DataTypes.STRING,
+      },
+      shipCityAddress: {
+        type: DataTypes.STRING,
+      },
+      shipStateAddress: {
+        type: DataTypes.STRING,
+      },
+      shipZip: {
+        type: DataTypes.INTEGER,
+      },
+      billStreetAddress: {
+        type: DataTypes.STRING,
+      },
+      billCityAddress: {
+        type: DataTypes.STRING,
+      },
+      billStateAddress: {
+        type: DataTypes.STRING,
+      },
+      billZip: {
+        type: DataTypes.INTEGER,
+      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,

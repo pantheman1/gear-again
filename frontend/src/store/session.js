@@ -58,12 +58,35 @@ export const signup = (user) => async (dispatch) => {
 };
 
 // Update user
-export const updateUser = ({ userId, name, username, email, bio, profileImageUrl }) => async (dispatch) => {
+export const updateUser = ({
+  userId,
+  name,
+  username,
+  email,
+  bio,
+  profileImageUrl,
+  shipStreetAddress,
+  shipCityAddress,
+  shipStateAddress,
+  shipZip,
+  billStreetAddress,
+  billCityAddress,
+  billStateAddress,
+  billZip,
+}) => async (dispatch) => {
   const formData = new FormData();
   formData.append("name", name)
   formData.append("username", username)
   formData.append("email", email)
   formData.append("bio", bio)
+  formData.append("shipStreetAddress", shipStreetAddress)
+  formData.append("shipCityAddress", shipCityAddress)
+  formData.append("shipStateAddress", shipStateAddress)
+  formData.append("shipZip", shipZip)
+  formData.append("billStreetAddress", billStreetAddress)
+  formData.append("billCityAddress", billCityAddress)
+  formData.append("billStateAddress", billStateAddress)
+  formData.append("billZip", billZip)
 
   if (profileImageUrl) {
     formData.append("profileImageUrl", profileImageUrl)

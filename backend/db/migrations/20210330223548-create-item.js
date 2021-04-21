@@ -26,10 +26,18 @@ module.exports = {
       cost: {
         type: Sequelize.DECIMAL(10, 2),
       },
+      weight: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
+      },
       description: {
         type: Sequelize.TEXT
       },
       isSold: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      saved: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
