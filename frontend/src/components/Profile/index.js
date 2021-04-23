@@ -43,9 +43,9 @@ export default function Profile() {
             <UserInfo />
             <div className="product-view">
                 <button type="button" onClick={e => setItemView("Account")}>Account</button>
-                <button type="button" onClick={handlePurchases}>Purchases</button>
+                {/* <button type="button" onClick={handlePurchases}>Purchases</button> */}
                 <button type="button" onClick={handleListings}>Listings</button>
-                <button type="button" onClick={handleSold}>Sales</button>
+                {/* <button type="button" onClick={handleSold}>Sales</button> */}
             </div>
             {toggleView}
         </>

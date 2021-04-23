@@ -167,4 +167,4 @@
 
 ## Diagram Visual
 
-![Schema](https://i.postimg.cc/g0JBn8z1/db-schema.jpg)
+![Schema](https://i.postimg.cc/fRknjh7Y/db-schema.jpg)
