@@ -49,6 +49,7 @@ export const postListedItem = (data) => async dispatch => {
         size,
         price,
         cost,
+        weight,
         description,
         categoryId,
         conditionId,
@@ -62,6 +63,7 @@ export const postListedItem = (data) => async dispatch => {
     formData.append("size", size)
     formData.append("price", price)
     formData.append("cost", cost)
+    formData.append("weight", weight)
     formData.append("description", description)
     formData.append("categoryId", categoryId)
     formData.append("conditionId", conditionId)

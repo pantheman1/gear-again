@@ -45,7 +45,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
         where: {
             id: orderId
         },
-        attributes: ['shippingAddress', 'total', 'orderComplete', 'billingAddress']
+        attributes: [/*'shippingAddress',*/ 'total', 'orderComplete', /*'billingAddress'*/]
     })
 
     const formattedResult = {

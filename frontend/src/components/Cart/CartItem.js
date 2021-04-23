@@ -1,11 +1,11 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { removeCartItem } from "../../store/cart";
 import './Cart.css'
 
-const preventNegativeQty = val => (val < 1 ? 1 : val);
+// const preventNegativeQty = val => (val < 1 ? 1 : val);
 export function CartItem({ item, cart }) {
-    const user = useSelector(state => state.session.user);
+    // const user = useSelector(state => state.session.user);
     const cartItem = cart[item?.id]
     const dispatch = useDispatch();
 

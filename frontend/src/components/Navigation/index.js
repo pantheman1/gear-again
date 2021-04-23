@@ -3,7 +3,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import Search from './Search';
+// import Search from './Search';
 import { getCart } from '../../store/cart';
 
 function Navigation({ isLoaded }) {
@@ -24,9 +24,9 @@ function Navigation({ isLoaded }) {
         <div className="navbar__container-home">
           <NavLink className="logo-header" exact to="/"><span id="logo">Gear</span><span id="logo2">Again</span></NavLink>
         </div>
-        <div className="searchbar">
+        {/* <div className="searchbar">
           <Search />
-        </div>
+        </div> */}
         <div className="profileNav__container">
           <div className="navbar__container-profile">
             <ProfileButton user={sessionUser} />

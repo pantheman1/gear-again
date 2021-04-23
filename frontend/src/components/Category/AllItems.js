@@ -10,10 +10,9 @@ export default function AllItems() {
     const dispatch = useDispatch();
 
     useEffect(async () => {
-        //     // await dispatch(getItems())
         setIsLoaded(true)
     }, [dispatch])
-    // debugger
+
     return (
         isLoaded &&
         <>

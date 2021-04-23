@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { removeAllItems, removeCartItem } from "../../store/cart";
+import { removeAllItems } from "../../store/cart";
 import { updateIsSold } from "../../store/items";
 import { postOrderDetails } from "../../store/orderDetails";
 import './Cart.css';

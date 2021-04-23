@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { CartItem } from "./CartItem";
 import { useSelector } from "react-redux";
 import './Cart.css';
 import Subtotal from "./Subtotal";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 
 export default function Cart() {
     const allItems = useSelector(state => state.items);
     const cart = useSelector(state => state?.cart);
-    const user = useSelector(state => state.session.user);
-    const history = useHistory();
+    // const user = useSelector(state => state.session.user);
+    // const history = useHistory();
 
     //not working, come back to this
     // if (user === null) {

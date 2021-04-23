@@ -6,17 +6,17 @@ export default function Account() {
     const user = useSelector(state => state?.session.user);
     const [edit, setEdit] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // if (password === confirmPassword) {
-        //     setErrors([]);
-        //     return dispatch(sessionActions.signup({ name, email, username, password, profileImageUrl }))
-        //         .catch(res => {
-        //             if (res.data && res.data.errors) setErrors(res.data.errors);
-        //         });
-        // }
-        // return setErrors(['Confirm Password field must be the same as the Password field']);
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    // if (password === confirmPassword) {
+    //     setErrors([]);
+    //     return dispatch(sessionActions.signup({ name, email, username, password, profileImageUrl }))
+    //         .catch(res => {
+    //             if (res.data && res.data.errors) setErrors(res.data.errors);
+    //         });
+    // }
+    // return setErrors(['Confirm Password field must be the same as the Password field']);
+    // };
 
 
     if (edit) {

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import { postPhoto } from '../../store/photos';
-import LoginForm from './LoginForm';
+// import LoginForm from './LoginForm';
 
+////////NEEDS TO BE RENAMED. IT CURRENTLY IS USED FOR HANDLING IMAGE UPLOADS
 function LoginFormModal({ itemId }) {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();

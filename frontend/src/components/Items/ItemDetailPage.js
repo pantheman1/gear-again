@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { getCart } from '../../store/cart';
 import AddToCart from '../Cart';
 
 
@@ -15,27 +14,16 @@ export default function ItemDetailPage() {
     const history = useHistory();
     const item = items[id];
     const photos = item?.Photos;
-    const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch(getCart(user?.id));
-    // }, [dispatch])
 
     const editButton = (e) => {
         e.preventDefault();
         history.push(`/${item.Category.name.toLowerCase()}/${item.id}/edit`)
     }
 
-    const addToCart = (e) => {
-        e.preventDefault();
-    }
-    //Props for AddToCart
-    //cartItem={cart[id]} items={items} itemId={id} userId={user?.id}
     let cartBtn;
     if (item?.userId !== user?.id) {
         cartBtn = (
             <>
-                {/* <button className="form-btn" type="button" onClick={addToCart}>Add to Cart</button> */}
                 <AddToCart />
             </>
         )

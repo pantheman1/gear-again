@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { postListedItem } from '../../store/items';
@@ -18,7 +18,7 @@ import ItemImages from './ItemImages';
 //     images: [],
 // }
 
-export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
+export default function SalesForm({ header, buttonText, item, cancel }) {
     const user = useSelector(state => state?.session.user);
     const categories = useSelector(state => state?.categories);
     const photos = useSelector(state => Object.values(state?.itemPhotos));
@@ -28,6 +28,7 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
     const [size, setSize] = useState(item?.size);
     const [price, setPrice] = useState(item?.price);
     const [cost, setCost] = useState(item?.cost);
+    const [weight, setWeight] = useState(item?.weight);
     const [description, setDescription] = useState(item?.description);
     const [categoryId, setCategoryId] = useState(item?.categoryId);
     const [conditionId, setConditionId] = useState(item?.conditionId);
@@ -54,6 +55,7 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
             size,
             price,
             cost,
+            weight,
             description,
             categoryId: Number(categoryId),
             conditionId: Number(conditionId),
@@ -77,6 +79,7 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
         const files = e.target.files;
         setImages(files);
     }
+
 
     let addImage = "";
     let imageBox = "";
@@ -183,6 +186,18 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
                             />
                         </div>
                         <div className="input-label-container">
+                            <h3>Item Weight(lbs)</h3>
+                            <input
+                                className="form__text--input"
+                                name="weight"
+                                type="number"
+                                step="0.10"
+                                min={1}
+                                value={weight}
+                                onChange={e => setWeight(e.target.value)}
+                            />
+                        </div>
+                        <div className="input-label-container">
                             <h3>Gender</h3>
                             <select className="select__container"
                                 name="gender"
@@ -239,8 +254,8 @@ export default function SalesForm({ header, buttonText, item, cancelUpdate }) {
                         </div>
                         {addImage}
                         <div className="btn-container">
+                            <button className="form-btn-cancel" onClick={cancel}>Cancel</button>
                             <button className="form-btn" onClick={handleSubmit}>{buttonText}</button>
-                            <button className="form-btn-cancel" onClick={cancelUpdate}>Cancel</button>
                         </div>
                     </div>
                 </div>

@@ -4,12 +4,12 @@ import Account from './Account';
 import Listings from './Listings';
 import Sold from './Sold';
 import Orders from './Orders';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 
 export default function Profile() {
     const [itemView, setItemView] = useState("Account");
-    const history = useHistory();
+    // const history = useHistory();
 
     const handleListings = async (e) => {
         e.preventDefault();

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderDetails } from '../../../store/orders';
 import FullOrderDetails from './FullOrderDetails';
-import { nanoid } from 'nanoid';
 
 
 export default function OrderLineItems() {
@@ -12,7 +11,6 @@ export default function OrderLineItems() {
 
 
     useEffect(() => {
-        // console.log("USER ID---", user?.id)
         dispatch(getOrderDetails(user?.id))
     }, [])
 

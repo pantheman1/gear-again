@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-import { getCart, postItem } from "../../store/cart";
+import { postItem } from "../../store/cart";
 
 
 export default function AddToCart() {
@@ -9,7 +9,6 @@ export default function AddToCart() {
     const user = useSelector(state => state.session.user);
     const item = useSelector(state => state?.items[id]);
     const cart = useSelector(state => state?.cart);
-    const [items, setCartItem] = useState([]);
     const [buttonTxt, setButtonTxt] = useState("Add item to cart")
     const dispatch = useDispatch();
     const history = useHistory();
@@ -20,11 +19,6 @@ export default function AddToCart() {
             setButtonTxt("Continue to cart");
         }
     }, [])
-
-    // console.log("CART ADDTOCART", cart, item, id)
-
-    // const onRemoveItem = (idToRemove) =>
-    //     setCartItem((prev) => prev.filter(({ id }) => id !== idToRemove));
 
     const onAddItem = async (e) => {
         e.preventDefault();
@@ -41,9 +35,6 @@ export default function AddToCart() {
         history.push('/cart');
     }
 
-    const onChange = (state, isFormValid) => console.log('CHANGE', state, isFormValid);
-    const onSubmit = (state) => console.log('SUBMIT', state);
-
     return (
         Object.values(item).length > 0 &&
         <div className="App">
@@ -54,14 +45,3 @@ export default function AddToCart() {
         </div>
     );
 }
-
-// let id = 0;
-// const createRandomItem = () => {
-//     id = id + 1;
-//     return {
-//         id,
-//         qty: 1,
-//         desc: `Item number: ${id}`,
-//         price: Number((Math.random() * 10 + 1).toFixed(2))
-//     };
-// };
