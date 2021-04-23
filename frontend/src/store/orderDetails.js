@@ -21,10 +21,8 @@ const postToOrderDetails = (data) => {
 export const getFullOrderDetails = (orderId) => async dispatch => {
     const res = await fetch(`/api/orderDetails/${orderId}`);
     if (res.ok) {
-        // I might have broken this after importing fetch from csrf///////////
-        const data = await res.json()
         const details = {}
-        details[data.orderId] = data;
+        details[res.data.orderId] = res.data;
         dispatch(orderDetails(details))
     }
     return res;
@@ -47,8 +45,6 @@ export default function OrderDetailsReducer(state = {}, action) {
     let newState = {};
     switch (action.type) {
         case GET_ORDER_DETAILS:
-            // console.log("ORDERS------", action.orders)
-            // newState = Object.assign({}, state, action.orders);
             newState = { ...state, ...action.orders }
             return newState
         case POST_ORDER_DETAILS:

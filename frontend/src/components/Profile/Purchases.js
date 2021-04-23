@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPurchasedItems } from '../../store/items';
 import ItemSquare from '../Items'
-import { nanoid } from 'nanoid';
 
 export default function Purchases() {
     const dispatch = useDispatch();
@@ -18,7 +17,7 @@ export default function Purchases() {
         <div className="item__container-listing">
             <div className="item__listing">
                 {purchases && purchases?.map(item => (
-                    <div key={nanoid()}>
+                    <div key={item.id}>
                         <ItemSquare item={item} categoryName={item?.Category?.name} />
                     </div>
                 ))}

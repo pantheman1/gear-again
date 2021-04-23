@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCartItem } from "../../store/cart";
 import './Cart.css';
-import CheckoutTotals from "./CheckoutTotals";
+// import CheckoutTotals from "./CheckoutTotals";
 
 // passing in item which is contains the item's information for that cart item
 export default function CheckoutItem({ item }) {
@@ -13,10 +13,6 @@ export default function CheckoutItem({ item }) {
     const cartItems = Object.values(cart);
     const { id, title, brand, size, price, userId, Photos } = item;
     const imageUrl = Photos[0].url;
-
-    const handlePurchase = (e) => {
-        e.preventDefault();
-    }
 
     const onRemoveItem = e => {
         e.preventDefault();

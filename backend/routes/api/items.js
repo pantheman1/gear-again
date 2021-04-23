@@ -123,6 +123,7 @@ router.get('/sales/:id', asyncHandler(async (req, res) => {
 //     return res.json({ item })
 // }))
 
+// Create listing
 router.post('/:id',
     multipleMulterUpload("images"),
     asyncHandler(async (req, res) => {
@@ -133,6 +134,7 @@ router.post('/:id',
             size,
             price,
             cost,
+            weight,
             description,
             categoryId,
             conditionId,
@@ -147,6 +149,7 @@ router.post('/:id',
             size,
             price,
             cost,
+            weight,
             description,
             userId: id,
             categoryId,
@@ -171,6 +174,86 @@ router.post('/:id',
         newItem.dataValues['Category'] = categories;
 
         return res.json(newItem)
+    }))
+
+// Update listing
+router.patch('/:id',
+    multipleMulterUpload("images"),
+    asyncHandler(async (req, res) => {
+        const { id } = req.params;
+        const {
+            title,
+            brand,
+            size,
+            price,
+            cost,
+            weight,
+            description,
+            categoryId,
+            conditionId,
+            genderId,
+        } = req.body;
+
+        const item = await Item.findByPk(id);
+        item.title = title
+        item.brand = brand
+        item.size = size
+        item.price = price
+        item.cost = cost
+        item.weight = weight
+        item.description = description
+        item.categoryId = categoryId
+        item.conditionId = conditionId
+        item.genderId = genderId
+
+        if (req.files) {
+            const images = await multiplePublicFileUpload(req.files);
+            item.save({
+                title,
+                brand,
+                size,
+                price,
+                cost,
+                weight,
+                description,
+                categoryId,
+                conditionId,
+                genderId,
+                images
+            })
+        } else {
+            item.save({
+                title,
+                brand,
+                size,
+                price,
+                cost,
+                weight,
+                description,
+                categoryId,
+                conditionId,
+                genderId,
+            })
+        }
+        //HERE IS WHERE I LEFT OFF
+
+        const photoList = [];
+
+        for (const image of images) {
+            const photo = await Photo.create({
+                itemId: newItem.id,
+                url: image
+            })
+            photoList.push(photo.dataValues.url)
+        }
+
+        item.dataValues['Photos'] = photoList;
+
+        const categories = await Category.findByPk(newItem.dataValues.categoryId);
+
+        item.dataValues['Category'] = categories;
+
+        return res.json(item)
     }))
 
 

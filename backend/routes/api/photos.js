@@ -34,10 +34,8 @@ router.get('/', asyncHandler(async (req, res) => {
 router.post('/:id',
     singleMulterUpload("image"),
     asyncHandler(async (req, res) => {
-        console.log("BACKEND POST-------------", req.params)
         const { id } = req.params;
         const image = await singlePublicFileUpload(req.file);
-        // console.log("IMAGE------", image)
 
         const newPhoto = await Photo.create({
             itemId: id,

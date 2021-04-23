@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import SalesForm from './SalesForm';
+// import SalesForm from './SalesForm';
 // import { updateListing } from '../../store/items';
 import { useParams } from 'react-router';
 import './Selling.css';
 import { postPhoto } from '../../store/photos';
-import { Modal } from '../../context/Modal';
 
 
 export default function ItemImages() {
     const items = useSelector(state => state?.items);
-    const photos = useSelector(state => Object.values(state?.photos));
+    // const photos = useSelector(state => Object.values(state?.photos));
     const [imageLoading, setImageLoading] = useState(false);
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");

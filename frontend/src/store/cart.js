@@ -39,7 +39,6 @@ const deleteAllCartItems = () => {
 export const getCart = (userId) => async dispatch => {
     const res = await fetch(`/api/cart/${userId}`)
     if (res.ok) {
-        console.log("RES.DATA--------", res.data)
         dispatch(getUserCart(res.data));
     }
 };

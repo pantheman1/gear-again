@@ -59,7 +59,6 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 //delete all items from cart
 router.delete('/', asyncHandler(async (req, res) => {
     const cartIds = req.body;
-    console.log("ID-----------Backend", cartIds)
 
     for (let i = 0; i < cartIds.length; i++) {
         const cartId = cartIds[i]

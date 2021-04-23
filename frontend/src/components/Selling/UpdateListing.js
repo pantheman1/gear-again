@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import SalesForm from './SalesForm';
 // import { updateListing } from '../../store/items';
@@ -23,7 +23,7 @@ export default function UpdateListing() {
                 item={items[id]}
                 // listingCallback={updateListing}
                 buttonText="Update"
-                cancelUpdate={cancelUpdate}
+                cancel={cancelUpdate}
             />
         </>
     )

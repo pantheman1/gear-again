@@ -38,11 +38,13 @@ a {
   font-size: 20px;
   font-weight: bold;
   color: var(--primary-color);
+  cursor: pointer;
 }
 
 a:hover {
   font-size: 19px;
   border-bottom: 2px solid;
+  cursor: pointer;
 }
 
 div#root {
@@ -112,6 +114,7 @@ button {
   text-decoration: none;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 button:hover {
@@ -120,6 +123,7 @@ button:hover {
   text-decoration: none;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .form-btn {
@@ -135,6 +139,7 @@ button:hover {
   user-select: none;
   border: 1px solid;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .form-btn:hover {
@@ -150,6 +155,7 @@ button:hover {
   user-select: none;
   border: 1px solid;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .form-btn-cancel {
@@ -165,6 +171,7 @@ button:hover {
   user-select: none;
   border: 1px solid;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .form-btn-cancel:hover {
@@ -180,14 +187,17 @@ button:hover {
   user-select: none;
   border: 1px solid;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 button#demo-btn {
   background-color: #2299d5;
+  cursor: pointer;
 }
 
 button#demo-btn:hover {
   background-color: #238fc5;
+  cursor: pointer;
 }
 
 .error-handling {
