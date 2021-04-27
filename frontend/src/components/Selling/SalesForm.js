@@ -199,7 +199,8 @@ export default function SalesForm({ header, buttonText, item, cancel }) {
                         </div>
                         <div className="input-label-container">
                             <h3>Gender</h3>
-                            <select className="select__container"
+                            <select
+                                className="form__text--input"
                                 name="gender"
                                 onChange={e => setGenderId(e.target.value)}
                                 value={genderId}
@@ -212,7 +213,8 @@ export default function SalesForm({ header, buttonText, item, cancel }) {
                         </div>
                         <div className="input-label-container">
                             <h3>Category</h3>
-                            <select className="select__container"
+                            <select
+                                className="form__text--input"
                                 value={categoryId}
                                 onChange={e => setCategoryId(e.target.value)}
                             >
@@ -230,7 +232,8 @@ export default function SalesForm({ header, buttonText, item, cancel }) {
                         </div>
                         <div className="input-label-container">
                             <h3>Condition</h3>
-                            <select className="select__container"
+                            <select
+                                className="form__text--input"
                                 name="condition"
                                 value={conditionId}
                                 onChange={e => setConditionId(e.target.value)}
