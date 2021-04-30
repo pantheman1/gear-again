@@ -11,10 +11,6 @@ export default function Checkout() {
 
     const cartItems = Object.values(cart);
 
-    const handlePurchase = (e) => {
-        e.preventDefault();
-    }
-
     const filteredItems = Object.values(allItems)?.filter(item => item.id === cart[item.id]?.itemId)
 
     return (
