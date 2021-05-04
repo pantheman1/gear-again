@@ -10,6 +10,7 @@ export default function ShippingForm() {
     const ship = useSelector(state => state.ship);
     const bill = useSelector(state => state.bill);
     const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
+    // const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
     const [shipApt, setShipApt] = useState(ship?.shipApt || "");
     const [shipCity, setShipCity] = useState(ship?.shipCity || "");
     const [shipState, setShipState] = useState(ship?.shipState || "");
@@ -19,6 +20,7 @@ export default function ShippingForm() {
     const [billCity, setBillCity] = useState(bill?.billCity || "");
     const [billState, setBillState] = useState(bill?.billState || "");
     const [billZip, setBillZip] = useState(bill?.billZip || "");
+    const [inputAddress, setInputAddress] = useState("");
     const [address, setAddress] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
@@ -26,7 +28,17 @@ export default function ShippingForm() {
     useEffect(() => {
         dispatch(getAllBilling);
         dispatch(getAllShipping);
-    })
+    }, [])
+
+    useEffect(() => {
+        if (address) {
+            console.log("address---->>>", address)
+            setShipStreet(address?.split(", ")[0])
+            setShipCity(address?.split(", ")[1])
+            setShipState(address?.split(", ")[2].split(" ")[0])
+            setShipZip(address?.split(", ")[2].split(" ")[1])
+        }
+    }, [address])
 
     const handleZip = async (e) => {
         e.preventDefault();
@@ -76,7 +88,7 @@ export default function ShippingForm() {
                     {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
                 </ul>
                 <div className="form-container">
-                    <AddressSearch address={address} setAddress={setAddress} />
+                    <AddressSearch inputAddress={inputAddress} setInputAddress={setInputAddress} address={address} setAddress={setAddress} />
                     <div className="input-label-container">
                         <h3>Street Address</h3>
                         <input

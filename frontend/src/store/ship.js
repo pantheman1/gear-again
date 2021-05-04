@@ -27,6 +27,7 @@ export default function Ship(state = {}, action) {
     let newState = {};
     switch (action.type) {
         case USER_SHIPPING:
+            console.log("action.data--shipping", action.data)
             action.data.forEach(info => {
                 newState[info.id] = info;
             })

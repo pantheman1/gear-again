@@ -3,22 +3,23 @@ import PlacesAutocomplete from "react-places-autocomplete";
 // import "./AddSpotForm.css";
 import { geocodeByAddress } from "react-places-autocomplete";
 
-function AddressSearch({ setAddress, address }) {
+function AddressSearch({ setAddress, address, inputAddress, setInputAddress }) {
 
     function handleChange(value) {
-        return setAddress(value);
+        return setInputAddress(value);
     }
 
     async function handleSelect(address) {
         const results = await geocodeByAddress(address);
         setAddress(results[0].formatted_address);
+
         console.log(results, "<---------")
         return
     }
 
     return (
         <PlacesAutocomplete
-            value={address}
+            value={inputAddress}
             onChange={handleChange}
             onSelect={handleSelect}
         >

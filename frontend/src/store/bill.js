@@ -27,6 +27,7 @@ export default function Bill(state = {}, action) {
     let newState = {};
     switch (action.type) {
         case USER_BILLING:
+            console.log("action.data--billing", action.data)
             action.data.forEach(info => {
                 newState[info.id] = info;
             })
