@@ -21,6 +21,20 @@ export const getAllBilling = (userId) => async dispatch => {
     }
 }
 
+export const updateBilling = (data) => async dispatch => {
+    const { userId } = data;
+    const res = await fetch(`/api/bill/${userId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application-json",
+        },
+        body: JSON.stringify(data),
+    })
+    if (res.ok) {
+        await dispatch(getAllBillingData(res))
+    }
+}
+
 // Reducer
 
 export default function Bill(state = {}, action) {

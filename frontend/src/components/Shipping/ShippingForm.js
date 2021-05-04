@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllBilling } from '../../store/bill';
-import { updateUser } from '../../store/session';
-import { getAllShipping } from '../../store/ship';
+import { getAllBilling, updateBilling } from '../../store/bill';
+import { getAllShipping, updateShipping } from '../../store/ship';
 import AddressSearch from './AddressSearch';
 
 export default function ShippingForm() {
@@ -10,7 +9,6 @@ export default function ShippingForm() {
     const ship = useSelector(state => state.ship);
     const bill = useSelector(state => state.bill);
     const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
-    // const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
     const [shipApt, setShipApt] = useState(ship?.shipApt || "");
     const [shipCity, setShipCity] = useState(ship?.shipCity || "");
     const [shipState, setShipState] = useState(ship?.shipState || "");
@@ -33,6 +31,7 @@ export default function ShippingForm() {
     useEffect(() => {
         if (address) {
             console.log("address---->>>", address)
+            setInputAddress(address?.split(", ")[0])
             setShipStreet(address?.split(", ")[0])
             setShipCity(address?.split(", ")[1])
             setShipState(address?.split(", ")[2].split(" ")[0])
@@ -50,12 +49,15 @@ export default function ShippingForm() {
 
         const error = [];
 
-        const data = {
+        const shipData = {
             userId: user?.id,
             shipStreet,
             shipCity,
             shipState,
             shipZip,
+        }
+        const billData = {
+            userId: user?.id,
             billStreet,
             billCity,
             billState,
@@ -65,13 +67,15 @@ export default function ShippingForm() {
         if (shipStreet &&
             shipCity &&
             shipState &&
-            shipZip &&
-            billStreet &&
+            shipZip) {
+            dispatch(updateShipping(shipData))
+        }
+
+        if (billStreet &&
             billCity &&
             billState &&
             billZip) {
-            await dispatch(updateUser(data))
-
+            dispatch(updateBilling(billData))
         } else {
             error.push("Please fill out all shipping fields.")
             setErrors(error)
@@ -147,7 +151,7 @@ export default function ShippingForm() {
                             // onChange={handleZip}
                             required
                         />
-                        <button onClick={handleZip}>Update City/State</button>
+                        <button onClick={handleZip}>Update</button>
                     </div>
                 </div>
                 <div className="form-container">
@@ -162,6 +166,17 @@ export default function ShippingForm() {
                             onChange={e => setBillStreet(e.target.value)}
                             required
                         />
+                        <div className="input-label-container">
+                            <h3>Apartment</h3>
+                            <input
+                                className="form__text--input"
+                                name="billStreet"
+                                type="text"
+                                value={billApt ? billApt : ""}
+                                autoComplete="off"
+                                onChange={e => setBillApt(e.target.value)}
+                            />
+                        </div>
                     </div>
                     <div className="input-label-container">
                         <h3>City</h3>
