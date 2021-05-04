@@ -52,6 +52,7 @@ export default function ShippingForm() {
         const shipData = {
             userId: user?.id,
             shipStreet,
+            shipApt,
             shipCity,
             shipState,
             shipZip,
@@ -59,6 +60,7 @@ export default function ShippingForm() {
         const billData = {
             userId: user?.id,
             billStreet,
+            billApt,
             billCity,
             billState,
             billZip,
@@ -69,6 +71,9 @@ export default function ShippingForm() {
             shipState &&
             shipZip) {
             dispatch(updateShipping(shipData))
+        } else {
+            error.push("Please fill out all shipping fields.")
+            setErrors(error)
         }
 
         if (billStreet &&
@@ -77,9 +82,8 @@ export default function ShippingForm() {
             billZip) {
             dispatch(updateBilling(billData))
         } else {
-            error.push("Please fill out all shipping fields.")
+            error.push("Please fill out all billing fields.")
             setErrors(error)
-            return
         }
     }
 
