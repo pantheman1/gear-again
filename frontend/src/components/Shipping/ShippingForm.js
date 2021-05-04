@@ -1,103 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAllBilling } from '../../store/bill';
 import { updateUser } from '../../store/session';
+import { getAllShipping } from '../../store/ship';
 import AddressSearch from './AddressSearch';
 
 export default function ShippingForm() {
     const user = useSelector(state => state?.session.user);
-    const [shipStreetAddress, setShipStreetAddress] = useState(user?.shipStreetAddress || "");
-    const [shipCityAddress, setShipCityAddress] = useState(user?.shipCityAddress || "");
-    const [shipStateAddress, setShipStateAddress] = useState(user?.shipStateAddress || "");
-    const [shipZip, setShipZip] = useState(user?.shipZip || "");
-    const [billStreetAddress, setBillStreetAddress] = useState(user?.billStreetAddress || "");
-    const [billCityAddress, setBillCityAddress] = useState(user?.billCityAddress || "");
-    const [billStateAddress, setBillStateAddress] = useState(user?.billStateAddress || "");
-    const [billZip, setBillZip] = useState(user?.billZip || "");
+    const ship = useSelector(state => state.ship);
+    const bill = useSelector(state => state.bill);
+    const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
+    const [shipApt, setShipApt] = useState(ship?.shipApt || "");
+    const [shipCity, setShipCity] = useState(ship?.shipCity || "");
+    const [shipState, setShipState] = useState(ship?.shipState || "");
+    const [shipZip, setShipZip] = useState(ship?.shipZip || "");
+    const [billStreet, setBillStreet] = useState(bill?.billStreet || "");
+    const [billApt, setBillApt] = useState(bill?.billApt || "");
+    const [billCity, setBillCity] = useState(bill?.billCity || "");
+    const [billState, setBillState] = useState(bill?.billState || "");
+    const [billZip, setBillZip] = useState(bill?.billZip || "");
     const [address, setAddress] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
-    // let autocomplete;
-    // let address1Field;
-    // let address2Field;
-    // let postalField;
-
-    // function initAutocomplete() {
-    //     address1Field = document.querySelector("#ship-address");
-    //     address2Field = document.querySelector("#address2");
-    //     postalField = document.querySelector("#postcode");
-    //     // Create the autocomplete object, restricting the search predictions to
-    //     // addresses in the US and Canada.
-    //     autocomplete = new google.maps.places.Autocomplete(address1Field, {
-    //         componentRestrictions: { country: ["us", "ca"] },
-    //         fields: ["address_components", "geometry"],
-    //         types: ["address"],
-    //     });
-    //     address1Field.focus();
-    //     // When the user selects an address from the drop-down, populate the
-    //     // address fields in the form.
-    //     autocomplete.addListener("place_changed", fillInAddress);
-    // }
-
-    // function fillInAddress() {
-    //     // Get the place details from the autocomplete object.
-    //     const place = autocomplete.getPlace();
-    //     let address1 = "";
-    //     let postcode = "";
-
-    //     // Get each component of the address from the place details,
-    //     // and then fill-in the corresponding field on the form.
-    //     // place.address_components are google.maps.GeocoderAddressComponent objects
-    //     // which are documented at http://goo.gle/3l5i5Mr
-    //     for (const component of place.address_components) {
-    //         const componentType = component.types[0];
-
-    //         switch (componentType) {
-    //             case "street_number": {
-    //                 address1 = `${component.long_name} ${address1}`;
-    //                 break;
-    //             }
-
-    //             case "route": {
-    //                 address1 += component.short_name;
-    //                 break;
-    //             }
-
-    //             case "postal_code": {
-    //                 postcode = `${component.long_name}${postcode}`;
-    //                 break;
-    //             }
-
-    //             case "postal_code_suffix": {
-    //                 postcode = `${postcode}-${component.long_name}`;
-    //                 break;
-    //             }
-    //             case "locality":
-    //                 document.querySelector("#locality").value = component.long_name;
-    //                 break;
-
-    //             case "administrative_area_level_1": {
-    //                 document.querySelector("#state").value = component.short_name;
-    //                 break;
-    //             }
-    //             case "country":
-    //                 document.querySelector("#country").value = component.long_name;
-    //                 break;
-    //         }
-    //     }
-    //     address1Field.value = address1;
-    //     postalField.value = postcode;
-    //     // After filling the form with address components from the Autocomplete
-    //     // prediction, set cursor focus on the second address line to encourage
-    //     // entry of subpremise information such as apartment, unit, or floor number.
-    //     address2Field.focus();
-    // }
+    useEffect(() => {
+        dispatch(getAllBilling);
+        dispatch(getAllShipping);
+    })
 
     const handleZip = async (e) => {
         e.preventDefault();
         setShipZip(e.target.value)
-        // await fetch(`https://maps.googleapis.com/maps/api/js?key=AIzaSyCfjqLTIhu0WCGg2BL-o0Xp8BFvM8yF_wo&libraries=places`)
-        // https://maps.googleapis.com/maps/api/js?key=AIzaSyCfjqLTIhu0WCGg2BL-o0Xp8BFvM8yF_wo&libraries=places&callback=initMap
     }
 
     const handleSubmitShipping = async (e) => {
@@ -107,23 +40,23 @@ export default function ShippingForm() {
 
         const data = {
             userId: user?.id,
-            shipStreetAddress,
-            shipCityAddress,
-            shipStateAddress,
+            shipStreet,
+            shipCity,
+            shipState,
             shipZip,
-            billStreetAddress,
-            billCityAddress,
-            billStateAddress,
+            billStreet,
+            billCity,
+            billState,
             billZip,
         }
 
-        if (shipStreetAddress &&
-            shipCityAddress &&
-            shipStateAddress &&
+        if (shipStreet &&
+            shipCity &&
+            shipState &&
             shipZip &&
-            billStreetAddress &&
-            billCityAddress &&
-            billStateAddress &&
+            billStreet &&
+            billCity &&
+            billState &&
             billZip) {
             await dispatch(updateUser(data))
 
@@ -143,18 +76,29 @@ export default function ShippingForm() {
                     {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
                 </ul>
                 <div className="form-container">
+                    <AddressSearch address={address} setAddress={setAddress} />
                     <div className="input-label-container">
                         <h3>Street Address</h3>
                         <input
                             className="form__text--input"
-                            name="shipStreetAddress"
+                            name="shipStreet"
                             type="text"
-                            value={shipStreetAddress ? shipStreetAddress : ""}
+                            value={shipStreet ? shipStreet : ""}
                             autoComplete="off"
-                            onChange={e => setShipStreetAddress(e.target.value)}
+                            onChange={e => setShipStreet(e.target.value)}
                             required
                         />
-                        <AddressSearch address={address} setAddress={setAddress} />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>Apartment</h3>
+                        <input
+                            className="form__text--input"
+                            name="shipStreet"
+                            type="text"
+                            value={shipApt ? shipApt : ""}
+                            autoComplete="off"
+                            onChange={e => setShipApt(e.target.value)}
+                        />
                     </div>
                     <div className="input-label-container">
                         <h3>City</h3>
@@ -162,9 +106,9 @@ export default function ShippingForm() {
                             className="form__text--input"
                             name="shipCity"
                             type="text"
-                            value={shipCityAddress ? shipCityAddress : ""}
+                            value={shipCity ? shipCity : ""}
                             autoComplete="off"
-                            onChange={e => setShipCityAddress(e.target.value)}
+                            onChange={e => setShipCity(e.target.value)}
                             required
                         />
                     </div>
@@ -174,9 +118,9 @@ export default function ShippingForm() {
                             className="form__text--input"
                             name="shipState"
                             type="text"
-                            value={shipStateAddress ? shipStateAddress : ""}
+                            value={shipState ? shipState : ""}
                             autoComplete="off"
-                            onChange={e => setShipStateAddress(e.target.value)}
+                            onChange={e => setShipState(e.target.value)}
                             required
                         />
                     </div>
@@ -199,11 +143,11 @@ export default function ShippingForm() {
                         <h3>Street Address</h3>
                         <input
                             className="form__text--input"
-                            name="billStreetAddress"
+                            name="billStreet"
                             type="text"
-                            value={billStreetAddress ? billStreetAddress : ""}
+                            value={billStreet ? billStreet : ""}
                             autoComplete="off"
-                            onChange={e => setBillStreetAddress(e.target.value)}
+                            onChange={e => setBillStreet(e.target.value)}
                             required
                         />
                     </div>
@@ -213,9 +157,9 @@ export default function ShippingForm() {
                             className="form__text--input"
                             name="billCity"
                             type="text"
-                            value={billCityAddress ? billCityAddress : ""}
+                            value={billCity ? billCity : ""}
                             autoComplete="off"
-                            onChange={e => setBillCityAddress(e.target.value)}
+                            onChange={e => setBillCity(e.target.value)}
                             required
                         />
                     </div>
@@ -225,9 +169,9 @@ export default function ShippingForm() {
                             className="form__text--input"
                             name="billState"
                             type="text"
-                            value={billStateAddress ? billStateAddress : ""}
+                            value={billState ? billState : ""}
                             autoComplete="off"
-                            onChange={e => setBillStateAddress(e.target.value)}
+                            onChange={e => setBillState(e.target.value)}
                             required
                         />
                     </div>
