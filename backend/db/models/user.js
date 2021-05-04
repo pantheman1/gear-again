@@ -16,30 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       profileImageUrl: {
         type: DataTypes.STRING,
       },
-      shipStreetAddress: {
-        type: DataTypes.STRING,
-      },
-      shipCityAddress: {
-        type: DataTypes.STRING,
-      },
-      shipStateAddress: {
-        type: DataTypes.STRING,
-      },
-      shipZip: {
-        type: DataTypes.INTEGER,
-      },
-      billStreetAddress: {
-        type: DataTypes.STRING,
-      },
-      billCityAddress: {
-        type: DataTypes.STRING,
-      },
-      billStateAddress: {
-        type: DataTypes.STRING,
-      },
-      billZip: {
-        type: DataTypes.INTEGER,
-      },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -91,6 +67,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     User.hasMany(models.Order, { foreignKey: 'userId' })
     User.hasMany(models.Item, { foreignKey: 'userId' })
+    User.hasMany(models.Shipping, { foreignKey: 'userId' })
+    User.hasMany(models.Billing, { foreignKey: 'userId' })
     User.belongsToMany(models.Item, columnMapping)
   };
   User.prototype.toSafeObject = function () {
