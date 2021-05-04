@@ -1,250 +1,228 @@
-// import React, { useEffect, useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { updateUser } from '../../store/session';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllBilling, updateBilling } from '../../store/bill';
+import { getAllShipping, updateShipping } from '../../store/ship';
+import AddressSearch from './AddressSearch';
 
-// export default function ShippingForm() {
-//     const user = useSelector(state => state?.session.user);
-//     const [shipStreetAddress, setShipStreetAddress] = useState(user?.shipStreetAddress || "");
-//     const [shipCityAddress, setShipCityAddress] = useState(user?.shipCityAddress || "");
-//     const [shipStateAddress, setShipStateAddress] = useState(user?.shipStateAddress || "");
-//     const [shipZip, setShipZip] = useState(user?.shipZip || "");
-//     const [billStreetAddress, setBillStreetAddress] = useState(user?.billStreetAddress || "");
-//     const [billCityAddress, setBillCityAddress] = useState(user?.billCityAddress || "");
-//     const [billStateAddress, setBillStateAddress] = useState(user?.billStateAddress || "");
-//     const [billZip, setBillZip] = useState(user?.billZip || "");
-//     const [errors, setErrors] = useState([]);
-//     const dispatch = useDispatch();
+export default function ShippingForm() {
+    const user = useSelector(state => state?.session.user);
+    const ship = useSelector(state => state.ship);
+    const bill = useSelector(state => state.bill);
+    const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
+    const [shipApt, setShipApt] = useState(ship?.shipApt || "");
+    const [shipCity, setShipCity] = useState(ship?.shipCity || "");
+    const [shipState, setShipState] = useState(ship?.shipState || "");
+    const [shipZip, setShipZip] = useState(ship?.shipZip || "");
+    const [billStreet, setBillStreet] = useState(bill?.billStreet || "");
+    const [billApt, setBillApt] = useState(bill?.billApt || "");
+    const [billCity, setBillCity] = useState(bill?.billCity || "");
+    const [billState, setBillState] = useState(bill?.billState || "");
+    const [billZip, setBillZip] = useState(bill?.billZip || "");
+    const [inputAddress, setInputAddress] = useState("");
+    const [address, setAddress] = useState("");
+    const [errors, setErrors] = useState([]);
+    const dispatch = useDispatch();
 
-//     let autocomplete;
-//     let address1Field;
-//     let address2Field;
-//     let postalField;
+    useEffect(() => {
+        dispatch(getAllBilling);
+        dispatch(getAllShipping);
+    }, [])
 
-//     function initAutocomplete() {
-//         address1Field = document.querySelector("#ship-address");
-//         address2Field = document.querySelector("#address2");
-//         postalField = document.querySelector("#postcode");
-//         // Create the autocomplete object, restricting the search predictions to
-//         // addresses in the US and Canada.
-//         autocomplete = new google.maps.places.Autocomplete(address1Field, {
-//             componentRestrictions: { country: ["us", "ca"] },
-//             fields: ["address_components", "geometry"],
-//             types: ["address"],
-//         });
-//         address1Field.focus();
-//         // When the user selects an address from the drop-down, populate the
-//         // address fields in the form.
-//         autocomplete.addListener("place_changed", fillInAddress);
-//     }
+    useEffect(() => {
+        if (address) {
+            console.log("address---->>>", address)
+            setInputAddress(address?.split(", ")[0])
+            setShipStreet(address?.split(", ")[0])
+            setShipCity(address?.split(", ")[1])
+            setShipState(address?.split(", ")[2].split(" ")[0])
+            setShipZip(address?.split(", ")[2].split(" ")[1])
+        }
+    }, [address])
 
-//     function fillInAddress() {
-//         // Get the place details from the autocomplete object.
-//         const place = autocomplete.getPlace();
-//         let address1 = "";
-//         let postcode = "";
+    const handleZip = async (e) => {
+        e.preventDefault();
+        setShipZip(e.target.value)
+    }
 
-//         // Get each component of the address from the place details,
-//         // and then fill-in the corresponding field on the form.
-//         // place.address_components are google.maps.GeocoderAddressComponent objects
-//         // which are documented at http://goo.gle/3l5i5Mr
-//         for (const component of place.address_components) {
-//             const componentType = component.types[0];
+    const handleSubmitShipping = async (e) => {
+        e.preventDefault();
 
-//             switch (componentType) {
-//                 case "street_number": {
-//                     address1 = `${component.long_name} ${address1}`;
-//                     break;
-//                 }
+        const error = [];
 
-//                 case "route": {
-//                     address1 += component.short_name;
-//                     break;
-//                 }
+        const shipData = {
+            userId: user?.id,
+            shipStreet,
+            shipApt,
+            shipCity,
+            shipState,
+            shipZip,
+        }
+        const billData = {
+            userId: user?.id,
+            billStreet,
+            billApt,
+            billCity,
+            billState,
+            billZip,
+        }
 
-//                 case "postal_code": {
-//                     postcode = `${component.long_name}${postcode}`;
-//                     break;
-//                 }
+        if (shipStreet &&
+            shipCity &&
+            shipState &&
+            shipZip) {
+            dispatch(updateShipping(shipData))
+        } else {
+            error.push("Please fill out all shipping fields.")
+            setErrors(error)
+        }
 
-//                 case "postal_code_suffix": {
-//                     postcode = `${postcode}-${component.long_name}`;
-//                     break;
-//                 }
-//                 case "locality":
-//                     document.querySelector("#locality").value = component.long_name;
-//                     break;
-
-//                 case "administrative_area_level_1": {
-//                     document.querySelector("#state").value = component.short_name;
-//                     break;
-//                 }
-//                 case "country":
-//                     document.querySelector("#country").value = component.long_name;
-//                     break;
-//             }
-//         }
-//         address1Field.value = address1;
-//         postalField.value = postcode;
-//         // After filling the form with address components from the Autocomplete
-//         // prediction, set cursor focus on the second address line to encourage
-//         // entry of subpremise information such as apartment, unit, or floor number.
-//         address2Field.focus();
-//     }
-
-//     const handleZip = async (e) => {
-//         e.preventDefault();
-//         setShipZip(e.target.value)
-//         await fetch(`https://maps.googleapis.com/maps/api/js?key=AIzaSyCfjqLTIhu0WCGg2BL-o0Xp8BFvM8yF_wo&libraries=places`)
-//         https://maps.googleapis.com/maps/api/js?key=AIzaSyCfjqLTIhu0WCGg2BL-o0Xp8BFvM8yF_wo&libraries=places&callback=initMap
-// }
-
-//     const handleSubmitShipping = async (e) => {
-//         e.preventDefault();
-
-//         const error = [];
-
-//         const data = {
-//             userId: user?.id,
-//             shipStreetAddress,
-//             shipCityAddress,
-//             shipStateAddress,
-//             shipZip,
-//             billStreetAddress,
-//             billCityAddress,
-//             billStateAddress,
-//             billZip,
-//         }
-
-//         if (shipStreetAddress &&
-//             shipCityAddress &&
-//             shipStateAddress &&
-//             shipZip &&
-//             billStreetAddress &&
-//             billCityAddress &&
-//             billStateAddress &&
-//             billZip) {
-//             await dispatch(updateUser(data))
-
-//         } else {
-//             error.push("Please fill out all shipping fields.")
-//             setErrors(error)
-//             return
-//         }
-//     }
+        if (billStreet &&
+            billCity &&
+            billState &&
+            billZip) {
+            dispatch(updateBilling(billData))
+        } else {
+            error.push("Please fill out all billing fields.")
+            setErrors(error)
+        }
+    }
 
 
-//     return (
-//         Object.keys(user).length > 0 &&
-//         <>
-//             <form className="">
-//                 <ul>
-//                     {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
-//                 </ul>
-//                 <div className="form-container">
-//                     <div className="input-label-container">
-//                         <h3>Street Address</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="shipStreetAddress"
-//                             type="text"
-//                             value={shipStreetAddress ? shipStreetAddress : ""}
-//                             autoComplete="off"
-//                             onChange={e => setShipStreetAddress(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                     <div className="input-label-container">
-//                         <h3>City</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="shipCity"
-//                             type="text"
-//                             value={shipCityAddress ? shipCityAddress : ""}
-//                             autoComplete="off"
-//                             onChange={e => setShipCityAddress(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                     <div className="input-label-container">
-//                         <h3>State</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="shipState"
-//                             type="text"
-//                             value={shipStateAddress ? shipStateAddress : ""}
-//                             autoComplete="off"
-//                             onChange={e => setShipStateAddress(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                     <div className="input-label-container">
-//                         <h3>Zip Code</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="shipZip"
-//                             type="text"
-//                             value={shipZip ? shipZip : ""}
-//                             autoComplete="off"
-//                             // onChange={handleZip}
-//                             required
-//                         />
-//                         <button onClick={handleZip}>Update City/State</button>
-//                     </div>
-//                 </div>
-//                 <div className="form-container">
-//                     <div className="input-label-container">
-//                         <h3>Street Address</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="billStreetAddress"
-//                             type="text"
-//                             value={billStreetAddress ? billStreetAddress : ""}
-//                             autoComplete="off"
-//                             onChange={e => setBillStreetAddress(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                     <div className="input-label-container">
-//                         <h3>City</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="billCity"
-//                             type="text"
-//                             value={billCityAddress ? billCityAddress : ""}
-//                             autoComplete="off"
-//                             onChange={e => setBillCityAddress(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                     <div className="input-label-container">
-//                         <h3>State</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="billState"
-//                             type="text"
-//                             value={billStateAddress ? billStateAddress : ""}
-//                             autoComplete="off"
-//                             onChange={e => setBillStateAddress(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                     <div className="input-label-container">
-//                         <h3>Zip Code</h3>
-//                         <input
-//                             className="form__text--input"
-//                             name="billZip"
-//                             type="text"
-//                             value={billZip ? billZip : ""}
-//                             autoComplete="off"
-//                             onChange={e => setBillZip(e.target.value)}
-//                             required
-//                         />
-//                     </div>
-//                 </div>
-//                 <div>
-//                     <button type="submit" onClick={handleSubmitShipping}>Update Shipping Info</button>
-//                 </div>
-//             </form>
-//         </>
-//     )
-// }
+    return (
+        Object.keys(user).length > 0 &&
+        <>
+            <form className="">
+                <ul>
+                    {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
+                </ul>
+                <div className="form-container">
+                    <AddressSearch inputAddress={inputAddress} setInputAddress={setInputAddress} address={address} setAddress={setAddress} />
+                    <div className="input-label-container">
+                        <h3>Street Address</h3>
+                        <input
+                            className="form__text--input"
+                            name="shipStreet"
+                            type="text"
+                            value={shipStreet ? shipStreet : ""}
+                            autoComplete="off"
+                            onChange={e => setShipStreet(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>Apartment</h3>
+                        <input
+                            className="form__text--input"
+                            name="shipStreet"
+                            type="text"
+                            value={shipApt ? shipApt : ""}
+                            autoComplete="off"
+                            onChange={e => setShipApt(e.target.value)}
+                        />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>City</h3>
+                        <input
+                            className="form__text--input"
+                            name="shipCity"
+                            type="text"
+                            value={shipCity ? shipCity : ""}
+                            autoComplete="off"
+                            onChange={e => setShipCity(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>State</h3>
+                        <input
+                            className="form__text--input"
+                            name="shipState"
+                            type="text"
+                            value={shipState ? shipState : ""}
+                            autoComplete="off"
+                            onChange={e => setShipState(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>Zip Code</h3>
+                        <input
+                            className="form__text--input"
+                            name="shipZip"
+                            type="text"
+                            value={shipZip ? shipZip : ""}
+                            autoComplete="off"
+                            // onChange={handleZip}
+                            required
+                        />
+                        <button onClick={handleZip}>Update</button>
+                    </div>
+                </div>
+                <div className="form-container">
+                    <div className="input-label-container">
+                        <h3>Street Address</h3>
+                        <input
+                            className="form__text--input"
+                            name="billStreet"
+                            type="text"
+                            value={billStreet ? billStreet : ""}
+                            autoComplete="off"
+                            onChange={e => setBillStreet(e.target.value)}
+                            required
+                        />
+                        <div className="input-label-container">
+                            <h3>Apartment</h3>
+                            <input
+                                className="form__text--input"
+                                name="billStreet"
+                                type="text"
+                                value={billApt ? billApt : ""}
+                                autoComplete="off"
+                                onChange={e => setBillApt(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="input-label-container">
+                        <h3>City</h3>
+                        <input
+                            className="form__text--input"
+                            name="billCity"
+                            type="text"
+                            value={billCity ? billCity : ""}
+                            autoComplete="off"
+                            onChange={e => setBillCity(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>State</h3>
+                        <input
+                            className="form__text--input"
+                            name="billState"
+                            type="text"
+                            value={billState ? billState : ""}
+                            autoComplete="off"
+                            onChange={e => setBillState(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="input-label-container">
+                        <h3>Zip Code</h3>
+                        <input
+                            className="form__text--input"
+                            name="billZip"
+                            type="text"
+                            value={billZip ? billZip : ""}
+                            autoComplete="off"
+                            onChange={e => setBillZip(e.target.value)}
+                            required
+                        />
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" onClick={handleSubmitShipping}>Update Shipping Info</button>
+                </div>
+            </form>
+        </>
+    )
+}

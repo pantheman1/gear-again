@@ -28,6 +28,48 @@
 - `users` has a `one-to-many` `orders` association.
 - `users` has a `one-to-many` `items` association.
 - `users` has a `one-to-one` `carts` association.
+- `users` has many `shipping` association.
+- `users` has many `billing` association.
+
+---
+
+## Shipping
+
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| shipStreet     | string         | Nullable              |
+| shipApt        | string         | Nullable              |
+| shipCity       | string         | Nullable              |
+| shipState      | string         | Nullable              |
+| shipZip        | Integer        | Nullable              |
+| createdAt      | datetime       | Not Null              |
+| updatedAt      | datetime       | Not Null              |
+
+### Model Associations:
+
+- Unique index on `[email]`
+- `shipping` `belongs-to` `users` association.
+
+---
+
+## Billing
+
+| Attribute Name | Attribute Type | Constraints           |
+| -------------- | -------------- | --------------------- |
+| id             | integer        | Primary Key, Not Null |
+| billStreet     | string         | Nullable              |
+| billApt        | string         | Nullable              |
+| billCity       | string         | Nullable              |
+| billState      | string         | Nullable              |
+| billZip        | Integer        | Nullable              |
+| createdAt      | datetime       | Not Null              |
+| updatedAt      | datetime       | Not Null              |
+
+### Model Associations:
+
+- Unique index on `[email]`
+- `billing` `belongs-to` `users` association.
 
 ---
 

@@ -7,6 +7,8 @@ import PhotosReducer from './photos';
 import OrdersReducer from './orders';
 import OrderDetailsReducer from './orderDetails';
 import CartReducer from './cart';
+import Ship from './ship';
+import Bill from './bill';
 
 const rootReducer = combineReducers({
   session,
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
   orders: OrdersReducer,
   orderDetails: OrderDetailsReducer,
   cart: CartReducer,
+  ship: Ship,
+  bill: Bill,
 });
 
 let enhancer;

@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nanoid": "^3.1.22"
+    "nanoid": "^3.1.22",
+    "react-places-autocomplete": "^7.3.0"
   }
 }

@@ -7,6 +7,8 @@ const photosRouter = require('./photos.js');
 const ordersRouter = require('./orders.js');
 const orderDetailsRouter = require('./orderDetails.js');
 const cartsRouter = require('./cart.js');
+const shipRouter = require('./ship.js');
+const billRouter = require('./bill.js');
 
 // GET /api/set-token-cookie
 const asyncHandler = require('express-async-handler');
@@ -54,5 +56,7 @@ router.use('/photos', photosRouter);
 router.use('/orders', ordersRouter);
 router.use('/orderDetails', orderDetailsRouter);
 router.use('/cart', cartsRouter);
+router.use('/ship', shipRouter);
+router.use('/bill', billRouter);
 
 module.exports = router;
