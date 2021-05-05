@@ -20,7 +20,8 @@ import ItemDetailPage from "./components/Items/ItemDetailPage";
 import Cart from "./components/Cart/Cart";
 import { getCart } from "./store/cart";
 import Checkout from "./components/Cart/Checkout";
-import ShippingForm from "./components/Shipping/ShippingForm";
+import AddressToggle from "./components/Shipping/AddressToggle";
+// import ShippingForm from "./components/Shipping/ShippingForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -75,7 +76,8 @@ function App() {
                 <Cart />
               </Route>
               <Route path="/shipping" exact={true}>
-                <ShippingForm />
+                {/* <ShippingForm /> */}
+                <AddressToggle />
               </Route>
               <Route exact={true} path={"/cart/checkout"}>
                 <Checkout />

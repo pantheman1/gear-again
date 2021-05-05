@@ -4,7 +4,7 @@ import { getAllBilling, updateBilling } from '../../store/bill';
 import { getAllShipping, updateShipping } from '../../store/ship';
 import AddressSearch from './AddressSearch';
 
-export default function ShippingForm() {
+export default function ShippingForm({ shipAddressButton }) {
     const user = useSelector(state => state?.session.user);
     const ship = useSelector(state => state.ship);
     const bill = useSelector(state => state.bill);
@@ -30,9 +30,7 @@ export default function ShippingForm() {
 
     useEffect(() => {
         if (address) {
-            console.log("address---->>>", address)
             setInputAddress(address?.split(", ")[0])
-            setShipStreet(address?.split(", ")[0])
             setShipCity(address?.split(", ")[1])
             setShipState(address?.split(", ")[2].split(" ")[0])
             setShipZip(address?.split(", ")[2].split(" ")[1])
@@ -70,7 +68,7 @@ export default function ShippingForm() {
             shipCity &&
             shipState &&
             shipZip) {
-            dispatch(updateShipping(shipData))
+            dispatch(shipAddressButton(shipData))
         } else {
             error.push("Please fill out all shipping fields.")
             setErrors(error)
@@ -87,7 +85,6 @@ export default function ShippingForm() {
         }
     }
 
-
     return (
         Object.keys(user).length > 0 &&
         <>
@@ -96,18 +93,9 @@ export default function ShippingForm() {
                     {errors.map((error, idx) => <li className="error-handling" key={idx}>{error}</li>)}
                 </ul>
                 <div className="form-container">
-                    <AddressSearch inputAddress={inputAddress} setInputAddress={setInputAddress} address={address} setAddress={setAddress} />
                     <div className="input-label-container">
                         <h3>Street Address</h3>
-                        <input
-                            className="form__text--input"
-                            name="shipStreet"
-                            type="text"
-                            value={shipStreet ? shipStreet : ""}
-                            autoComplete="off"
-                            onChange={e => setShipStreet(e.target.value)}
-                            required
-                        />
+                        <AddressSearch inputAddress={inputAddress} setInputAddress={setInputAddress} address={address} setAddress={setAddress} />
                     </div>
                     <div className="input-label-container">
                         <h3>Apartment</h3>

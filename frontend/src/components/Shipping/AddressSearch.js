@@ -22,11 +22,11 @@ function AddressSearch({ setAddress, inputAddress, setInputAddress }) {
             onSelect={handleSelect}
         >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                <div>
+                <>
                     <input
+                        autoComplete="off"
                         {...getInputProps({
-                            placeholder: 'Input address ...',
-                            className: 'location-search-input',
+                            className: 'form__text--input',
                         })}
                     />
                     <div className="autocomplete-dropdown-container">
@@ -51,7 +51,7 @@ function AddressSearch({ setAddress, inputAddress, setInputAddress }) {
                             );
                         })}
                     </div>
-                </div>
+                </>
             )}
         </PlacesAutocomplete>
     )
