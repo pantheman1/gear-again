@@ -17,4 +17,30 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json(shipInfo);
 }));
 
+// Post a new shipping address
+router.post('/:id', asyncHandler(async (req, res) => {
+    console.log("REQ---------", req.body)
+    const {
+        userId,
+        shipStreet,
+        shipApt,
+        shipCity,
+        shipState,
+        shipZip,
+    } = req.body;
+
+    const newAddress = await Shipping.create({
+        userId,
+        shipStreet,
+        shipApt,
+        shipCity,
+        shipState,
+        shipZip,
+    });
+    return res.json(newAddress);
+}))
+
+
+// Patch a new shipping address
+
 module.exports = router;

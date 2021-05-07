@@ -1,52 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllBilling, updateBilling } from '../../store/bill';
-import { getAllShipping, updateShipping } from '../../store/ship';
+// import { getAllBilling, updateBilling } from '../../store/bill';
+import { getAllShipping, postShipping } from '../../store/ship';
 import AddressSearch from './AddressSearch';
 
-export default function ShippingForm({ shipAddressButton }) {
+export default function ShippingForm({ shipAddressButton, btnText, setShipToggle }) {
     const user = useSelector(state => state?.session.user);
     const ship = useSelector(state => state.ship);
-    const bill = useSelector(state => state.bill);
+    // const bill = useSelector(state => state.bill);
     const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
     const [shipApt, setShipApt] = useState(ship?.shipApt || "");
     const [shipCity, setShipCity] = useState(ship?.shipCity || "");
     const [shipState, setShipState] = useState(ship?.shipState || "");
     const [shipZip, setShipZip] = useState(ship?.shipZip || "");
-    const [billStreet, setBillStreet] = useState(bill?.billStreet || "");
-    const [billApt, setBillApt] = useState(bill?.billApt || "");
-    const [billCity, setBillCity] = useState(bill?.billCity || "");
-    const [billState, setBillState] = useState(bill?.billState || "");
-    const [billZip, setBillZip] = useState(bill?.billZip || "");
-    const [inputAddress, setInputAddress] = useState("");
+    // const [billStreet, setBillStreet] = useState(bill?.billStreet || "");
+    // const [billApt, setBillApt] = useState(bill?.billApt || "");
+    // const [billCity, setBillCity] = useState(bill?.billCity || "");
+    // const [billState, setBillState] = useState(bill?.billState || "");
+    // const [billZip, setBillZip] = useState(bill?.billZip || "");
     const [address, setAddress] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllBilling);
+        // dispatch(getAllBilling);
         dispatch(getAllShipping);
     }, [])
 
     useEffect(() => {
         if (address) {
-            setInputAddress(address?.split(", ")[0])
+            setShipStreet(address?.split(", ")[0])
             setShipCity(address?.split(", ")[1])
             setShipState(address?.split(", ")[2].split(" ")[0])
             setShipZip(address?.split(", ")[2].split(" ")[1])
         }
     }, [address])
 
-    const handleZip = async (e) => {
-        e.preventDefault();
-        setShipZip(e.target.value)
-    }
-
-    const handleSubmitShipping = async (e) => {
+    // debugger
+    const handleShip = async (e) => {
         e.preventDefault();
 
         const error = [];
-
+        // debugger
         const shipData = {
             userId: user?.id,
             shipStreet,
@@ -55,35 +50,43 @@ export default function ShippingForm({ shipAddressButton }) {
             shipState,
             shipZip,
         }
-        const billData = {
-            userId: user?.id,
-            billStreet,
-            billApt,
-            billCity,
-            billState,
-            billZip,
-        }
-
+        console.log("shipData----", shipData)
         if (shipStreet &&
             shipCity &&
             shipState &&
             shipZip) {
             dispatch(shipAddressButton(shipData))
+            setShipToggle("has address-no edit")
         } else {
             error.push("Please fill out all shipping fields.")
             setErrors(error)
         }
-
-        if (billStreet &&
-            billCity &&
-            billState &&
-            billZip) {
-            dispatch(updateBilling(billData))
-        } else {
-            error.push("Please fill out all billing fields.")
-            setErrors(error)
-        }
     }
+
+    // const handleBill = async (e) => {
+    //     e.preventDefault();
+
+    //     const error = [];
+
+    //     const billData = {
+    //         userId: user?.id,
+    //         billStreet,
+    //         billApt,
+    //         billCity,
+    //         billState,
+    //         billZip,
+    //     }
+
+    //     if (billStreet &&
+    //         billCity &&
+    //         billState &&
+    //         billZip) {
+    //         dispatch(updateBilling(billData))
+    //     } else {
+    //         error.push("Please fill out all billing fields.")
+    //         setErrors(error)
+    //     }
+    // }
 
     return (
         Object.keys(user).length > 0 &&
@@ -95,7 +98,7 @@ export default function ShippingForm({ shipAddressButton }) {
                 <div className="form-container">
                     <div className="input-label-container">
                         <h3>Street Address</h3>
-                        <AddressSearch inputAddress={inputAddress} setInputAddress={setInputAddress} address={address} setAddress={setAddress} />
+                        <AddressSearch shipStreet={shipStreet} setShipStreet={setShipStreet} address={address} setAddress={setAddress} />
                     </div>
                     <div className="input-label-container">
                         <h3>Apartment</h3>
@@ -143,10 +146,10 @@ export default function ShippingForm({ shipAddressButton }) {
                             // onChange={handleZip}
                             required
                         />
-                        <button onClick={handleZip}>Update</button>
+                        <button onClick={handleShip}>{btnText}</button>
                     </div>
                 </div>
-                <div className="form-container">
+                {/* <div className="form-container">
                     <div className="input-label-container">
                         <h3>Street Address</h3>
                         <input
@@ -206,10 +209,10 @@ export default function ShippingForm({ shipAddressButton }) {
                             required
                         />
                     </div>
-                </div>
-                <div>
-                    <button type="submit" onClick={handleSubmitShipping}>Update Shipping Info</button>
-                </div>
+                    <div>
+                        <button type="submit" onClick={handleBill}>{btnText}</button>
+                    </div>
+                </div> */}
             </form>
         </>
     )
