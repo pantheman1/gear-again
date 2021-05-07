@@ -18,7 +18,6 @@ export default function ShippingForm({ shipAddressButton }) {
     const [billCity, setBillCity] = useState(bill?.billCity || "");
     const [billState, setBillState] = useState(bill?.billState || "");
     const [billZip, setBillZip] = useState(bill?.billZip || "");
-    const [inputAddress, setInputAddress] = useState("");
     const [address, setAddress] = useState("");
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
@@ -30,7 +29,7 @@ export default function ShippingForm({ shipAddressButton }) {
 
     useEffect(() => {
         if (address) {
-            setInputAddress(address?.split(", ")[0])
+            setShipStreet(address?.split(", ")[0])
             setShipCity(address?.split(", ")[1])
             setShipState(address?.split(", ")[2].split(" ")[0])
             setShipZip(address?.split(", ")[2].split(" ")[1])
@@ -95,7 +94,7 @@ export default function ShippingForm({ shipAddressButton }) {
                 <div className="form-container">
                     <div className="input-label-container">
                         <h3>Street Address</h3>
-                        <AddressSearch inputAddress={inputAddress} setInputAddress={setInputAddress} address={address} setAddress={setAddress} />
+                        <AddressSearch shipStreet={shipStreet} setShipStreet={setShipStreet} address={address} setAddress={setAddress} />
                     </div>
                     <div className="input-label-container">
                         <h3>Apartment</h3>

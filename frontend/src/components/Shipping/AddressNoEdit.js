@@ -5,7 +5,7 @@ export default function AddressNoEdit({ setShipToggle }) {
 
     const handleAddShipping = (e) => {
         e.preventDefault();
-        setShipToggle("edit address")
+        setShipToggle("has address-edit")
     }
 
     return (

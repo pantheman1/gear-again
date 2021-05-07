@@ -8,16 +8,23 @@ import ShippingForm from './ShippingForm';
 
 export default function AddressToggle() {
     const ship = useSelector(state => Object.values(state.ship));
-    const [shipToggle, setShipToggle] = useState("");
+    const [shipToggle, setShipToggle] = useState(ship.length ? "has address-no edit" : "no address-no edit");
 
-    console.log("ship---->", ship)
+    // if user has no ship address:
+    // [x] default to "You have no address on file" message 
+    // [x] with add ship address button
+    // when button is clicked:
+    // [x] set the shipToggle to "no address-edit" and show blank shipping form
+    // [] send "postShipping" as prop to form
+    // upon POST, setShipToggle to "has address-no edit"--no redirect
+    // if use has shipping address:
+    // default to show address and an edit button
+    // when button is clicked:
+    // set the shipToggle to "has address-edit" and show filled out shipping form
+    // upon PATCH, setShipToggle to "has address-no edit"--no redirect
+
     useEffect(() => {
-        if (!ship.length) {
-            setShipToggle("no address-no edit");
-        } else {
-            setShipToggle("has address-no edit");
-        }
-    }, [])
+    }, [shipToggle])
 
     // debugger
     if (shipToggle === "no address-no edit" || shipToggle === "") {
