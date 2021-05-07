@@ -5,7 +5,7 @@ export default function NoAddressOnFile({ setShipToggle }) {
 
     const handleAddShipping = (e) => {
         e.preventDefault();
-        setShipToggle("add address")
+        setShipToggle("no address-add")
     }
 
     return (
