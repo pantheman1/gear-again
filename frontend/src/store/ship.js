@@ -35,6 +35,20 @@ export const updateShipping = (data) => async dispatch => {
     }
 }
 
+export const postShipping = (data) => async dispatch => {
+    const { userId } = data;
+    const res = await fetch(`/api/ship/${userId}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application-json",
+        },
+        body: JSON.stringify(data),
+    })
+    if (res.ok) {
+        await dispatch(getAllShippingData(res))
+    }
+}
+
 // Reducer
 
 export default function Ship(state = {}, action) {

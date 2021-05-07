@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { updateShipping } from '../../store/ship';
+import { postShipping, updateShipping } from '../../store/ship';
 import AddressNoEdit from './AddressNoEdit';
 import NoAddressOnFile from './NoAddressOnFile';
 import ShippingForm from './ShippingForm';
@@ -33,7 +33,7 @@ export default function AddressToggle() {
         )
     } else if (shipToggle === "no address-edit") {
         return (
-            <ShippingForm shipAddressButton="post button" />
+            <ShippingForm shipAddressButton={postShipping} btnText="Add shipping address" />
         )
     } else if (shipToggle === "has address-no edit") {
         return (
@@ -41,7 +41,7 @@ export default function AddressToggle() {
         )
     } else if (shipToggle === "has address-edit") {
         return (
-            <ShippingForm shipAddressButton={updateShipping} />
+            <ShippingForm shipAddressButton={updateShipping} btnText="Update shipping address" />
         )
     }
 }
