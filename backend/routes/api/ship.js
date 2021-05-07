@@ -19,9 +19,9 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 // Post a new shipping address
 router.post('/:id', asyncHandler(async (req, res) => {
-    const { id } = req.params;
-
+    console.log("REQ---------", req.body)
     const {
+        userId,
         shipStreet,
         shipApt,
         shipCity,
@@ -30,7 +30,7 @@ router.post('/:id', asyncHandler(async (req, res) => {
     } = req.body;
 
     const newAddress = await Shipping.create({
-        userId: id,
+        userId,
         shipStreet,
         shipApt,
         shipCity,

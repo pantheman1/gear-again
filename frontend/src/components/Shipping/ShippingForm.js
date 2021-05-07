@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllBilling, updateBilling } from '../../store/bill';
-import { getAllShipping, updateShipping } from '../../store/ship';
+// import { getAllBilling, updateBilling } from '../../store/bill';
+import { getAllShipping, postShipping } from '../../store/ship';
 import AddressSearch from './AddressSearch';
 
-export default function ShippingForm({ shipAddressButton, btnText }) {
+export default function ShippingForm({ shipAddressButton, btnText, setShipToggle }) {
     const user = useSelector(state => state?.session.user);
     const ship = useSelector(state => state.ship);
-    const bill = useSelector(state => state.bill);
+    // const bill = useSelector(state => state.bill);
     const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
     const [shipApt, setShipApt] = useState(ship?.shipApt || "");
     const [shipCity, setShipCity] = useState(ship?.shipCity || "");
@@ -36,11 +36,12 @@ export default function ShippingForm({ shipAddressButton, btnText }) {
         }
     }, [address])
 
+    // debugger
     const handleShip = async (e) => {
         e.preventDefault();
 
         const error = [];
-
+        // debugger
         const shipData = {
             userId: user?.id,
             shipStreet,
@@ -49,12 +50,13 @@ export default function ShippingForm({ shipAddressButton, btnText }) {
             shipState,
             shipZip,
         }
-
+        console.log("shipData----", shipData)
         if (shipStreet &&
             shipCity &&
             shipState &&
             shipZip) {
             dispatch(shipAddressButton(shipData))
+            setShipToggle("has address-no edit")
         } else {
             error.push("Please fill out all shipping fields.")
             setErrors(error)

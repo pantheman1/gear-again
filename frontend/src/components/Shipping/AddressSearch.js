@@ -17,9 +17,9 @@ function AddressSearch({ setAddress, shipStreet, setShipStreet }) {
 
     return (
         <PlacesAutocomplete
-            value={shipStreet}
             onChange={handleChange}
             onSelect={handleSelect}
+            value={shipStreet ? shipStreet : ""}
         >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                 <>

@@ -17,7 +17,7 @@ const getAllShippingData = data => {
 export const getAllShipping = (userId) => async dispatch => {
     const res = await fetch(`/api/ship/${userId}`)
     if (res.ok) {
-        await dispatch(getAllShippingData(res));
+        await dispatch(getAllShippingData(res.data));
     }
 }
 
@@ -26,26 +26,30 @@ export const updateShipping = (data) => async dispatch => {
     const res = await fetch(`/api/ship/${userId}`, {
         method: "PATCH",
         headers: {
-            "Content-Type": "application-json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
     })
     if (res.ok) {
-        await dispatch(getAllShippingData(res))
+        await dispatch(getAllShippingData(res.data))
     }
 }
 
 export const postShipping = (data) => async dispatch => {
-    const { userId } = data;
+    const {
+        userId,
+    } = data;
+
     const res = await fetch(`/api/ship/${userId}`, {
         method: "POST",
         headers: {
-            "Content-Type": "application-json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
     })
+    console.log("res.data", res.data)
     if (res.ok) {
-        await dispatch(getAllShippingData(res))
+        await dispatch(getAllShippingData(res.data))
     }
 }
 
@@ -56,9 +60,7 @@ export default function Ship(state = {}, action) {
     switch (action.type) {
         case USER_SHIPPING:
             console.log("action.data--shipping", action.data)
-            action.data.forEach(info => {
-                newState[info.id] = info;
-            })
+            newState[action.data.id] = action.data;
             return newState;
         default:
             return state;

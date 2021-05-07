@@ -15,7 +15,7 @@ export default function AddressToggle() {
     // [x] with add ship address button
     // when button is clicked:
     // [x] set the shipToggle to "no address-edit" and show blank shipping form
-    // [] send "postShipping" as prop to form
+    // [x] send "postShipping" as prop to form
     // upon POST, setShipToggle to "has address-no edit"--no redirect
     // if use has shipping address:
     // default to show address and an edit button
@@ -33,7 +33,7 @@ export default function AddressToggle() {
         )
     } else if (shipToggle === "no address-edit") {
         return (
-            <ShippingForm shipAddressButton={postShipping} btnText="Add shipping address" />
+            <ShippingForm setShipToggle={setShipToggle} shipAddressButton={postShipping} btnText="Add shipping address" />
         )
     } else if (shipToggle === "has address-no edit") {
         return (
@@ -41,7 +41,7 @@ export default function AddressToggle() {
         )
     } else if (shipToggle === "has address-edit") {
         return (
-            <ShippingForm shipAddressButton={updateShipping} btnText="Update shipping address" />
+            <ShippingForm setShipToggle={setShipToggle} shipAddressButton={updateShipping} btnText="Update shipping address" />
         )
     }
 }
