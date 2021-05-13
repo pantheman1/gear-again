@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { postShipping, updateShipping } from '../../store/ship';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllShipping, postShipping, updateShipping } from '../../store/ship';
 import AddressNoEdit from './AddressNoEdit';
 import NoAddressOnFile from './NoAddressOnFile';
 import ShippingForm from './ShippingForm';
 
 
 export default function AddressToggle() {
+    const user = useSelector(state => state.session.user);
     const ship = useSelector(state => Object.values(state.ship));
     const [shipToggle, setShipToggle] = useState(ship.length ? "has address-no edit" : "no address-no edit");
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getAllShipping(user.id));
+        if (ship.length) {
+            setShipToggle("has address-no edit")
+        }
+    }, [])
 
     // if user has no ship address:
     // [x] default to "You have no address on file" message 
@@ -26,7 +35,6 @@ export default function AddressToggle() {
     useEffect(() => {
     }, [shipToggle])
 
-    // debugger
     if (shipToggle === "no address-no edit" || shipToggle === "") {
         return (
             <NoAddressOnFile setShipToggle={setShipToggle} />

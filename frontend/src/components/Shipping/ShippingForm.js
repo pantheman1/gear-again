@@ -6,13 +6,13 @@ import AddressSearch from './AddressSearch';
 
 export default function ShippingForm({ shipAddressButton, btnText, setShipToggle }) {
     const user = useSelector(state => state?.session.user);
-    const ship = useSelector(state => state.ship);
+    const ship = useSelector(state => Object.values(state.ship));
     // const bill = useSelector(state => state.bill);
-    const [shipStreet, setShipStreet] = useState(ship?.shipStreet || "");
-    const [shipApt, setShipApt] = useState(ship?.shipApt || "");
-    const [shipCity, setShipCity] = useState(ship?.shipCity || "");
-    const [shipState, setShipState] = useState(ship?.shipState || "");
-    const [shipZip, setShipZip] = useState(ship?.shipZip || "");
+    const [shipStreet, setShipStreet] = useState(ship[ship.length - 1]?.shipStreet || "");
+    const [shipApt, setShipApt] = useState(ship[ship.length - 1]?.shipApt || "");
+    const [shipCity, setShipCity] = useState(ship[ship.length - 1]?.shipCity || "");
+    const [shipState, setShipState] = useState(ship[ship.length - 1]?.shipState || "");
+    const [shipZip, setShipZip] = useState(ship[ship.length - 1]?.shipZip || "");
     // const [billStreet, setBillStreet] = useState(bill?.billStreet || "");
     // const [billApt, setBillApt] = useState(bill?.billApt || "");
     // const [billCity, setBillCity] = useState(bill?.billCity || "");
@@ -24,7 +24,9 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
 
     useEffect(() => {
         // dispatch(getAllBilling);
-        dispatch(getAllShipping);
+        if (user) {
+            dispatch(getAllShipping(user?.id));
+        }
     }, [])
 
     useEffect(() => {
@@ -34,14 +36,12 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
             setShipState(address?.split(", ")[2].split(" ")[0])
             setShipZip(address?.split(", ")[2].split(" ")[1])
         }
-    }, [address])
+    }, [address, shipStreet])
 
-    // debugger
     const handleShip = async (e) => {
         e.preventDefault();
 
         const error = [];
-        // debugger
         const shipData = {
             userId: user?.id,
             shipStreet,
@@ -49,8 +49,12 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
             shipCity,
             shipState,
             shipZip,
+            // shipId: ship[0].id ? ship[0].id : "",
         }
-        console.log("shipData----", shipData)
+        if (ship[0]?.id) {
+            shipData["shipId"] = ship[0].id;
+        };
+
         if (shipStreet &&
             shipCity &&
             shipState &&
@@ -106,7 +110,7 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
                             className="form__text--input"
                             name="shipStreet"
                             type="text"
-                            value={shipApt ? shipApt : ""}
+                            value={shipApt}
                             autoComplete="off"
                             onChange={e => setShipApt(e.target.value)}
                         />
@@ -117,7 +121,7 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
                             className="form__text--input"
                             name="shipCity"
                             type="text"
-                            value={shipCity ? shipCity : ""}
+                            value={shipCity}
                             autoComplete="off"
                             onChange={e => setShipCity(e.target.value)}
                             required
@@ -129,7 +133,7 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
                             className="form__text--input"
                             name="shipState"
                             type="text"
-                            value={shipState ? shipState : ""}
+                            value={shipState}
                             autoComplete="off"
                             onChange={e => setShipState(e.target.value)}
                             required
@@ -141,7 +145,7 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
                             className="form__text--input"
                             name="shipZip"
                             type="text"
-                            value={shipZip ? shipZip : ""}
+                            value={shipZip}
                             autoComplete="off"
                             // onChange={handleZip}
                             required

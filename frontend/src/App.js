@@ -21,12 +21,14 @@ import Cart from "./components/Cart/Cart";
 import { getCart } from "./store/cart";
 import Checkout from "./components/Cart/Checkout";
 import AddressToggle from "./components/Shipping/AddressToggle";
+import Ship, { getAllShipping } from "./store/ship";
 // import ShippingForm from "./components/Shipping/ShippingForm";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user)
+  const ship = useSelector(state => state.ship);
   const history = useHistory();
 
   useEffect(() => {
@@ -48,6 +50,11 @@ function App() {
     }
   }, [dispatch, user?.id])
 
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(getAllShipping(user?.id))
+    }
+  }, [dispatch, user?.id])
 
   return (
     <>
