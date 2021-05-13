@@ -41,5 +41,26 @@ router.post('/:id', asyncHandler(async (req, res) => {
 
 
 // Patch a new shipping address
+router.patch('/:id', asyncHandler(async (req, res) => {
+    const {
+        userId,
+        shipStreet,
+        shipApt,
+        shipCity,
+        shipState,
+        shipZip,
+        shipId,
+    } = req.body;
+
+    const ship = await Shipping.findByPk(shipId)
+
+    ship.shipStreet = shipStreet;
+    ship.shipApt = shipApt;
+    ship.shipCity = shipCity;
+    ship.shipState = shipState;
+    ship.shipZip = shipZip;
+    await ship.save();
+    return res.json("Success");
+}))
 
 module.exports = router;
