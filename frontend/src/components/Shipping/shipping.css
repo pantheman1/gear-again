@@ -1,0 +1,9 @@
+.address__container {
+  display: flex;
+  gap: 5%;
+}
+
+.address__container-text {
+  display: flex;
+  flex-direction: column;
+}

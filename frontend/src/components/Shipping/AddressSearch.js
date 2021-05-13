@@ -12,7 +12,6 @@ function AddressSearch({ setAddress, shipStreet, setShipStreet }) {
     async function handleSelect(address) {
         const results = await geocodeByAddress(address);
         setAddress(results[0].formatted_address);
-
     }
 
     return (

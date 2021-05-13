@@ -19,7 +19,6 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 // Post a new shipping address
 router.post('/:id', asyncHandler(async (req, res) => {
-    console.log("REQ---------", req.body)
     const {
         userId,
         shipStreet,
