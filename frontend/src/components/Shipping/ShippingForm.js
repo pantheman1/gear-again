@@ -8,11 +8,11 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
     const user = useSelector(state => state?.session.user);
     const ship = useSelector(state => Object.values(state.ship));
     // const bill = useSelector(state => state.bill);
-    const [shipStreet, setShipStreet] = useState(ship[ship.length - 1].shipStreet || "");
-    const [shipApt, setShipApt] = useState(ship[ship.length - 1].shipApt || "");
-    const [shipCity, setShipCity] = useState(ship[ship.length - 1].shipCity || "");
-    const [shipState, setShipState] = useState(ship[ship.length - 1].shipState || "");
-    const [shipZip, setShipZip] = useState(ship[ship.length - 1].shipZip || "");
+    const [shipStreet, setShipStreet] = useState(ship[ship.length - 1]?.shipStreet || "");
+    const [shipApt, setShipApt] = useState(ship[ship.length - 1]?.shipApt || "");
+    const [shipCity, setShipCity] = useState(ship[ship.length - 1]?.shipCity || "");
+    const [shipState, setShipState] = useState(ship[ship.length - 1]?.shipState || "");
+    const [shipZip, setShipZip] = useState(ship[ship.length - 1]?.shipZip || "");
     // const [billStreet, setBillStreet] = useState(bill?.billStreet || "");
     // const [billApt, setBillApt] = useState(bill?.billApt || "");
     // const [billCity, setBillCity] = useState(bill?.billCity || "");
@@ -49,8 +49,12 @@ export default function ShippingForm({ shipAddressButton, btnText, setShipToggle
             shipCity,
             shipState,
             shipZip,
-            shipId: ship[0].id,
+            // shipId: ship[0].id ? ship[0].id : "",
         }
+        if (ship[0]?.id) {
+            shipData["shipId"] = ship[0].id;
+        };
+
         if (shipStreet &&
             shipCity &&
             shipState &&

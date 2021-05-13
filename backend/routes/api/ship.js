@@ -60,7 +60,7 @@ router.patch('/:id', asyncHandler(async (req, res) => {
     ship.shipState = shipState;
     ship.shipZip = shipZip;
     await ship.save();
-    return res.json("Success");
+    return res.json(ship);
 }))
 
 module.exports = router;
