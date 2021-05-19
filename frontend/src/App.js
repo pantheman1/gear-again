@@ -21,7 +21,7 @@ import Cart from "./components/Cart/Cart";
 import { getCart } from "./store/cart";
 import Checkout from "./components/Cart/Checkout";
 import AddressToggle from "./components/Shipping/AddressToggle";
-import Ship, { getAllShipping } from "./store/ship";
+import { getAllShipping } from "./store/ship";
 // import ShippingForm from "./components/Shipping/ShippingForm";
 
 function App() {

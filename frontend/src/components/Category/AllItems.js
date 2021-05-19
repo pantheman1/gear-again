@@ -9,7 +9,7 @@ export default function AllItems() {
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(async () => {
+    useEffect(() => {
         setIsLoaded(true)
     }, [dispatch])
 
